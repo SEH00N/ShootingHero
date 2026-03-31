@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace ShootingHero.Networks
+{
+    public class DIContainer
+    {
+        private readonly Dictionary<Type, object> instances = null;
+
+        public DIContainer()
+        {
+            instances = new Dictionary<Type, object>();
+        }
+        
+        public void AddInstance<TInstance>(TInstance instance) where TInstance : class
+        {
+            AddInstance(typeof(TInstance), instance);
+        }
+
+        public void AddInstance(Type type, object instance)
+        {
+            if(type.IsValueType == true)
+                throw new InvalidOperationException($"Cannot register an instance of {type.FullName} in the DIContainer because it is not a reference type. Only reference-type instances can be registered.");
+            
+            instances[type] = instance;
+        }
+
+        public TInstance GetInstance<TInstance>() where TInstance : class
+        {
+            return GetInstance(typeof(TInstance)) as TInstance;
+        }
+
+        public object GetInstance(Type type)
+        {
+            if(instances.TryGetValue(type, out object instance) == true)
+                return instance;
+
+            object[] candidates = instances
+                .Where(x => type.IsAssignableFrom(x.Key))
+                .Select(x => x.Value)
+                .ToArray();
+            
+            if(candidates.Length <= 0)
+                return null;
+
+            return candidates[0];
+        }
+    }
+}
