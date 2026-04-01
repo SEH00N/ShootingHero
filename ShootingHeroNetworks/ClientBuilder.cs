@@ -2,10 +2,9 @@ namespace ShootingHero.Networks
 {
     public class ClientBuilder : NetworkObjectBuilder<Client>
     {
-        public ClientBuilder(Session session, IPacketDispatcher packetDispatcher) : base()
+        public ClientBuilder(Session session) : base()
         {
-            AddSingleton(session);
-            AddSingleton(packetDispatcher);
+            AddSingleton<Session>(session);
         }
 
         protected override Client OnBuild()

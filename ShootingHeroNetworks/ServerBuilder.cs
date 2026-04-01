@@ -2,11 +2,10 @@ namespace ShootingHero.Networks
 {
     public class ServerBuilder : NetworkObjectBuilder<Server>
     {
-        public ServerBuilder(ISessionFactory sessionFactory, ISessionDispatcher sessionDispatcher, IPacketDispatcher packetDispatcher) : base()
+        public ServerBuilder(ISessionFactory sessionFactory, ISessionDispatcher sessionDispatcher) : base()
         {
-            AddSingleton(sessionFactory);
-            AddSingleton(sessionDispatcher);
-            AddSingleton(packetDispatcher);
+            AddSingleton<ISessionFactory>(sessionFactory);
+            AddSingleton<ISessionDispatcher>(sessionDispatcher);
         }
 
         protected override Server OnBuild()

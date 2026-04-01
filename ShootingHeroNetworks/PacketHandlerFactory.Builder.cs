@@ -13,7 +13,8 @@ namespace ShootingHero.Networks
             public static PacketHandlerFactory Build(Assembly[] assemblies, DIContainer diContainer)
             {
                 PacketHandlerFactory packetHandlerFactory = new PacketHandlerFactory() {
-                    factories = new Dictionary<Type, Func<DIContainer, IPacketHandlerBase>>()
+                    factories = new Dictionary<Type, Func<DIContainer, IPacketHandlerBase>>(),
+                    diContainer = diContainer
                 };
 
                 Type[] packetHandlerTypes = assemblies

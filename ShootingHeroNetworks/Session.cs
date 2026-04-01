@@ -16,7 +16,7 @@ namespace ShootingHero.Networks
 
         private Socket connectedSocket = null;
         private PacketFactory packetFactory = null;
-        private IPacketDispatcher packetDispatcher = null;
+        private PacketHandlerFactory packetHandlerFactory = null;
 
         public event Action<Exception> OnPacketHandleErrorEvent = null;
 
@@ -25,11 +25,11 @@ namespace ShootingHero.Networks
             sendLocker = new object();
         }
 
-        public void Open(Socket connectedSocket, PacketFactory packetFactory, IPacketDispatcher packetDispatcher)
+        public void Open(Socket connectedSocket, PacketFactory packetFactory, PacketHandlerFactory packetHandlerFactory)
         {
             this.connectedSocket = connectedSocket;
             this.packetFactory = packetFactory;
-            this.packetDispatcher = packetDispatcher;
+            this.packetHandlerFactory = packetHandlerFactory;
 
             sendQueue = new SendQueue();
             sendArgs = new SocketAsyncEventArgs();
@@ -150,7 +150,11 @@ namespace ShootingHero.Networks
             try
             {
                 IPacket packet = packetFactory.Create(packetData);
-                packetDispatcher.Dispatch(packet);
+                if(packet != null)
+                {
+                    IPacketHandlerBase packetHandler = packetHandlerFactory.Create(packet.GetType());
+                    packetHandler?.HandlePacket(this, packet);
+                }
             }
             catch(Exception err)
             {
