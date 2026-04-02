@@ -33,7 +33,7 @@ namespace ShootingHero.Networks
         public TNetworkObject Build(params Assembly[] assemblies)
         {
             diContainer.AddInstance<PacketHandlerFactory>(PacketHandlerFactory.Builder.Build(assemblies, diContainer));
-            diContainer.AddInstance<PacketFactory>(PacketFactory.Builder.Build(assemblies));
+            diContainer.AddInstance<PacketSerializer>(PacketSerializer.Builder.Build(assemblies));
 
             TNetworkObject networkObject = OnBuild();
             return networkObject;

@@ -7,13 +7,13 @@ namespace ShootingHero.Networks
     public class Client : NetworkObject
     {
         private readonly Session session = null;
-        private readonly PacketFactory packetFactory = null;
+        private readonly PacketSerializer packetSerializer = null;
         private readonly IPacketDispatcher packetDispatcher = null;
 
         internal Client(INetworkObjectBuilder builder) : base(builder)
         {
             session = GetSingleton<Session>();
-            packetFactory = GetSingleton<PacketFactory>();
+            packetSerializer = GetSingleton<PacketSerializer>();
             packetDispatcher = GetSingleton<IPacketDispatcher>();
         }
 
@@ -43,7 +43,7 @@ namespace ShootingHero.Networks
             if (connectArgs.SocketError != SocketError.Success)
                 return;
 
-            session.Open(connectArgs.ConnectSocket, packetFactory, packetDispatcher);
+            session.Open(connectArgs.ConnectSocket, packetSerializer, packetDispatcher);
         }
     }
 }

@@ -11,14 +11,14 @@ namespace ShootingHero.Networks
 
         private readonly ISessionFactory sessionFactory = null;
         private readonly ISessionDispatcher sessionDispatcher = null;
-        private readonly PacketFactory packetFactory = null;
+        private readonly PacketSerializer packetSerializer = null;
         private readonly IPacketDispatcher packetDispatcher = null;
 
         internal Server(INetworkObjectBuilder builder) : base(builder)
         {
             sessionFactory = GetSingleton<ISessionFactory>();
             sessionDispatcher = GetSingleton<ISessionDispatcher>();
-            packetFactory = GetSingleton<PacketFactory>();
+            packetSerializer = GetSingleton<PacketSerializer>();
             packetDispatcher = GetSingleton<IPacketDispatcher>();
         }
 
@@ -65,7 +65,7 @@ namespace ShootingHero.Networks
             }
 
             Session session = sessionFactory.Create(this, acceptArgs.AcceptSocket);
-            session.Open(acceptArgs.AcceptSocket, packetFactory, packetDispatcher);
+            session.Open(acceptArgs.AcceptSocket, packetSerializer, packetDispatcher);
             sessionDispatcher.Dispatch(session);
 
             AcceptAsync();

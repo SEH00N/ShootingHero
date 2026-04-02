@@ -6,13 +6,14 @@ using MemoryPack;
 
 namespace ShootingHero.Networks
 {
-    public partial class PacketFactory
+    public partial class PacketSerializer
     {
         public static class Builder
         {
-            public static PacketFactory Build(Assembly[] assemblies)
+            public static PacketSerializer Build(Assembly[] assemblies)
             {
-                PacketFactory packetFactory = new PacketFactory() {
+                PacketSerializer packetSerializer = new PacketSerializer() {
+                    packetIDMap = new Dictionary<Type, ushort>(),
                     factories = new Dictionary<ushort, Func<ArraySegment<byte>, IPacket>>()
                 };
 
@@ -30,10 +31,11 @@ namespace ShootingHero.Networks
                     if(packetAttribute == null)
                         continue;
 
-                    packetFactory.factories[packetAttribute.PacketID] = (packetData) => CreatePacket(packetType, packetData);
+                    packetSerializer.packetIDMap[packetType] = packetAttribute.PacketID;
+                    packetSerializer.factories[packetAttribute.PacketID] = (packetData) => CreatePacket(packetType, packetData);
                 }
                 
-                return packetFactory;
+                return packetSerializer;
             }
 
             private static IPacket CreatePacket(Type packetType, ArraySegment<byte> packetData)
