@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ShootingHero.Networks
 {
@@ -45,6 +46,17 @@ namespace ShootingHero.Networks
                 return null;
 
             return candidates[0];
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            foreach(object instance in instances.Values)
+            {
+                if(instance is IDisposable disposable)
+                    disposable.Dispose();
+                else if(instance is IAsyncDisposable asyncDisposable)
+                    await asyncDisposable.DisposeAsync();
+            }
         }
     }
 }

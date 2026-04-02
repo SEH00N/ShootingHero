@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace ShootingHero.Networks
 {
@@ -19,6 +20,11 @@ namespace ShootingHero.Networks
         public object GetInstance(Type type)
         {
             return diContainer.GetInstance(type);
+        }
+
+        ValueTask IAsyncDisposable.DisposeAsync()
+        {
+            return diContainer.DisposeAsync();
         }
     }
 }

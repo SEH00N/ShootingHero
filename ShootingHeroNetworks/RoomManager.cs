@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace ShootingHero.Networks
 {
-    public class RoomManager : IRoomManager, IPacketDispatcher, Room.ICallback
+    public class RoomManager : IRoomManager, IPacketDispatcher, IAsyncDisposable, Room.ICallback
     {
         private readonly ConcurrentDictionary<string, Lazy<Room>> rooms = null;
         private readonly ConcurrentDictionary<Session, Room> sessionRoomMap = null;
@@ -51,7 +51,7 @@ namespace ShootingHero.Networks
             {
                 if (sessionRoomMap.TryGetValue(session, out Room room) == true)
                 {
-                    int index = (room.GetHashCode() & int.MaxValue) % workers.Length;
+                    int index = (room.RoomIDHash & int.MaxValue) % workers.Length;
                     return workers[index].Value.EnqueueAsync(session, packet);
                 }
 
@@ -92,6 +92,20 @@ namespace ShootingHero.Networks
         private Lazy<RoomWorker> WorkerFactory(int capacityPerWorker)
         {
             return new Lazy<RoomWorker>(() => new RoomWorker(packetHandlerFactory.Value, capacityPerWorker));
+        }
+
+        async ValueTask IAsyncDisposable.DisposeAsync()
+        {
+            foreach (Lazy<RoomWorker> worker in workers)
+            {
+                if(worker.IsValueCreated == false)
+                    continue;
+
+                await (worker.Value as IAsyncDisposable).DisposeAsync();
+            }
+
+            if (dedicatedWorker.IsValueCreated == true)
+                await (dedicatedWorker.Value as IAsyncDisposable).DisposeAsync();
         }
     }
 }

@@ -16,6 +16,7 @@ namespace ShootingHero.Networks
         public RoomWorker(PacketHandlerFactory packetHandlerFactory, int capacity)
         {
             this.packetHandlerFactory = packetHandlerFactory;
+            cancellationTokenSource = new CancellationTokenSource();
 
             channel = Channel.CreateBounded<(Session, IPacket)>(
                 new BoundedChannelOptions(capacity)
@@ -27,7 +28,7 @@ namespace ShootingHero.Networks
                 }
             );
 
-            loopTask = Task.Run(ProcessLoopAsync);
+            loopTask = Task.Run(() => ProcessLoopAsync(cancellationTokenSource.Token), cancellationTokenSource.Token);
         }
 
         public ValueTask EnqueueAsync(Session session, IPacket packet)
@@ -35,18 +36,18 @@ namespace ShootingHero.Networks
             return channel.Writer.WriteAsync((session, packet));
         }
 
-        private async Task ProcessLoopAsync()
+        private async Task ProcessLoopAsync(CancellationToken cancellationToken)
         {
             try
             {
-                while (await channel.Reader.WaitToReadAsync(cancellationTokenSource.Token))
+                while (await channel.Reader.WaitToReadAsync(cancellationToken))
                 {
                     while (channel.Reader.TryRead(out (Session session, IPacket packet) packetContext))
                     {
                         try
                         {
                             IPacketHandlerBase packetHandler = packetHandlerFactory.Create(packetContext.packet.GetType());
-                            if(packetHandler != null)
+                            if (packetHandler != null)
                                 await packetHandler.HandlePacket(packetContext.session, packetContext.packet);
                         }
                         catch (Exception ex)
@@ -56,7 +57,7 @@ namespace ShootingHero.Networks
                     }
                 }
             }
-            catch (OperationCanceledException) when (cancellationTokenSource.IsCancellationRequested) { }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested) { }
         }
 
         async ValueTask IAsyncDisposable.DisposeAsync()
