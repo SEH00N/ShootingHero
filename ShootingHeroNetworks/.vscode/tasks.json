@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build dll",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                "build",
+                "${workspaceFolder}/ShootingHeroNetworks.csproj",
+                "-c",
+                "Release"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build",
+            "dependsOn": [
+                "build dll",
+            ],
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}
