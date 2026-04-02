@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace ShootingHero.Networks
 {
     public interface IPacketHandlerBase
     {
-        void HandlePacket(Session session, IPacket packet);
+        ValueTask HandlePacket(Session session, IPacket packet);
     }
 }

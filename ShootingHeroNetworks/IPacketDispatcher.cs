@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace ShootingHero.Networks
 {
     public interface IPacketDispatcher
     {
-        void Dispatch(Session session, IPacket packet);
+        ValueTask Dispatch(Session session, IPacket packet);
     }
 }

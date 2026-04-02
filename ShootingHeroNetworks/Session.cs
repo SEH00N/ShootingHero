@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace ShootingHero.Networks
 {
@@ -166,7 +167,7 @@ namespace ShootingHero.Networks
                 HandleReceived(null, receiveArgs);
         }
 
-        private void HandleReceived(object sender, SocketAsyncEventArgs receiveArgs)
+        private async void HandleReceived(object sender, SocketAsyncEventArgs receiveArgs)
         {
             if (IsOpened == false)
             {
@@ -183,7 +184,7 @@ namespace ShootingHero.Networks
             receiveBuffer.MoveWriteIndex(receiveArgs.BytesTransferred);
             while(true)
             {
-                int processedSize = HandlePacket(receiveBuffer.UsedBuffer);
+                int processedSize = await HandlePacket(receiveBuffer.UsedBuffer);
                 if(processedSize <= 0)
                     break;
 
@@ -193,7 +194,7 @@ namespace ShootingHero.Networks
             ReceiveAsync();
         }
 
-        private int HandlePacket(ArraySegment<byte> buffer)
+        private async ValueTask<int> HandlePacket(ArraySegment<byte> buffer)
         {
             if(buffer.Count < NetworkDefine.PACKET_SIZE_HEADER)
                 return 0;
@@ -208,7 +209,7 @@ namespace ShootingHero.Networks
             {
                 IPacket packet = packetSerializer.Deserialize(packetData);
                 if(packet != null)
-                    packetDispatcher.Dispatch(this, packet);
+                    await packetDispatcher.Dispatch(this, packet);
             }
             catch(Exception err)
             {
