@@ -5,7 +5,7 @@ namespace ShootingHero.Networks
 {
     public abstract partial class NetworkObjectBuilder<TNetworkObject> : INetworkObjectBuilder where TNetworkObject : NetworkObject
     {
-        private readonly DIContainer diContainer = null;
+        protected readonly DIContainer diContainer = null;
 
         public NetworkObjectBuilder()
         {

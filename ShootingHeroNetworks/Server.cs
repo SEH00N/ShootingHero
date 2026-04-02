@@ -12,13 +12,17 @@ namespace ShootingHero.Networks
         private readonly ISessionDispatcher sessionDispatcher = null;
         private readonly PacketSerializer packetSerializer = null;
         private readonly IPacketDispatcher packetDispatcher = null;
+        private readonly IRoomManager roomManager = null;
+
+        public IRoomManager Rooms => roomManager;
 
         internal Server(INetworkObjectBuilder builder) : base(builder)
         {
-            sessionFactory = GetSingleton<ISessionFactory>();
-            sessionDispatcher = GetSingleton<ISessionDispatcher>();
-            packetSerializer = GetSingleton<PacketSerializer>();
-            packetDispatcher = GetSingleton<IPacketDispatcher>();
+            sessionFactory = GetInstance<ISessionFactory>();
+            sessionDispatcher = GetInstance<ISessionDispatcher>();
+            packetSerializer = GetInstance<PacketSerializer>();
+            packetDispatcher = GetInstance<IPacketDispatcher>();
+            roomManager = GetInstance<IRoomManager>();
         }
 
         public void Listen(int port, int backlog = 10)

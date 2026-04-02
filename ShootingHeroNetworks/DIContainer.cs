@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ShootingHero.Networks
 {
-    public class DIContainer
+    public class DIContainer : IDIContainer
     {
         private readonly Dictionary<Type, object> instances = null;
 

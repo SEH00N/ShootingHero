@@ -2,7 +2,7 @@ using System;
 
 namespace ShootingHero.Networks
 {
-    public abstract class NetworkObject
+    public abstract class NetworkObject : IDIContainer
     {
         private readonly DIContainer diContainer = null;
 
@@ -11,12 +11,12 @@ namespace ShootingHero.Networks
             diContainer = builder.GetDIContainer();
         }
 
-        public TInstance GetSingleton<TInstance>() where TInstance : class
+        public TInstance GetInstance<TInstance>() where TInstance : class
         {
             return diContainer.GetInstance<TInstance>();
         }
 
-        public object GetSingleton(Type type)
+        public object GetInstance(Type type)
         {
             return diContainer.GetInstance(type);
         }

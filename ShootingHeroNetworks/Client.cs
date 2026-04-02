@@ -12,9 +12,9 @@ namespace ShootingHero.Networks
 
         internal Client(INetworkObjectBuilder builder) : base(builder)
         {
-            session = GetSingleton<Session>();
-            packetSerializer = GetSingleton<PacketSerializer>();
-            packetDispatcher = GetSingleton<IPacketDispatcher>();
+            session = GetInstance<Session>();
+            packetSerializer = GetInstance<PacketSerializer>();
+            packetDispatcher = GetInstance<IPacketDispatcher>();
         }
 
         public void Connect(string address, int port)
