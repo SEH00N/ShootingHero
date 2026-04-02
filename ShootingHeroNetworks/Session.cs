@@ -53,7 +53,11 @@ namespace ShootingHero.Networks
             {
                 receiveArgs.Dispose();
                 sendArgs.Dispose();
-                sendQueue.Dispose();
+                
+                lock (sendLocker)
+                {
+                    sendQueue.Dispose();
+                }
             }
         }
 
