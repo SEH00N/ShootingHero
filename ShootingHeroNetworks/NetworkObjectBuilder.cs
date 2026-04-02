@@ -36,6 +36,8 @@ namespace ShootingHero.Networks
             diContainer.AddInstance<PacketSerializer>(PacketSerializer.Builder.Build(assemblies));
 
             TNetworkObject networkObject = OnBuild();
+            diContainer.AddInstance<TNetworkObject>(networkObject);
+
             return networkObject;
         }
     }

@@ -7,6 +7,7 @@ namespace ShootingHero.Networks
             AddSingleton<ISessionFactory>(sessionFactory);
             AddSingleton<ISessionDispatcher>(sessionDispatcher);
             AddSingleton<IPacketDispatcher>(packetDispatcher);
+            AddSingleton<IRoomManager>(new RoomManager());
         }
 
         protected override Server OnBuild()
