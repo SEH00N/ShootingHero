@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Sockets;
 
@@ -11,14 +12,14 @@ namespace ShootingHero.Networks
         private readonly ISessionFactory sessionFactory = null;
         private readonly ISessionDispatcher sessionDispatcher = null;
         private readonly PacketFactory packetFactory = null;
-        private readonly PacketHandlerFactory packetHandlerFactory = null;
+        private readonly IPacketDispatcher packetDispatcher = null;
 
         internal Server(INetworkObjectBuilder builder) : base(builder)
         {
             sessionFactory = GetSingleton<ISessionFactory>();
             sessionDispatcher = GetSingleton<ISessionDispatcher>();
             packetFactory = GetSingleton<PacketFactory>();
-            packetHandlerFactory = GetSingleton<PacketHandlerFactory>();
+            packetDispatcher = GetSingleton<IPacketDispatcher>();
         }
 
         public void Listen(int port, int backlog = 10)
@@ -64,7 +65,7 @@ namespace ShootingHero.Networks
             }
 
             Session session = sessionFactory.Create(this, acceptArgs.AcceptSocket);
-            session.Open(acceptArgs.AcceptSocket, packetFactory, packetHandlerFactory);
+            session.Open(acceptArgs.AcceptSocket, packetFactory, packetDispatcher);
             sessionDispatcher.Dispatch(session);
 
             AcceptAsync();

@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Sockets;
 
@@ -7,13 +8,13 @@ namespace ShootingHero.Networks
     {
         private readonly Session session = null;
         private readonly PacketFactory packetFactory = null;
-        private readonly PacketHandlerFactory packetHandlerFactory = null;
+        private readonly IPacketDispatcher packetDispatcher = null;
 
         internal Client(INetworkObjectBuilder builder) : base(builder)
         {
             session = GetSingleton<Session>();
             packetFactory = GetSingleton<PacketFactory>();
-            packetHandlerFactory = GetSingleton<PacketHandlerFactory>();
+            packetDispatcher = GetSingleton<IPacketDispatcher>();
         }
 
         public void Connect(string address, int port)
@@ -42,7 +43,7 @@ namespace ShootingHero.Networks
             if (connectArgs.SocketError != SocketError.Success)
                 return;
 
-            session.Open(connectArgs.ConnectSocket, packetFactory, packetHandlerFactory);
+            session.Open(connectArgs.ConnectSocket, packetFactory, packetDispatcher);
         }
     }
 }
