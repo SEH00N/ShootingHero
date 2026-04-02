@@ -50,12 +50,16 @@ namespace ShootingHero.Networks
 
         public async ValueTask DisposeAsync()
         {
-            foreach(object instance in instances.Values)
+            var disposed = new HashSet<object>();
+            foreach (object instance in instances.Values)
             {
-                if(instance is IDisposable disposable)
-                    disposable.Dispose();
-                else if(instance is IAsyncDisposable asyncDisposable)
+                if (disposed.Add(instance) == false)
+                    continue;
+
+                if (instance is IAsyncDisposable asyncDisposable)
                     await asyncDisposable.DisposeAsync();
+                else if (instance is IDisposable disposable)
+                    disposable.Dispose();
             }
         }
     }

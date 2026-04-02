@@ -1,19 +1,23 @@
+using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace ShootingHero.Networks
 {
     public class Server : NetworkObject
     {
-        private Socket listenSocket = null;
-        private SocketAsyncEventArgs acceptArgs = null;
-
         private readonly ISessionFactory sessionFactory = null;
         private readonly PacketSerializer packetSerializer = null;
         private readonly IPacketDispatcher packetDispatcher = null;
         private readonly IRoomManager roomManager = null;
 
+        private Socket listenSocket = null;
+        private SocketAsyncEventArgs acceptArgs = null;
+        private int isClosed = 0;
+
         public IRoomManager Rooms => roomManager;
+        public bool IsOpened => Volatile.Read(ref isClosed) == 0;
 
         internal Server(INetworkObjectBuilder builder) : base(builder)
         {
@@ -25,6 +29,8 @@ namespace ShootingHero.Networks
 
         public void Listen(int port, int backlog = 10)
         {
+            Volatile.Write(ref isClosed, 0);
+
             listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             listenSocket.Bind(new IPEndPoint(IPAddress.Any, port));
             listenSocket.Listen(backlog);
@@ -39,12 +45,20 @@ namespace ShootingHero.Networks
         {
             try
             {
-                listenSocket.Close();
+                if(Volatile.Read(ref isClosed) == 1)
+                    return;
+
+                Volatile.Write(ref isClosed, 1);
+                listenSocket?.Close();
             }
             catch { }
             finally
             {
-                acceptArgs.Dispose();
+                acceptArgs?.Dispose();
+                (this as IAsyncDisposable).DisposeAsync();
+
+                acceptArgs = null;
+                listenSocket = null;
             }
         }
 
