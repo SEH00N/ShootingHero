@@ -53,6 +53,7 @@ namespace ShootingHero.Networks
             {
                 receiveArgs.Dispose();
                 sendArgs.Dispose();
+                sendQueue.Dispose();
             }
         }
 
@@ -65,11 +66,13 @@ namespace ShootingHero.Networks
         {
             if(sendQueue == null)
             {
+                sendQueueContext.Dispose();
                 throw new Exception("Session is not open");
             }
 
             if(connectedSocket.Connected == false)
             {
+                sendQueueContext.Dispose();
                 Close();
                 return;
             }
@@ -135,8 +138,14 @@ namespace ShootingHero.Networks
             }
 
             receiveBuffer.MoveWriteIndex(receiveArgs.BytesTransferred);
-            int processedSize = HandlePacket(receiveBuffer.UsedBuffer);
-            receiveBuffer.MoveReadIndex(processedSize);
+            while(true)
+            {
+                int processedSize = HandlePacket(receiveBuffer.UsedBuffer);
+                if(processedSize <= 0)
+                    break;
+
+                receiveBuffer.MoveReadIndex(processedSize);
+            }
 
             ReceiveAsync();
         }

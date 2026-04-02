@@ -62,7 +62,7 @@ namespace ShootingHero.Networks
             if(factories.TryGetValue(packetID, out Func<ArraySegment<byte>, IPacket> factory) == false)
                 return null;
             
-            IPacket packet = factory(packetData);
+            IPacket packet = factory(new ArraySegment<byte>(packetData.Array, packetData.Offset + NetworkDefine.PACKET_ID_HEADER, packetData.Count - NetworkDefine.PACKET_ID_HEADER));
             return packet;
         }
     }

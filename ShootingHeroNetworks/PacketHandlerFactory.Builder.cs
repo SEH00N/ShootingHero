@@ -34,7 +34,7 @@ namespace ShootingHero.Networks
                     if(packetType == null)
                         continue;
                     
-                    if(packetType.IsDefined(typeof(PacketAttribute), false) == false || packetType.IsAssignableFrom(typeof(IPacket)) == false)
+                    if(packetType.IsDefined(typeof(PacketAttribute), false) == false || typeof(IPacket).IsAssignableFrom(packetType) == false)
                         continue;
 
                     packetHandlerFactory.factories[packetType] = CreatePacketHandlerFactory(packetHandlerType, diContainer);

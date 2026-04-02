@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ShootingHero.Networks
 {
-    public class SendQueue
+    public class SendQueue : IDisposable
     {
         private readonly Queue<ISendQueueContext> contextQueue = null;
         private readonly List<ISendQueueContext> contextFlushBuffer = null;
@@ -46,6 +46,14 @@ namespace ShootingHero.Networks
                 sendQueueContext?.Dispose();
             
             contextFlushBuffer.Clear();
+        }
+
+        public void Dispose()
+        {
+            Clear();
+
+            while(contextQueue.TryDequeue(out ISendQueueContext sendQueueContext))
+                sendQueueContext.Dispose();
         }
     }
 }

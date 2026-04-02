@@ -9,12 +9,12 @@ namespace ShootingHero.Networks
         private readonly ArraySegment<byte> data;
         private int remainingReferenceCount = 0;
 
-        public GroupPacketSendQueueContext(IPacket packet, int referenceCount)
+        public GroupPacketSendQueueContext(PacketSerializer packetSerializer, IPacket packet, int referenceCount)
         {
             if (referenceCount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(referenceCount));
 
-            bufferWriter = PacketSerializer.Serialize(packet);
+            bufferWriter = packetSerializer.Serialize(packet);
             data = bufferWriter.WrittenSegment;
             remainingReferenceCount = referenceCount;
         }
