@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace ShootingHero.Networks
 {
@@ -18,7 +19,11 @@ namespace ShootingHero.Networks
         private PacketSerializer packetSerializer = null;
         private IPacketDispatcher packetDispatcher = null;
 
-        public event Action<Exception> OnPacketHandleErrorEvent = null;
+        private int isClosed = 1;
+        public bool IsOpened => Volatile.Read(ref isClosed) == 0 && connectedSocket != null && connectedSocket.Connected == true;
+
+        public event Action<Exception> OnErrorEvent = null;
+        public event Action<Session> OnClosedEvent = null;
 
         public Session()
         {
@@ -27,9 +32,20 @@ namespace ShootingHero.Networks
 
         public void Open(Socket connectedSocket, PacketSerializer packetSerializer, IPacketDispatcher packetDispatcher)
         {
+            if (connectedSocket == null)
+                throw new ArgumentNullException(nameof(connectedSocket));
+
+            if (packetSerializer == null)
+                throw new ArgumentNullException(nameof(packetSerializer));
+
+            if (packetDispatcher == null)
+                throw new ArgumentNullException(nameof(packetDispatcher));
+
             this.connectedSocket = connectedSocket;
             this.packetSerializer = packetSerializer;
             this.packetDispatcher = packetDispatcher;
+
+            Volatile.Write(ref isClosed, 0);
 
             sendQueue = new SendQueue();
             sendArgs = new SocketAsyncEventArgs();
@@ -46,39 +62,50 @@ namespace ShootingHero.Networks
         {
             try
             {
-                connectedSocket.Close();
+                if(Volatile.Read(ref isClosed) == 1)
+                    return;
+
+                Volatile.Write(ref isClosed, 1);
+                connectedSocket?.Close();
             }
             catch { }
             finally
             {
-                receiveArgs.Dispose();
-                sendArgs.Dispose();
-                
+                receiveArgs?.Dispose();
+                sendArgs?.Dispose();
+
+                receiveArgs = null;
+                sendArgs = null;
+                connectedSocket = null;
+
                 lock (sendLocker)
                 {
-                    sendQueue.Dispose();
+                    sendQueue?.Dispose();
+                    sendQueue = null;
                 }
+
+                OnClosedEvent?.Invoke(this);
             }
         }
 
         public void SendAsync(IPacket packet)
         {
+            if (packet == null)
+                throw new ArgumentNullException(nameof(packet));
+
             SendAsync(new PacketSendQueueContext(packetSerializer, packet));
         }
 
         internal void SendAsync(ISendQueueContext sendQueueContext)
         {
-            if(sendQueue == null)
-            {
-                sendQueueContext.Dispose();
-                throw new Exception("Session is not open");
-            }
+            if (sendQueueContext == null)
+                throw new ArgumentNullException(nameof(sendQueueContext));
 
-            if(connectedSocket.Connected == false)
+            if (IsOpened == false)
             {
                 sendQueueContext.Dispose();
                 Close();
-                return;
+                throw new InvalidOperationException("Session is not opened");
             }
 
             List<ArraySegment<byte>> bufferList = null;
@@ -97,6 +124,12 @@ namespace ShootingHero.Networks
 
         private void HandleSent(object sender, SocketAsyncEventArgs sendArgs)
         {
+            if (IsOpened == false)
+            {
+                Close();
+                return;
+            }
+
             if (sendArgs.SocketError != SocketError.Success || sendArgs.BytesTransferred <= 0)
             {
                 Close();
@@ -119,7 +152,7 @@ namespace ShootingHero.Networks
 
         private void ReceiveAsync()
         {
-            if(connectedSocket.Connected == false)
+            if (IsOpened == false)
             {
                 Close();
                 return;
@@ -135,6 +168,12 @@ namespace ShootingHero.Networks
 
         private void HandleReceived(object sender, SocketAsyncEventArgs receiveArgs)
         {
+            if (IsOpened == false)
+            {
+                Close();
+                return;
+            }
+
             if (receiveArgs.SocketError != SocketError.Success || receiveArgs.BytesTransferred <= 0)
             {
                 Close();
@@ -169,11 +208,11 @@ namespace ShootingHero.Networks
             {
                 IPacket packet = packetSerializer.Deserialize(packetData);
                 if(packet != null)
-                    packetDispatcher.Dispatch(packet);
+                    packetDispatcher.Dispatch(this, packet);
             }
             catch(Exception err)
             {
-                OnPacketHandleErrorEvent?.Invoke(err);
+                OnErrorEvent?.Invoke(err);
             }
 
             return packetSize;
