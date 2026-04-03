@@ -87,31 +87,7 @@ namespace ShootingHero.Networks
                     .OrderByDescending(c => c.GetParameters().Length)
                     .ToArray();
 
-                for (int i = 0; i < ordered.Length; ++i)
-                {
-                    ConstructorInfo constructorInfo = ordered[i];
-                    if (GetIsDependencyInjectableConstructor(constructorInfo, diContainer) == false)
-                        continue;
-
-                    return constructorInfo;
-                }
-
-                return null;
-            }
-
-            private static bool GetIsDependencyInjectableConstructor(ConstructorInfo constructorInfo, DIContainer diContainer)
-            {
-                ParameterInfo[] parameterInfos = constructorInfo.GetParameters();
-                if (parameterInfos == null)
-                    return true;
-
-                foreach (ParameterInfo parameterInfo in parameterInfos)
-                {
-                    if (diContainer.GetInstance(parameterInfo.ParameterType) == null)
-                        return false;
-                }
-
-                return true;
+                return ordered[0];
             }
         }
     }

@@ -23,8 +23,9 @@ namespace ShootingHero.Networks
         private int isClosed = 1;
         public bool IsOpened => Volatile.Read(ref isClosed) == 0 && connectedSocket != null && connectedSocket.Connected == true;
 
-        public event Action<Exception> OnErrorEvent = null;
+        public event Action<Session> OnOpenedEvent = null;
         public event Action<Session> OnClosedEvent = null;
+        public event Action<Session, Exception> OnErrorEvent = null;
 
         public Session()
         {
@@ -57,6 +58,8 @@ namespace ShootingHero.Networks
             receiveArgs.Completed += HandleReceived;
 
             ReceiveAsync();
+            
+            OnOpenedEvent?.Invoke(this);
         }
 
         public void Close()
@@ -213,7 +216,7 @@ namespace ShootingHero.Networks
             }
             catch(Exception err)
             {
-                OnErrorEvent?.Invoke(err);
+                OnErrorEvent?.Invoke(this, err);
             }
 
             return packetSize;

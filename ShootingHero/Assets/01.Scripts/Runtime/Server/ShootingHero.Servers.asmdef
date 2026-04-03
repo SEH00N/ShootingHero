@@ -1,7 +1,9 @@
 {
     "name": "ShootingHero.Servers",
     "rootNamespace": "ShootingHero.Servers",
-    "references": [],
+    "references": [
+        "GUID:504ed006af419a4449a3159144c47bb9"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
