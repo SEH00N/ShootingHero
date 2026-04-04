@@ -52,3 +52,12 @@ Assets/KrishnaPalacio/MINIFANTASY - Forgotten Plains/Scenes/Demo - Forgotten Pla
 ![](./Images/projectile_collider_floor1.png)
 ![](./Images/projectile_collider_floor2.png)
 ![](./Images/projectile_collider_floor3.png)
+
+### 스프라이트 피벗 및 URP 2D TransparencySortMode
+오브젝트의 y좌표를 기준으로 렌더링 오더를 정렬하기 위해 URP2D 렌더러의 TransparencySortMode 를 Custom Axis로 설정 후 (0, 1, 0) 으로 설정
+
+![](./Images/urp_sort_mode.png)
+
+존재하는 프롭 SpriteRenderer의 SpriteSortPoint를 Pivot으로 설정 및 Sprite의 Pivot을 BottomCenter로 설정하여 피벗이 오브젝트의 중앙 하단으로 설정.
+
+![](./Images/sprite_renderer_pivot.png)
