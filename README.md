@@ -40,3 +40,15 @@ https://assetstore.unity.com/packages/2d/environments/minifantasy-forgotten-plai
 Assets/KrishnaPalacio/MINIFANTASY - Forgotten Plains/Scenes/Demo - Forgotten Plains.unity 의 Level을 복사하여 Game Scene 생성
 
 ![](./Images/import_assets_and_set_game_scene.png)
+
+### 타일맵 설정
+레벨 타일맵 배치 후 0.5 스케일의 이동 콜라이더용 타일맵 배치. (콜라이더용 타일맵 렌더러 비활성화)
+
+![](./Images/level_and_collider.png)
+
+0.5 스케일의 높이 별 총알용 콜라이더 배치.
+
+![](./Images/projectile_collider_floor0.png)
+![](./Images/projectile_collider_floor1.png)
+![](./Images/projectile_collider_floor2.png)
+![](./Images/projectile_collider_floor3.png)
