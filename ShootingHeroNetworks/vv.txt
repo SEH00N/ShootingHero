@@ -1,0 +1,25 @@
+PacketFactory는 ushort 즉 PacketID에 해당하는 팩토리를 구성한다.
+Dictionary<ushort, Factory> packetFactories
+
+PacketHandlerFactory는 패킷 타입에 해당하는 팩토리를 구성한다.
+Dictionary<Type, Factory> packetHanderFactories
+
+Packet은 ID를 지정해주기 위해 Attribute로 패킷임을 명시한다.
+[Packet(10)] 이렇게
+
+PacketHandler도 특정 패킷의 핸들러임을 지정해주기 위해 Attribute를 사용한다.
+[PacketHandler(typeof(MyPacket))] 이렇게
+
+
+
+ISessionFactory => 서버 측에서 커넥션이 발생했을 때 세션을 생성하기 위한 팩토리
+ISessionDispatcher => 서버 측에서 세션 오픈 후 세션 핸들링을 위한 디스패쳐. 세션을 넘겨받아 서버 구조에 맞게 세션을 처리한다.
+IPacketDispactcher => 서버 및 클라 측에서 패킷 핸들링을 위한 디스패쳐. 패킷을 넘겨받아 서버 구조에 맞게 패킷을 처리한다.
+
+ISessionDispatcher
+  ㄴ DedicatedServerSessionDispatcher => 단일 룸 세션 디스패쳐
+  ㄴ RoomGroupSessionDispatcher => 룸 단위 세션 디스패쳐
+
+IPacketDispatcher
+  ㄴ SingleStreamPacketDispatcher => 단일 스레드 기반 패킷 디스페쳐
+  ㄴ MultipleStreamPacketDispatcher => 병렬 스레드 기반 패킷 디스페쳐
