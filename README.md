@@ -1,2 +1,42 @@
 # ShootingHero
 Unity Dedicated Server Learning Project
+
+### 유니티 프로젝트 폴더 구조
+```
+00.Scenes
+01.Scripts
+  ㄴ Editor
+      ㄴ ShootingHero.Editor.asmdef
+  ㄴ Runtime
+    ㄴ Client
+      ㄴ ShootingHero.Clients.asmdef
+    ㄴ Server
+      ㄴ ShootingHero.Servers.asmdef
+    ㄴ Shared
+      ㄴ ShootingHero.Shared.asmdef
+99.ETC
+  ㄴ URP
+```
+
+```
+ShootingHero.Clients.asmdef 에 ShootingHero.Shared.asmdef 참조 추가
+ShootingHero.Servers.asmdef 에 ShootingHero.Shared.asmdef 참조 추가
+
+! 필요시 !
+ShootingHero.Editor.asmdef 에 ShootingHero.Clients.asmdef 참조 추가
+ShootingHero.Editor.asmdef 에 ShootingHero.Servers.asmdef 참조 추가
+ShootingHero.Editor.asmdef 에 ShootingHero.Shared.asmdef 참조 추가
+```
+
+### 라이브러리 임포트
+1. NugetForUnity 추가
+2. NugetForUnity - System.Threading.Channels 추가
+3. NugerForUnity - MemoryPack 추가
+4. Assets/Plugins 하위에 ShootingHeroNetworks.dll 추가
+
+### 에셋 임포트
+https://assetstore.unity.com/packages/2d/environments/minifantasy-forgotten-plains-208907
+
+Assets/KrishnaPalacio/MINIFANTASY - Forgotten Plains/Scenes/Demo - Forgotten Plains.unity 의 Level을 복사하여 Game Scene 생성
+
+![](./Images/import_assets_and_set_game_scene.png)
