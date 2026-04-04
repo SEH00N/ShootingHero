@@ -77,10 +77,10 @@
   <Project Path="Unity.DedicatedServer.MultiplayerRoles.Editor.csproj" />
   <Project Path="ShootingHero.Clients.csproj" />
   <Project Path="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.csproj" />
+  <Project Path="ShootingHero.Shared.csproj" />
   <Project Path="Unity.CollabProxy.Editor.csproj" />
   <Project Path="Unity.DedicatedServer.CliArguments.Editor.csproj" />
   <Project Path="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
-  <Project Path="ShootingHero.Shared.csproj" />
   <Project Path="Unity.InternalAPIEngineBridge.004.csproj" />
   <Project Path="ShootingHero.Servers.csproj" />
   <Project Path="Unity.InputSystem.DocCodeSamples.csproj" />

@@ -29,10 +29,10 @@ ShootingHero.Editor.asmdef 에 ShootingHero.Shared.asmdef 참조 추가
 ```
 
 ### 라이브러리 임포트
-1. NugetForUnity 추가
+1. NugetForUnity 추가 (`./Assets/NuGetForUnity.4.5.0.unitypackage`)
 2. NugetForUnity - System.Threading.Channels 추가
 3. NugerForUnity - MemoryPack 추가
-4. Assets/Plugins 하위에 ShootingHeroNetworks.dll 추가
+4. Assets/Plugins 하위에 ShootingHeroNetworks.dll 추가 (`./Assets/ShootingHeroNetworks.dll`)
 
 ### 에셋 임포트
 https://assetstore.unity.com/packages/2d/environments/minifantasy-forgotten-plains-208907
@@ -61,3 +61,5 @@ Assets/KrishnaPalacio/MINIFANTASY - Forgotten Plains/Scenes/Demo - Forgotten Pla
 존재하는 프롭 SpriteRenderer의 SpriteSortPoint를 Pivot으로 설정 및 Sprite의 Pivot을 BottomCenter로 설정하여 피벗이 오브젝트의 중앙 하단으로 설정.
 
 ![](./Images/sprite_renderer_pivot.png)
+
+`./Assets/LevelAssets.unitypackage` 참고
