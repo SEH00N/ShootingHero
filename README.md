@@ -63,3 +63,29 @@ Assets/KrishnaPalacio/MINIFANTASY - Forgotten Plains/Scenes/Demo - Forgotten Pla
 ![](./Images/sprite_renderer_pivot.png)
 
 `./Assets/LevelAssets.unitypackage` 참고
+
+
+### Input Action 생성
+`99.ETC/Input/InputActions.inputactions` 생성 후 `Move, Fire, Aim, Interact, WeaponChange1~3` 생성
+
+설정 완료 되면 `01.Scripts/Runtime/Client/Input` 하위에 C# Class 생성. 에러가 표시된다면 ShootingHero.Clients.asmdef 에 Unity.InputSystem 추가
+
+![](./Images/input_actions.png)
+
+```
+01.Scripts/Runtime/Client/Input/InputManager.cs
+01.Scripts/Runtime/Client/Input/InputReaderBase.cs
+01.Scripts/Runtime/Client/Input/PlayerInputReader.cs
+```
+
+작성 후 적당한 위치에 `InputManager.EnableInput<PlayerInputReader>();` 호출
+
+### 기본 스크립트 작성
+
+```
+01.Scripts
+  ㄴ Runtime
+    ㄴ Shared
+      ㄴ UnitController.cs
+      ㄴ Item.cs
+```
