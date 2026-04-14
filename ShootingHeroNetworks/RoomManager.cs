@@ -6,6 +6,7 @@ namespace ShootingHero.Networks
 {
     public class RoomManager : IRoomManager, IPacketDispatcher, IAsyncDisposable, Room.ICallback
     {
+        private readonly IPacketDispatcher roomPacketDispatcher = null;
         private readonly ConcurrentDictionary<string, Lazy<Room>> rooms = null;
         private readonly ConcurrentDictionary<Session, Room> sessionRoomMap = null;
 
@@ -15,8 +16,10 @@ namespace ShootingHero.Networks
         private readonly Lazy<PacketSerializer> packetSerializer = null;
         private readonly Lazy<PacketHandlerFactory> packetHandlerFactory = null;
 
-        public RoomManager(DIContainer diContainer, int workerCount, int capacityPerWorker)
+        public RoomManager(IPacketDispatcher roomPacketDispatcher, DIContainer diContainer, int workerCount, int capacityPerWorker)
         {
+            this.roomPacketDispatcher = roomPacketDispatcher;
+
             rooms = new ConcurrentDictionary<string, Lazy<Room>>();
             sessionRoomMap = new ConcurrentDictionary<Session, Room>();
 
@@ -91,7 +94,7 @@ namespace ShootingHero.Networks
 
         private Lazy<RoomWorker> WorkerFactory(int capacityPerWorker)
         {
-            return new Lazy<RoomWorker>(() => new RoomWorker(packetHandlerFactory.Value, capacityPerWorker));
+            return new Lazy<RoomWorker>(() => new RoomWorker(roomPacketDispatcher ?? new RoomPacketDispatcher(packetHandlerFactory.Value), capacityPerWorker));
         }
 
         async ValueTask IAsyncDisposable.DisposeAsync()

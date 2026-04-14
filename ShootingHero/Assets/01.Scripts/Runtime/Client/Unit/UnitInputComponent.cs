@@ -6,16 +6,16 @@ namespace ShootingHero.Clients
 {
     public class UnitInputComponent : MonoBehaviour
     {
-        [SerializeField]
         private Unit unit = null;
-
-        [SerializeField]
         private UnitMovementComponent unitMovementComponent = null;
 
         private PlayerInputReader playerInputReader = null;
 
-        private void Start()
+        private void Awake()
         {
+            unit = GetComponent<Unit>();
+            unitMovementComponent = GetComponent<UnitMovementComponent>();
+
             playerInputReader = InputManager.GetInput<PlayerInputReader>();
             playerInputReader.OnInteractEvent += HandleInteract;
         }

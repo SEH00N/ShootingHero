@@ -11,11 +11,11 @@ namespace ShootingHero.Networks
         private readonly CancellationTokenSource cancellationTokenSource = null;
         private readonly Task loopTask = null;
 
-        private readonly PacketHandlerFactory packetHandlerFactory = null;
+        private readonly IPacketDispatcher packetDispatcher = null;
 
-        public RoomWorker(PacketHandlerFactory packetHandlerFactory, int capacity)
+        public RoomWorker(IPacketDispatcher packetDispatcher, int capacity)
         {
-            this.packetHandlerFactory = packetHandlerFactory;
+            this.packetDispatcher = packetDispatcher;
             cancellationTokenSource = new CancellationTokenSource();
 
             channel = Channel.CreateBounded<(Session, IPacket)>(
@@ -46,9 +46,7 @@ namespace ShootingHero.Networks
                     {
                         try
                         {
-                            IPacketHandlerBase packetHandler = packetHandlerFactory.Create(packetContext.packet.GetType());
-                            if (packetHandler != null)
-                                await packetHandler.HandlePacket(packetContext.session, packetContext.packet);
+                            await packetDispatcher.Dispatch(packetContext.session, packetContext.packet);
                         }
                         catch (Exception ex)
                         {

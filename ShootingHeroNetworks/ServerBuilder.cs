@@ -7,8 +7,11 @@ namespace ShootingHero.Networks
         private int workerCount = -1;
         private int capacityPerWorker = 4096;
 
-        public ServerBuilder(ISessionFactory sessionFactory) : base()
+        private IPacketDispatcher roomPacketDispatcher = null;
+
+        public ServerBuilder(ISessionFactory sessionFactory, IPacketDispatcher roomPacketDispatcher = null) : base()
         {
+            this.roomPacketDispatcher = roomPacketDispatcher;
             AddSingleton<ISessionFactory>(sessionFactory);
         }
 
@@ -29,7 +32,7 @@ namespace ShootingHero.Networks
             if(workerCount <= 0)
                 workerCount = Environment.ProcessorCount;
 
-            RoomManager roomManager = new RoomManager(diContainer, workerCount, capacityPerWorker);
+            RoomManager roomManager = new RoomManager(roomPacketDispatcher, diContainer, workerCount, capacityPerWorker);
             AddSingleton<IPacketDispatcher>(roomManager);
             AddSingleton<IRoomManager>(roomManager);
 
