@@ -2,6 +2,7 @@ using ShootingHero.Networks;
 using ShootingHero.Servers;
 using ShootingHero.Shared;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ShootingHero.Clients
 {
@@ -28,6 +29,8 @@ namespace ShootingHero.Clients
 
             unityPacketDispatcher.Initialize(gameServer.Server);
             gameServer.Listen(9999);
+
+            SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
         }
 
         public void StartGame()
