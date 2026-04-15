@@ -3,7 +3,7 @@ using ShootingHero.Networks;
 
 namespace ShootingHero.Shared
 {
-    [Packet(0)]
+    [Packet((ushort)EPacketType.S2C_TestPacket)]
     [MemoryPackable]
     public partial class S2C_TestPacket : IPacket
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ShootingHero.Shared
 {
-    [Packet(5)]
+    [Packet((ushort)EPacketType.C2S_MoveInputPacket)]
     [MemoryPackable]
     public partial class C2S_MoveInputPacket : IPacket
     {

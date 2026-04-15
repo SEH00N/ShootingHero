@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ShootingHero.Shared
 {
-    [Packet(3)]
+    [Packet((ushort)EPacketType.S2C_EnterGameResponsePacket)]
     [MemoryPackable]
     public partial class S2C_EnterGameResponsePacket : IPacket
     {

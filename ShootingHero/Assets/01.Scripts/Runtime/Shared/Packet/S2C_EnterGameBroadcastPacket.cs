@@ -4,7 +4,7 @@ using ShootingHero.Networks;
 
 namespace ShootingHero.Shared
 {
-    [Packet(4)]
+    [Packet((ushort)EPacketType.S2C_EnterGameBroadcastPacket)]
     [MemoryPackable]
     public partial class S2C_EnterGameBroadcastPacket : IPacket
     {
