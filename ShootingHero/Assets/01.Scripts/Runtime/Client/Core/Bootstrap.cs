@@ -38,6 +38,7 @@ namespace ShootingHero.Clients
             Session session = new Session();
             session.OnOpenedEvent += session => {
                 session.SendAsync(new C2S_EnterGameRequestPacket());
+                gameManager.SetSession(session);
             };
 
             UnityPacketDispatcher unityPacketDispatcher = gameManager.gameObject.AddComponent<UnityPacketDispatcher>();

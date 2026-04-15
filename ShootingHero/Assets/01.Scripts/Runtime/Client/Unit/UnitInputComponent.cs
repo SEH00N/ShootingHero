@@ -7,14 +7,13 @@ namespace ShootingHero.Clients
     public class UnitInputComponent : MonoBehaviour
     {
         private Unit unit = null;
-        private UnitMovementComponent unitMovementComponent = null;
-
         private PlayerInputReader playerInputReader = null;
+
+        private Vector2 lastMoveInput = Vector2.zero;
 
         private void Awake()
         {
             unit = GetComponent<Unit>();
-            unitMovementComponent = GetComponent<UnitMovementComponent>();
 
             playerInputReader = InputManager.GetInput<PlayerInputReader>();
             playerInputReader.OnInteractEvent += HandleInteract;
@@ -22,7 +21,11 @@ namespace ShootingHero.Clients
 
         private void Update()
         {
-            unitMovementComponent.SetMovementInput(playerInputReader.MovementInput);
+            if(lastMoveInput != playerInputReader.MovementInput)
+            {
+                lastMoveInput = playerInputReader.MovementInput;
+                GameManager.Instance.Session.SendAsync(new C2S_MoveInputPacket() { MoveInput = lastMoveInput });
+            }
         }
 
         private void HandleInteract()

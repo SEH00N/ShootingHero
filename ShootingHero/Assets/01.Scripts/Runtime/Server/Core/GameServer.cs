@@ -10,12 +10,16 @@ namespace ShootingHero.Servers
     public class GameServer : MonoBehaviour, ISessionFactory
     {
         private Dictionary<string, Unit> players = null;
+        private Dictionary<Session, string> playerIDMap = null;
+
         private Server server = null;
         public Server Server => server;
 
         public void Initialize(Unit unitPrefab, UnityPacketDispatcher unityPacketDispatcher)
         {
             players = new Dictionary<string, Unit>();
+            playerIDMap = new Dictionary<Session, string>();
+
             server = new ServerBuilder(this, unityPacketDispatcher)
                 .AddSingleton<GameServer>(this)
                 .AddSingleton<Unit>(unitPrefab)
@@ -27,9 +31,22 @@ namespace ShootingHero.Servers
             server.Listen(port);
         }
 
-        public void AddPlayer(string playerID, Unit player)
+        public void AddPlayer(Session session, string playerID, Unit player)
         {
             players[playerID] = player;
+            playerIDMap[session] = playerID;
+        }
+
+        public Unit GetPlayer(string playerID)
+        {
+            players.TryGetValue(playerID, out Unit unit);
+            return unit;
+        }
+
+        public string GetPlayerID(Session session)
+        {
+            playerIDMap.TryGetValue(session, out string playerID);
+            return playerID;
         }
 
         public void ForEachPlayer(Action<string, Unit> callback)

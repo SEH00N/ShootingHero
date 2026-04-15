@@ -29,7 +29,7 @@ namespace ShootingHero.Servers
 
             Unit unit = Object.Instantiate(unitPrefab, gameServer.transform);
             unit.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            gameServer.AddPlayer(playerID, unit);
+            gameServer.AddPlayer(session, playerID, unit);
 
             Dictionary<string, Vector2> players = new Dictionary<string, Vector2>();
             gameServer.ForEachPlayer((otherPlayerID, otherUnit) => {

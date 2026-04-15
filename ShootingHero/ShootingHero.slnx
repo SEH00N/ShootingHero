@@ -69,6 +69,7 @@
   <Project Path="Unity.PathTracing.Runtime.csproj" />
   <Project Path="Unity.2D.Common.Runtime.csproj" />
   <Project Path="Unity.PathTracing.Editor.csproj" />
+  <Project Path="ShootingHero.Servers.csproj" />
   <Project Path="Unity.InputSystem.TestFramework.csproj" />
   <Project Path="Unity.ShaderGraph.Utilities.csproj" />
   <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
@@ -80,7 +81,6 @@
   <Project Path="Unity.InternalAPIEngineBridge.RenderPipelines.Core.Runtime.Shared.csproj" />
   <Project Path="MemoryPack.Unity.csproj" />
   <Project Path="Unity.CollabProxy.Editor.csproj" />
-  <Project Path="ShootingHero.Servers.csproj" />
   <Project Path="Unity.DedicatedServer.CliArguments.Editor.csproj" />
   <Project Path="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
   <Project Path="Unity.InternalAPIEngineBridge.004.csproj" />
