@@ -30,7 +30,7 @@ namespace ShootingHero.Servers
                 .AddSingleton<DataTableManager>(dataTableManager)
                 .Build(typeof(GameServer).Assembly, typeof(GameDefine).Assembly);
 
-            ItemTableRow testItemTableRow = dataTableManager.itemTable.GetRow(0);
+            ItemTableRow testItemTableRow = dataTableManager.itemTable.GetRow(1);
             for(int i = 0; i < 3; ++i)
             {
                 string uuid = Guid.NewGuid().ToString();

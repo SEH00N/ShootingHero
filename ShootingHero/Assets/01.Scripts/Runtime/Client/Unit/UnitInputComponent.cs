@@ -1,5 +1,4 @@
 using System;
-using ShootingHero.Networks;
 using ShootingHero.Shared;
 using UnityEngine;
 
@@ -18,6 +17,7 @@ namespace ShootingHero.Clients
 
             playerInputReader = InputManager.GetInput<PlayerInputReader>();
             playerInputReader.OnInteractEvent += HandleInteract;
+            playerInputReader.OnFireEvent += HandleFire;
         }
 
         private void Update()
@@ -49,6 +49,17 @@ namespace ShootingHero.Clients
                 GameManager.Instance.Session.SendAsync(new C2S_InteractItemPacket() { ItemUUID = item.UUID });
                 return;
             }
+        }
+
+        private void HandleFire()
+        {
+            if(unit.UnitWeaponComponent.Weapon == null)
+                return;
+            
+            Vector2 aim = playerInputReader.AimPosition;
+            Vector3 aimWorldPosition = Camera.main.ScreenToWorldPoint(aim);
+            Vector2 direction = (Vector2)(aimWorldPosition - transform.position);
+            GameManager.Instance.Session.SendAsync(new C2S_FireWeaponPacket() { Direction = direction.normalized });
         }
     }
 }

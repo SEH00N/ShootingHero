@@ -23,3 +23,7 @@ MonoBehaviour:
       itemName: "\uD790\uD329"
       itemSprite: {fileID: 0}
       itemPrefab: {fileID: 5129127828692721321, guid: 6ad557267fdfb466d9c4517d92b79806, type: 3}
+    - id: 1
+      itemName: "\uAD8C\uCD1D"
+      itemSprite: {fileID: 0}
+      itemPrefab: {fileID: 1316228716967666840, guid: e3c38259b7c534b599541cb4da404ec8, type: 3}

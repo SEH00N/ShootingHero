@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3634013533111243861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6553092267463662563}
+  m_Layer: 0
+  m_Name: WeaponContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6553092267463662563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3634013533111243861}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.419, y: 0.488, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9081173533679450836}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6302512199407416910
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,6 +42,7 @@ GameObject:
   - component: {fileID: 9081173533679450836}
   - component: {fileID: 8467205605617744293}
   - component: {fileID: 6820730779124057763}
+  - component: {fileID: 5605912801293092927}
   - component: {fileID: 1555884069712610411}
   - component: {fileID: 3317852911693896954}
   - component: {fileID: 7269070629808298328}
@@ -33,7 +65,8 @@ Transform:
   m_LocalPosition: {x: -11.84, y: 0.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6553092267463662563}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8467205605617744293
@@ -49,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.Unit
   unitMovementComponent: {fileID: 6820730779124057763}
+  unitWeaponComponent: {fileID: 5605912801293092927}
 --- !u!114 &6820730779124057763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +98,19 @@ MonoBehaviour:
   unitRigidbody: {fileID: 3317852911693896954}
   maxSpeed: 5
   acceleration: 30
+--- !u!114 &5605912801293092927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302512199407416910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efc27e14ed4e43b786750905eace64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.UnitWeaponComponent
+  weaponContainer: {fileID: 6553092267463662563}
 --- !u!212 &1555884069712610411
 SpriteRenderer:
   serializedVersion: 2
