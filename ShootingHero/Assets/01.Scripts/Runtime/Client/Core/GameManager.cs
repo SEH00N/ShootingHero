@@ -13,6 +13,8 @@ namespace ShootingHero.Clients
         private Session session = null;
         private Dictionary<string, Unit> players = null;
 
+        private Dictionary<string, ItemBase> items = null;
+
         public Session Session => session;
 
         public void Initialize()
@@ -27,6 +29,7 @@ namespace ShootingHero.Clients
             DontDestroyOnLoad(gameObject);
 
             players = new Dictionary<string, Unit>();
+            items = new Dictionary<string, ItemBase>();
 
             InputManager.Initialize();
             InputManager.EnableInput<PlayerInputReader>();
@@ -47,10 +50,31 @@ namespace ShootingHero.Clients
             players[playerID] = player;
         }
 
+        public void RemovePlayer(string playerID)
+        {
+            players.Remove(playerID);
+        }
+
         public Unit GetPlayer(string playerID)
         {
             players.TryGetValue(playerID, out Unit unit);
             return unit;
+        }
+
+        public void AddItem(string itemUUID, ItemBase item)
+        {
+            items[itemUUID] = item;
+        }
+
+        public void RemoveItem(string itemUUID)
+        {
+            items.Remove(itemUUID);
+        }
+
+        public ItemBase GetItem(string itemUUID)
+        {
+            items.TryGetValue(itemUUID, out ItemBase item);
+            return item;
         }
     }
 }

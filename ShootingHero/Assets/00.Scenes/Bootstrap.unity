@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Clients::ShootingHero.Clients.Bootstrap
   gameManager: {fileID: 343700563}
-  unitPrefab: {fileID: 8467205605617744293, guid: 0138d15ea68d2403597a4297e5b5be88, type: 3}
+  dataTableManager: {fileID: 11400000, guid: 8209a08b657204b9791cb7c654fe7d38, type: 2}
 --- !u!4 &645007341
 Transform:
   m_ObjectHideFlags: 0

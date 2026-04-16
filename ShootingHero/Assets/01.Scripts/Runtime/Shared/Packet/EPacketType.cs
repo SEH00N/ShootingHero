@@ -9,6 +9,7 @@ namespace ShootingHero.Networks
         S2C_EnterGameBroadcastPacket,
         C2S_MoveInputPacket,
         S2C_MoveInputBroadcastPacket,
+        S2C_SpawnItemPacket,
         C2S_InteractItemPacket,
         S2C_InteractItemBroadcastPacket,
     }

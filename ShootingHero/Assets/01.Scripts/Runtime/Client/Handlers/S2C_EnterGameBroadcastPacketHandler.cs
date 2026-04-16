@@ -9,16 +9,17 @@ namespace ShootingHero.Clients
     public class S2C_EnterGameBroadcastPacketHandler : IPacketHandler<S2C_EnterGameBroadcastPacket>
     {
         private readonly GameManager gameManager = null;
-        private readonly Unit unitPrefab = null;
+        private readonly DataTableManager dataTableManager = null;
 
-        public S2C_EnterGameBroadcastPacketHandler(GameManager gameManager, Unit unitPrefab)
+        public S2C_EnterGameBroadcastPacketHandler(GameManager gameManager, DataTableManager dataTableManager)
         {
             this.gameManager = gameManager;
-            this.unitPrefab = unitPrefab;
+            this.dataTableManager = dataTableManager;
         }
 
         ValueTask IPacketHandler<S2C_EnterGameBroadcastPacket>.HandlePacket(Session session, S2C_EnterGameBroadcastPacket packet)
         {
+            Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;
             Unit unit = Object.Instantiate(unitPrefab, packet.Position, Quaternion.identity);
             gameManager.AddPlayer(packet.PlayerID, unit);
 

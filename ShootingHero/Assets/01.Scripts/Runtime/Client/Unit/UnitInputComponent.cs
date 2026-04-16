@@ -1,4 +1,5 @@
 using System;
+using ShootingHero.Networks;
 using ShootingHero.Shared;
 using UnityEngine;
 
@@ -35,8 +36,8 @@ namespace ShootingHero.Clients
                 return;
             
             Array.Sort(detectedItems, (a, b) => {
-                float sqrDistanceA = (a.transform.position - transform.position).sqrMagnitude;
-                float sqrDistanceB = (b.transform.position - transform.position).sqrMagnitude;
+                float sqrDistanceA = ((Vector2)(a.transform.position - transform.position)).sqrMagnitude;
+                float sqrDistanceB = ((Vector2)(b.transform.position - transform.position)).sqrMagnitude;
                 return sqrDistanceA.CompareTo(sqrDistanceB);
             });
 
@@ -45,7 +46,7 @@ namespace ShootingHero.Clients
                 if(detectedItem.TryGetComponent<ItemBase>(out ItemBase item) == false)
                     continue;
                 
-                item.Interact(unit);
+                GameManager.Instance.Session.SendAsync(new C2S_InteractItemPacket() { ItemUUID = item.UUID });
                 return;
             }
         }

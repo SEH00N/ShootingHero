@@ -1,10 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootingHero.Shared
 {
-    [System.Serializable]
-    public class DataTable<TRow> where TRow : DataTableRow
+    public abstract class DataTable<TRow> : IEnumerable<TRow> where TRow : DataTableRow
     {
         [SerializeField]
         private List<TRow> tableRowList = null;
@@ -16,10 +16,13 @@ namespace ShootingHero.Shared
             tableRows = new Dictionary<int, TRow>();
         }
 
+        protected virtual void OnInitialize() { }
         public void Initialize()
         {
             foreach(TRow tableRow in tableRowList)
                 tableRows[tableRow.id] = tableRow;
+            
+            OnInitialize();
         }
 
         public TRow GetRow(int id)
@@ -27,5 +30,8 @@ namespace ShootingHero.Shared
             tableRows.TryGetValue(id, out TRow tableRow);
             return tableRow;
         }
+
+        IEnumerator<TRow> IEnumerable<TRow>.GetEnumerator() => tableRows.Values.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => tableRows.Values.GetEnumerator();
     }
 }

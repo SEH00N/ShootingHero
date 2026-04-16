@@ -11,5 +11,6 @@ namespace ShootingHero.Shared
     {
         public string PlayerID { get; set; }
         public Dictionary<string, Vector2> Players { get; set; }
+        public Dictionary<string, (int, Vector2)> Items { get; set; }
     }
 }

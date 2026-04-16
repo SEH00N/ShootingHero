@@ -13,13 +13,13 @@ namespace ShootingHero.Servers
     {
         private readonly GameServer gameServer = null;
         private readonly Server server = null;
-        private readonly Unit unitPrefab = null;
+        private readonly DataTableManager dataTableManager = null;
 
-        public C2S_EnterGameRequestPacketHandler(GameServer gameServer, Server server, Unit unitPrefab)
+        public C2S_EnterGameRequestPacketHandler(GameServer gameServer, Server server, DataTableManager dataTableManager)
         {
             this.gameServer = gameServer;
             this.server = server;
-            this.unitPrefab = unitPrefab;
+            this.dataTableManager = dataTableManager;
         }
 
         ValueTask IPacketHandler<C2S_EnterGameRequestPacket>.HandlePacket(Session session, C2S_EnterGameRequestPacket packet)
@@ -27,6 +27,7 @@ namespace ShootingHero.Servers
             string playerID = Guid.NewGuid().ToString();
             server.Rooms.Room(ServerDefine.ROOM_ID).Add(playerID, session);
 
+            Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;
             Unit unit = Object.Instantiate(unitPrefab, gameServer.transform);
             unit.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
             gameServer.AddPlayer(session, playerID, unit);
@@ -36,9 +37,15 @@ namespace ShootingHero.Servers
                 players[otherPlayerID] = otherUnit.transform.position;
             });
 
+            Dictionary<string, (int, Vector2)> items = new Dictionary<string, (int, Vector2)>();
+            gameServer.ForEachItem((itemUUID, item) => {
+                items[itemUUID] = (item.ItemID, item.transform.position);
+            });
+
             S2C_EnterGameResponsePacket responsePacket = new S2C_EnterGameResponsePacket() {
                 PlayerID = playerID,
-                Players = players
+                Players = players,
+                Items = items
             };
             session.SendAsync(responsePacket);
 

@@ -12,3 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f08d34ed7bf7409da7d560bb2d6396c, type: 3}
   m_Name: DataTableManager
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.DataTableManager
+  gameConfigTable:
+    tableRowList:
+    - id: 0
+      key: UnitPrefab
+      objectValue: {fileID: 8467205605617744293, guid: 0138d15ea68d2403597a4297e5b5be88, type: 3}
+  itemTable:
+    tableRowList:
+    - id: 0
+      itemName: "\uD790\uD329"
+      itemSprite: {fileID: 0}
+      itemPrefab: {fileID: 5129127828692721321, guid: 6ad557267fdfb466d9c4517d92b79806, type: 3}

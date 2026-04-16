@@ -12,7 +12,7 @@ namespace ShootingHero.Clients
         private GameManager gameManager = null;
 
         [SerializeField]
-        private Unit unitPrefab = null;
+        private DataTableManager dataTableManager = null;
 
         private void Awake()
         {
@@ -25,7 +25,7 @@ namespace ShootingHero.Clients
             DontDestroyOnLoad(gameServer.gameObject);
 
             UnityPacketDispatcher unityPacketDispatcher = gameServer.gameObject.AddComponent<UnityPacketDispatcher>();
-            gameServer.Initialize(unitPrefab, unityPacketDispatcher);
+            gameServer.Initialize(dataTableManager, unityPacketDispatcher);
 
             unityPacketDispatcher.Initialize(gameServer.Server);
             gameServer.Listen(9999);
@@ -44,7 +44,7 @@ namespace ShootingHero.Clients
             UnityPacketDispatcher unityPacketDispatcher = gameManager.gameObject.AddComponent<UnityPacketDispatcher>();
             Client client = new ClientBuilder(session, unityPacketDispatcher)
                 .AddSingleton<GameManager>(gameManager)
-                .AddSingleton<Unit>(unitPrefab)
+                .AddSingleton<DataTableManager>(dataTableManager)
                 .Build(typeof(Bootstrap).Assembly, typeof(GameDefine).Assembly);
 
             unityPacketDispatcher.Initialize(client);
