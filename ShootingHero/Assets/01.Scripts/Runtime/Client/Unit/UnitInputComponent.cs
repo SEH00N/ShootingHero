@@ -53,12 +53,13 @@ namespace ShootingHero.Clients
 
         private void HandleFire()
         {
-            if(unit.UnitWeaponComponent.Weapon == null)
+            WeaponBase weapon = unit.UnitWeaponComponent.Weapon;
+            if(weapon == null)
                 return;
             
             Vector2 aim = playerInputReader.AimPosition;
             Vector3 aimWorldPosition = Camera.main.ScreenToWorldPoint(aim);
-            Vector2 direction = (Vector2)(aimWorldPosition - transform.position);
+            Vector2 direction = (Vector2)(aimWorldPosition - weapon.transform.position);
             GameManager.Instance.Session.SendAsync(new C2S_FireWeaponPacket() { Direction = direction.normalized });
         }
     }
