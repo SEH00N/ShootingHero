@@ -10,6 +10,9 @@ namespace ShootingHero.Servers
 {
     public class GameServer : MonoBehaviour, ISessionFactory
     {
+        private static GameServer instance = null;
+        public static GameServer Instance => instance;
+
         private Dictionary<string, Unit> players = null;
         private Dictionary<Session, string> playerIDMap = null;
 
@@ -20,6 +23,8 @@ namespace ShootingHero.Servers
 
         public void Initialize(DataTableManager dataTableManager, UnityPacketDispatcher unityPacketDispatcher)
         {
+            instance = this;
+
             players = new Dictionary<string, Unit>();
             playerIDMap = new Dictionary<Session, string>();
 

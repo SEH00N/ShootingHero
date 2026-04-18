@@ -22,7 +22,7 @@ namespace ShootingHero.Clients
             if(instance != null)
             {
                 instance.Release();
-                DestroyImmediate(instance);
+                Destroy(instance);
             }
 
             instance = this;

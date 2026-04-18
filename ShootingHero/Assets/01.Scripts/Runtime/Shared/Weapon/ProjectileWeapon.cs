@@ -17,7 +17,7 @@ namespace ShootingHero.Shared
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Projectile projectile = Instantiate(projectilePrefab, firePosition.position, Quaternion.Euler(0, 0, angle));
-            projectile.Initialize(direction * projectileSpeed);
+            projectile.Initialize(owner, owner.GetHeight(), direction * projectileSpeed);
         }
     }
 }

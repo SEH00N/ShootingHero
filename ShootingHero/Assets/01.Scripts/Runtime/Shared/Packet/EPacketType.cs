@@ -13,6 +13,7 @@ namespace ShootingHero.Networks
         C2S_InteractItemPacket,
         S2C_InteractItemBroadcastPacket,
         C2S_FireWeaponPacket,
-        S2C_FireWeaponBroadcastPacket
+        S2C_FireWeaponBroadcastPacket,
+        S2C_UnitDamagedPacket
     }
 }

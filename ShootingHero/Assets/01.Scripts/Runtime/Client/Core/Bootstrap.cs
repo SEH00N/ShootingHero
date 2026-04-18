@@ -21,6 +21,8 @@ namespace ShootingHero.Clients
 
         public void AddServer()
         {
+            GameInstance.PlayMode = EPlayMode.Server;
+
             GameServer gameServer = new GameObject("GameServer").AddComponent<GameServer>();
             DontDestroyOnLoad(gameServer.gameObject);
 
@@ -35,6 +37,8 @@ namespace ShootingHero.Clients
 
         public void StartGame()
         {
+            GameInstance.PlayMode = EPlayMode.Client;
+
             Session session = new Session();
             session.OnOpenedEvent += session => {
                 session.SendAsync(new C2S_EnterGameRequestPacket());

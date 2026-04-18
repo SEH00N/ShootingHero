@@ -43,6 +43,8 @@ GameObject:
   - component: {fileID: 8467205605617744293}
   - component: {fileID: 6820730779124057763}
   - component: {fileID: 5605912801293092927}
+  - component: {fileID: 1516780341442015132}
+  - component: {fileID: 2592404262087593425}
   - component: {fileID: 1555884069712610411}
   - component: {fileID: 3317852911693896954}
   - component: {fileID: 7269070629808298328}
@@ -83,6 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.Unit
   unitMovementComponent: {fileID: 6820730779124057763}
   unitWeaponComponent: {fileID: 5605912801293092927}
+  unitHealthComponent: {fileID: 1516780341442015132}
 --- !u!114 &6820730779124057763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +114,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.UnitWeaponComponent
   weaponContainer: {fileID: 6553092267463662563}
+--- !u!114 &1516780341442015132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302512199407416910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abed054667f3e445d8843ff5e17e3847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.UnitHealthComponent
+--- !u!114 &2592404262087593425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302512199407416910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 630dac9169f0f4f6bae252de99b64b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Servers::ShootingHero.Servers.UnitHealthComponentServer
+  unit: {fileID: 8467205605617744293}
 --- !u!212 &1555884069712610411
 SpriteRenderer:
   serializedVersion: 2

@@ -28,6 +28,7 @@ namespace ShootingHero.Clients
                 foreach(KeyValuePair<string, Vector2> element in packet.Players)
                 {
                     Unit unit = Object.Instantiate(unitPrefab, element.Value, Quaternion.identity);
+                    unit.Initialize(element.Key);
                     gameManager.AddPlayer(element.Key, unit);
                 }
 

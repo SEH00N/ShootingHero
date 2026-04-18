@@ -21,6 +21,7 @@ namespace ShootingHero.Clients
         {
             Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;
             Unit unit = Object.Instantiate(unitPrefab, packet.Position, Quaternion.identity);
+            unit.Initialize(packet.PlayerID);
             gameManager.AddPlayer(packet.PlayerID, unit);
 
             return new ValueTask();

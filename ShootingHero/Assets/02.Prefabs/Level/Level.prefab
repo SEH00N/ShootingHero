@@ -1197,6 +1197,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8167873343869824750}
+  - component: {fileID: 1907282687328771460}
   - component: {fileID: 2958098816868856084}
   - component: {fileID: 2625372125149049140}
   - component: {fileID: 8741290679289717667}
@@ -1224,6 +1225,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 397056514547689289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1907282687328771460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16001928937396796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617be7cb0b42e4184b2b64eb2fe48738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileCollider
+  height: 3
 --- !u!1839735485 &2958098816868856084
 Tilemap:
   m_ObjectHideFlags: 0
@@ -5866,6 +5880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 183784941229736179}
+  - component: {fileID: 3198498880901527911}
   - component: {fileID: 4150652435131735728}
   - component: {fileID: 7760115049373070616}
   - component: {fileID: 3412444956799479134}
@@ -5893,6 +5908,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 397056514547689289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3198498880901527911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811610264273265654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617be7cb0b42e4184b2b64eb2fe48738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileCollider
+  height: 0
 --- !u!1839735485 &4150652435131735728
 Tilemap:
   m_ObjectHideFlags: 0
@@ -41751,6 +41779,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1536466968933136514}
+  - component: {fileID: 8541068551029721180}
   - component: {fileID: 3487206061632134181}
   - component: {fileID: 7132152431391063916}
   - component: {fileID: 2677097305029019749}
@@ -41778,6 +41807,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 397056514547689289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8541068551029721180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4227711787821034188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617be7cb0b42e4184b2b64eb2fe48738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileCollider
+  height: 1
 --- !u!1839735485 &3487206061632134181
 Tilemap:
   m_ObjectHideFlags: 0
@@ -57399,6 +57441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2703454838816371146}
+  - component: {fileID: 934694597801698993}
   - component: {fileID: 1575138520871344309}
   - component: {fileID: 2979428247998615924}
   - component: {fileID: 5057584424944654847}
@@ -57426,6 +57469,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 397056514547689289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &934694597801698993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6924304415635144016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617be7cb0b42e4184b2b64eb2fe48738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileCollider
+  height: 2
 --- !u!1839735485 &1575138520871344309
 Tilemap:
   m_ObjectHideFlags: 0

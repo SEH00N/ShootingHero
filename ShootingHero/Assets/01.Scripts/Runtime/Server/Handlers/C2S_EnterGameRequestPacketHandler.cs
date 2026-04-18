@@ -30,6 +30,7 @@ namespace ShootingHero.Servers
             Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;
             Unit unit = Object.Instantiate(unitPrefab, gameServer.transform);
             unit.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            unit.Initialize(playerID);
             gameServer.AddPlayer(session, playerID, unit);
 
             Dictionary<string, Vector2> players = new Dictionary<string, Vector2>();
