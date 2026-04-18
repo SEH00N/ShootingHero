@@ -48,6 +48,8 @@ namespace ShootingHero.Clients
 
                 Unit myPlayer = gameManager.GetPlayer(packet.PlayerID);
                 myPlayer.gameObject.AddComponent<UnitInputComponent>();
+
+                ClientInstance.MainVCam.Follow = myPlayer.transform;
             };
 
             return new ValueTask();
