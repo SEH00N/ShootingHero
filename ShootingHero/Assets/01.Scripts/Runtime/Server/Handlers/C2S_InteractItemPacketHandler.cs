@@ -8,14 +8,14 @@ namespace ShootingHero.Servers
     [PacketHandler(typeof(C2S_InteractItemPacket))]
     public class C2S_InteractItemPacketHandler : IPacketHandler<C2S_InteractItemPacket>
     {
+        private readonly GameManager gameManager = null;
         private readonly GameServer gameServer = null;
-        private readonly Server server = null;
         private readonly DataTableManager dataTableManager = null;
 
-        public C2S_InteractItemPacketHandler(GameServer gameServer, Server server, DataTableManager dataTableManager)
+        public C2S_InteractItemPacketHandler(GameManager gameManager, GameServer gameServer, DataTableManager dataTableManager)
         {
+            this.gameManager = gameManager;
             this.gameServer = gameServer;
-            this.server = server;
             this.dataTableManager = dataTableManager;
         }
 
@@ -25,11 +25,11 @@ namespace ShootingHero.Servers
             if(string.IsNullOrEmpty(playerID) == true)
                 return new ValueTask();
             
-            Unit player = gameServer.GetPlayer(playerID);
+            Unit player = gameManager.GetPlayer(playerID);
             if(player == null)
                 return new ValueTask();
 
-            ItemBase item = gameServer.GetItem(packet.ItemUUID);
+            ItemBase item = gameManager.GetItem(packet.ItemUUID);
             if(item == null)
                 return new ValueTask();
 
@@ -44,7 +44,7 @@ namespace ShootingHero.Servers
                 PlayerID = playerID,
                 ItemUUID = packet.ItemUUID
             };
-            server.Rooms.Room(ServerDefine.ROOM_ID).Send(broadcastPacket);
+            gameServer.Send(broadcastPacket);
 
             return new ValueTask();
         }

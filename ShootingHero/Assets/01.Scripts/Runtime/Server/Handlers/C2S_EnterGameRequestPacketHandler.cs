@@ -11,15 +11,15 @@ namespace ShootingHero.Servers
     [PacketHandler(typeof(C2S_EnterGameRequestPacket))]
     public class C2S_EnterGameRequestPacketHandler : IPacketHandler<C2S_EnterGameRequestPacket>
     {
+        private readonly GameManager gameManager = null;
         private readonly GameServer gameServer = null;
-        private readonly Server server = null;
         private readonly DataTableManager dataTableManager = null;
         private readonly ServerDataTableManager serverDataTableManager = null;
 
-        public C2S_EnterGameRequestPacketHandler(GameServer gameServer, Server server, DataTableManager dataTableManager, ServerDataTableManager serverDataTableManager)
+        public C2S_EnterGameRequestPacketHandler(GameManager gameManager, GameServer gameServer, DataTableManager dataTableManager, ServerDataTableManager serverDataTableManager)
         {
+            this.gameManager = gameManager;
             this.gameServer = gameServer;
-            this.server = server;
             this.dataTableManager = dataTableManager;
             this.serverDataTableManager = serverDataTableManager;
         }
@@ -27,25 +27,24 @@ namespace ShootingHero.Servers
         ValueTask IPacketHandler<C2S_EnterGameRequestPacket>.HandlePacket(Session session, C2S_EnterGameRequestPacket packet)
         {
             string playerID = Guid.NewGuid().ToString();
-            server.Rooms.Room(ServerDefine.ROOM_ID).Add(playerID, session);
+            gameServer.AddPlayer(playerID, session);
 
             SpawnPositionTableRow spawnPositionTableRow = serverDataTableManager.unitSpawnPositionTable.PickRandom();
             Vector2 spawnPosition = spawnPositionTableRow?.position ?? Vector2.zero;
             int spawnHeight = spawnPositionTableRow?.height ?? 0;
 
             Unit unitPrefab = dataTableManager.gameConfigTable.GetUnitPrefab();
-            Unit unit = Object.Instantiate(unitPrefab, gameServer.transform);
-            unit.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
+            Unit unit = Object.Instantiate(unitPrefab, spawnPosition, Quaternion.identity);
             unit.Initialize(playerID, spawnHeight, int.MaxValue, -1, null);
-            gameServer.AddPlayer(session, playerID, unit);
+            gameManager.AddPlayer(playerID, unit);
 
             Dictionary<string, UnitDataDTO> players = new Dictionary<string, UnitDataDTO>();
-            gameServer.ForEachPlayer((otherPlayerID, otherUnit) => {
+            gameManager.ForEachPlayer((otherPlayerID, otherUnit) => {
                 players[otherPlayerID] = CreateUnitData(otherUnit);
             });
 
             Dictionary<string, ItemDataDTO> items = new Dictionary<string, ItemDataDTO>();
-            gameServer.ForEachItem((itemUUID, item) => {
+            gameManager.ForEachItem((itemUUID, item) => {
                 items[itemUUID] = CreateItemData(item);
             });
 
@@ -60,7 +59,7 @@ namespace ShootingHero.Servers
                 PlayerID = playerID,
                 UnitData = CreateUnitData(unit)
             };
-            server.Rooms.Room(ServerDefine.ROOM_ID).Send(broadcastPacket, (sessionID, session) => sessionID != playerID);
+            gameServer.Send(broadcastPacket, (sessionID, session) => sessionID != playerID);
 
             return new ValueTask();
         }

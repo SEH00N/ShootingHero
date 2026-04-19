@@ -7,13 +7,13 @@ namespace ShootingHero.Servers
     [PacketHandler(typeof(C2S_MoveInputPacket))]
     public class C2S_MoveInputPacketHandler : IPacketHandler<C2S_MoveInputPacket>
     {
+        private readonly GameManager gameManager = null;
         private readonly GameServer gameServer = null;
-        private readonly Server server = null;
 
-        public C2S_MoveInputPacketHandler(GameServer gameServer, Server server)
+        public C2S_MoveInputPacketHandler(GameManager gameManager, GameServer gameServer)
         {
+            this.gameManager = gameManager;
             this.gameServer = gameServer;
-            this.server = server;
         }
 
         ValueTask IPacketHandler<C2S_MoveInputPacket>.HandlePacket(Session session, C2S_MoveInputPacket packet)
@@ -22,7 +22,7 @@ namespace ShootingHero.Servers
             if(string.IsNullOrEmpty(playerID) == true)
                 return new ValueTask();
             
-            Unit player = gameServer.GetPlayer(playerID);
+            Unit player = gameManager.GetPlayer(playerID);
             if(player == null)
                 return new ValueTask();
 
@@ -33,7 +33,7 @@ namespace ShootingHero.Servers
                 Position = player.transform.position,
                 MoveInput = packet.MoveInput
             };
-            server.Rooms.Room(ServerDefine.ROOM_ID).Send(broadcastPacket);
+            gameServer.Send(broadcastPacket);
 
             return new ValueTask();
         }

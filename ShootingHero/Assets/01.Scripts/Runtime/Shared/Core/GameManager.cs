@@ -1,21 +1,16 @@
+using System;
 using System.Collections.Generic;
-using ShootingHero.Networks;
-using ShootingHero.Shared;
 using UnityEngine;
 
-namespace ShootingHero.Clients
+namespace ShootingHero.Shared
 {
     public class GameManager : MonoBehaviour
     {
         private static GameManager instance = null;
         public static GameManager Instance => instance;
 
-        private Session session = null;
         private Dictionary<string, Unit> players = null;
-
         private Dictionary<string, ItemBase> items = null;
-
-        public Session Session => session;
 
         public void Initialize()
         {
@@ -30,18 +25,11 @@ namespace ShootingHero.Clients
 
             players = new Dictionary<string, Unit>();
             items = new Dictionary<string, ItemBase>();
-
-            InputManager.Initialize();
         }
 
         public void Release()
         {
             
-        }
-
-        public void SetSession(Session session)
-        {
-            this.session = session;
         }
 
         public void AddPlayer(string playerID, Unit player)
@@ -60,6 +48,12 @@ namespace ShootingHero.Clients
             return unit;
         }
 
+        public void ForEachPlayer(Action<string, Unit> callback)
+        {
+            foreach(KeyValuePair<string, Unit> element in players)
+                callback?.Invoke(element.Key, element.Value);
+        }
+
         public void AddItem(string itemUUID, ItemBase item)
         {
             items[itemUUID] = item;
@@ -74,6 +68,12 @@ namespace ShootingHero.Clients
         {
             items.TryGetValue(itemUUID, out ItemBase item);
             return item;
+        }
+
+        public void ForEachItem(Action<string, ItemBase> callback)
+        {
+            foreach(KeyValuePair<string, ItemBase> element in items)
+                callback?.Invoke(element.Key, element.Value);
         }
     }
 }

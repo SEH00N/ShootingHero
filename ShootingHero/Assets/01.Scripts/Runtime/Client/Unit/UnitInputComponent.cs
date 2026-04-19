@@ -31,7 +31,7 @@ namespace ShootingHero.Clients
             if(lastMoveInput != playerInputReader.MovementInput)
             {
                 lastMoveInput = playerInputReader.MovementInput;
-                GameManager.Instance.Session.SendAsync(new C2S_MoveInputPacket() { MoveInput = lastMoveInput });
+                ClientInstance.GameClient.Send(new C2S_MoveInputPacket() { MoveInput = lastMoveInput });
             }
         }
 
@@ -71,7 +71,7 @@ namespace ShootingHero.Clients
             Vector2 aim = playerInputReader.AimPosition;
             Vector3 aimWorldPosition = Camera.main.ScreenToWorldPoint(aim);
             Vector2 direction = (Vector2)(aimWorldPosition - weapon.transform.position);
-            GameManager.Instance.Session.SendAsync(new C2S_FireWeaponPacket() { Direction = direction.normalized });
+            ClientInstance.GameClient.Send(new C2S_FireWeaponPacket() { Direction = direction.normalized });
         }
 
         private void HandleInteract()
@@ -91,7 +91,7 @@ namespace ShootingHero.Clients
                 if(detectedItem.TryGetComponent<ItemBase>(out ItemBase item) == false)
                     continue;
                 
-                GameManager.Instance.Session.SendAsync(new C2S_InteractItemPacket() { ItemUUID = item.UUID });
+                ClientInstance.GameClient.Send(new C2S_InteractItemPacket() { ItemUUID = item.UUID });
                 return;
             }
         }
@@ -105,7 +105,7 @@ namespace ShootingHero.Clients
             if(weapon.IsReloading == true)
                 return;
             
-            GameManager.Instance.Session.SendAsync(new C2S_ReloadWeaponPacket() { });
+            ClientInstance.GameClient.Send(new C2S_ReloadWeaponPacket() { });
         }
     }
 }

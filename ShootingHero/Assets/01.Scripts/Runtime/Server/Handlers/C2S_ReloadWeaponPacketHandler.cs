@@ -7,11 +7,13 @@ namespace ShootingHero.Servers
     [PacketHandler(typeof(C2S_ReloadWeaponPacket))]
     public class C2S_ReloadWeaponPacketHandler : IPacketHandler<C2S_ReloadWeaponPacket>
     {
+        private readonly GameManager gameManager = null;
         private readonly GameServer gameServer = null;
         private readonly Server server = null;
 
-        public C2S_ReloadWeaponPacketHandler(GameServer gameServer, Server server)
+        public C2S_ReloadWeaponPacketHandler(GameManager gameManager, GameServer gameServer, Server server)
         {
+            this.gameManager = gameManager;
             this.gameServer = gameServer;
             this.server = server;
         }
@@ -22,7 +24,7 @@ namespace ShootingHero.Servers
             if(string.IsNullOrEmpty(playerID) == true)
                 return new ValueTask();
             
-            Unit player = gameServer.GetPlayer(playerID);
+            Unit player = gameManager.GetPlayer(playerID);
             if(player == null)
                 return new ValueTask();
 

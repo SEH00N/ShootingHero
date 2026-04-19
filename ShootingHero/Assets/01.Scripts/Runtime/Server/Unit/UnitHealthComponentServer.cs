@@ -26,8 +26,7 @@ namespace ShootingHero.Servers
                 Damage = damage
             };
 
-            Server server = GameServer.Instance.Server;
-            server.Rooms.Room(ServerDefine.ROOM_ID).Send(unitDamagedPacket);
+            ServerInstance.GameServer.Send(unitDamagedPacket);
         }
 
         private async void HandleDead()
@@ -39,9 +38,7 @@ namespace ShootingHero.Servers
                 PlayerID = unit.PlayerID,
             };
 
-            Server server = GameServer.Instance.Server;
-            server.Rooms.Room(ServerDefine.ROOM_ID).Send(unitDeadPacket);
-
+            ServerInstance.GameServer.Send(unitDeadPacket);
             HandleRespawn();
         }
 
@@ -60,8 +57,7 @@ namespace ShootingHero.Servers
                 Height = unit.GetHeight()
             };
 
-            Server server = GameServer.Instance.Server;
-            server.Rooms.Room(ServerDefine.ROOM_ID).Send(unitRespawnPacket);
+            ServerInstance.GameServer.Send(unitRespawnPacket);
         }
     }
 }

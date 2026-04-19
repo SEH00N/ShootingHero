@@ -1,4 +1,5 @@
 using Cinemachine;
+using ShootingHero.Networks;
 using UnityEngine;
 
 namespace ShootingHero.Clients
@@ -23,5 +24,6 @@ namespace ShootingHero.Clients
 
         public static string MyPlayerID = string.Empty;
         public static bool IsFireWeaponPacketProcessing = false;
+        public static GameClient GameClient = null;
     }
 }
