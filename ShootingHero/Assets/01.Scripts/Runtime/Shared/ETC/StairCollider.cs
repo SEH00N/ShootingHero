@@ -7,7 +7,7 @@ namespace ShootingHero.Shared
         [SerializeField]
         private int height = 0;
 
-        public void OnTriggerEnter2D(Collider2D collider)
+        public void OnTriggerExit2D(Collider2D collider)
         {
             if(collider.TryGetComponent<Unit>(out Unit unit) == false)
                 return;
