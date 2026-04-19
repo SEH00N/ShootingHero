@@ -25,25 +25,31 @@ namespace ShootingHero.Clients
             asyncOperation.completed += _ => {
                 Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;
 
-                foreach(KeyValuePair<string, Vector2> element in packet.Players)
+                foreach(KeyValuePair<string, UnitDataDTO> element in packet.Players)
                 {
-                    Unit unit = Object.Instantiate(unitPrefab, element.Value, Quaternion.identity);
-                    unit.Initialize(element.Key);
-                    gameManager.AddPlayer(element.Key, unit);
+                    string playerID = element.Key;
+                    UnitDataDTO unitData = element.Value;
+
+                    Unit unit = Object.Instantiate(unitPrefab, unitData.Position, Quaternion.identity);
+                    unit.Initialize(playerID, unitData.CurrentHP, unitData.CurrentWeaponID);
+                    gameManager.AddPlayer(playerID, unit);
                 }
 
-                foreach(KeyValuePair<string, (int itemID, Vector2 position)> element in packet.Items)
+                foreach(KeyValuePair<string, ItemDataDTO> element in packet.Items)
                 {
-                    ItemTableRow itemTableRow = dataTableManager.itemTable.GetRow(element.Value.itemID);
+                    string itemUUID = element.Key;
+                    ItemDataDTO itemData = element.Value;
+
+                    ItemTableRow itemTableRow = dataTableManager.itemTable.GetRow(itemData.ItemID);
                     if(itemTableRow == null)
                         continue;
 
-                    ItemBase item = Object.Instantiate(itemTableRow.itemPrefab, element.Value.position, Quaternion.identity);
-                    item.Initialize(element.Value.itemID, element.Key, () => {
+                    ItemBase item = Object.Instantiate(itemTableRow.itemPrefab, itemData.Position, Quaternion.identity);
+                    item.Initialize(itemData.ItemID, itemUUID, () => {
                         Object.Destroy(item.gameObject);
-                        gameManager.RemoveItem(element.Key);
+                        gameManager.RemoveItem(itemUUID);
                     });
-                    gameManager.AddItem(element.Key, item);
+                    gameManager.AddItem(itemUUID, item);
                 }
 
                 Unit myPlayer = gameManager.GetPlayer(packet.PlayerID);

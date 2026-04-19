@@ -1,4 +1,3 @@
-using UnityEngine;
 using MemoryPack;
 using ShootingHero.Networks;
 
@@ -9,6 +8,6 @@ namespace ShootingHero.Shared
     public partial class S2C_EnterGameBroadcastPacket : IPacket
     {
         public string PlayerID { get; set; }
-        public Vector2 Position { get; set; }
+        public UnitDataDTO UnitData { get; set; }
     }
 }

@@ -30,17 +30,17 @@ namespace ShootingHero.Servers
             Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;
             Unit unit = Object.Instantiate(unitPrefab, gameServer.transform);
             unit.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            unit.Initialize(playerID);
+            unit.Initialize(playerID, int.MaxValue, -1);
             gameServer.AddPlayer(session, playerID, unit);
 
-            Dictionary<string, Vector2> players = new Dictionary<string, Vector2>();
+            Dictionary<string, UnitDataDTO> players = new Dictionary<string, UnitDataDTO>();
             gameServer.ForEachPlayer((otherPlayerID, otherUnit) => {
-                players[otherPlayerID] = otherUnit.transform.position;
+                players[otherPlayerID] = CreateUnitData(otherUnit);
             });
 
-            Dictionary<string, (int, Vector2)> items = new Dictionary<string, (int, Vector2)>();
+            Dictionary<string, ItemDataDTO> items = new Dictionary<string, ItemDataDTO>();
             gameServer.ForEachItem((itemUUID, item) => {
-                items[itemUUID] = (item.ItemID, item.transform.position);
+                items[itemUUID] = CreateItemData(item);
             });
 
             S2C_EnterGameResponsePacket responsePacket = new S2C_EnterGameResponsePacket() {
@@ -52,11 +52,33 @@ namespace ShootingHero.Servers
 
             S2C_EnterGameBroadcastPacket broadcastPacket = new S2C_EnterGameBroadcastPacket() {
                 PlayerID = playerID,
-                Position = unit.transform.position
+                UnitData = CreateUnitData(unit)
             };
             server.Rooms.Room(ServerDefine.ROOM_ID).Send(broadcastPacket, (sessionID, session) => sessionID != playerID);
 
             return new ValueTask();
+        }
+
+        private static UnitDataDTO CreateUnitData(Unit unit)
+        {
+            Vector2 position = unit.transform.position;
+            int currentHP = unit.UnitHealthComponent.CurrentHP;
+            WeaponBase weapon = unit.UnitWeaponComponent.Weapon;
+            int weaponID = weapon == null ? -1 : weapon.WeaponID;
+
+            return new UnitDataDTO() {
+                Position = position,
+                CurrentHP = currentHP,
+                CurrentWeaponID = weaponID
+            };
+        }
+
+        private static ItemDataDTO CreateItemData(ItemBase item)
+        {
+            return new ItemDataDTO() {
+                ItemID = item.ItemID, 
+                Position = item.transform.position
+            };
         }
     }
 }

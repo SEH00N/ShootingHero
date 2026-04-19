@@ -21,10 +21,11 @@ namespace ShootingHero.Shared
 
         public string PlayerID => playerID;
 
-        public void Initialize(string playerID)
+        public void Initialize(string playerID, int currentHP, int weaponID)
         {
             this.playerID = playerID;
-            unitHealthComponent.Initialize(100);
+            unitHealthComponent.Initialize(100, currentHP);
+            unitWeaponComponent.SetWeapon(weaponID);
         }
 
         public int GetHeight()

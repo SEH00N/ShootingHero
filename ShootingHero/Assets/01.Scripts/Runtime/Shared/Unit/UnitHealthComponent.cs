@@ -11,10 +11,12 @@ namespace ShootingHero.Shared
         public event Action<int> OnDamagedEvent = null;
         public event Action OnDeadEvent = null;
 
-        public void Initialize(int maxHP)
+        public int CurrentHP => currentHP;
+
+        public void Initialize(int maxHP, int currentHP)
         {
             this.maxHP = maxHP;
-            currentHP = this.maxHP;
+            this.currentHP = Mathf.Clamp(currentHP, 0, maxHP);;
         }
 
         public void GetDamage(int damage)

@@ -20,8 +20,8 @@ namespace ShootingHero.Clients
         ValueTask IPacketHandler<S2C_EnterGameBroadcastPacket>.HandlePacket(Session session, S2C_EnterGameBroadcastPacket packet)
         {
             Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;
-            Unit unit = Object.Instantiate(unitPrefab, packet.Position, Quaternion.identity);
-            unit.Initialize(packet.PlayerID);
+            Unit unit = Object.Instantiate(unitPrefab, packet.UnitData.Position, Quaternion.identity);
+            unit.Initialize(packet.PlayerID, packet.UnitData.CurrentHP, packet.UnitData.CurrentWeaponID);
             gameManager.AddPlayer(packet.PlayerID, unit);
 
             return new ValueTask();

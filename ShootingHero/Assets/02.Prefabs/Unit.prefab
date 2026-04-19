@@ -113,6 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efc27e14ed4e43b786750905eace64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.UnitWeaponComponent
+  dataTableManager: {fileID: 11400000, guid: 8209a08b657204b9791cb7c654fe7d38, type: 2}
+  unit: {fileID: 8467205605617744293}
   weaponContainer: {fileID: 6553092267463662563}
 --- !u!114 &1516780341442015132
 MonoBehaviour:

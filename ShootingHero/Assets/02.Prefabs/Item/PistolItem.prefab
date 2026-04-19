@@ -46,7 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9336d83a870b1462c87c63533629f006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.WeaponItem
-  weaponPrefab: {fileID: 5743824136040076336, guid: 145eaf664583f4a67a619b403e52650f, type: 3}
+  dataTableManager: {fileID: 11400000, guid: 8209a08b657204b9791cb7c654fe7d38, type: 2}
+  weaponID: 0
 --- !u!212 &8065597908787469862
 SpriteRenderer:
   serializedVersion: 2

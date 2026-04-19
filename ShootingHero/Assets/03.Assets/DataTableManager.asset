@@ -27,3 +27,7 @@ MonoBehaviour:
       itemName: "\uAD8C\uCD1D"
       itemSprite: {fileID: 0}
       itemPrefab: {fileID: 1316228716967666840, guid: e3c38259b7c534b599541cb4da404ec8, type: 3}
+  weaponTable:
+    tableRowList:
+    - id: 0
+      weaponPrefab: {fileID: 5743824136040076336, guid: 145eaf664583f4a67a619b403e52650f, type: 3}

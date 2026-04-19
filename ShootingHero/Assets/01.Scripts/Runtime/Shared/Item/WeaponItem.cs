@@ -5,13 +5,12 @@ namespace ShootingHero.Shared
     public class WeaponItem : ItemBase
     {
         [SerializeField]
-        private WeaponBase weaponPrefab = null;
+        private int weaponID = 0;
 
         protected override void OnInteract(Unit unit)
         {
-            WeaponBase weaponBase = Instantiate(weaponPrefab, unit.transform.position, Quaternion.identity);
-            weaponBase.SetOwner(unit);
-            unit.UnitWeaponComponent.SetWeapon(weaponBase);
+
+            unit.UnitWeaponComponent.SetWeapon(weaponID);
 
             DestroyItem();
         }
