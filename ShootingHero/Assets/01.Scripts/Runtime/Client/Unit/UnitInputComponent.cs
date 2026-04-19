@@ -18,6 +18,7 @@ namespace ShootingHero.Clients
             playerInputReader = InputManager.GetInput<PlayerInputReader>();
             playerInputReader.OnInteractEvent += HandleInteract;
             playerInputReader.OnFireEvent += HandleFire;
+            playerInputReader.OnReloadEvent += HandleReload;
         }
 
         private void Update()
@@ -27,6 +28,18 @@ namespace ShootingHero.Clients
                 lastMoveInput = playerInputReader.MovementInput;
                 GameManager.Instance.Session.SendAsync(new C2S_MoveInputPacket() { MoveInput = lastMoveInput });
             }
+        }
+
+        private void HandleFire()
+        {
+            WeaponBase weapon = unit.UnitWeaponComponent.Weapon;
+            if(weapon == null)
+                return;
+            
+            Vector2 aim = playerInputReader.AimPosition;
+            Vector3 aimWorldPosition = Camera.main.ScreenToWorldPoint(aim);
+            Vector2 direction = (Vector2)(aimWorldPosition - weapon.transform.position);
+            GameManager.Instance.Session.SendAsync(new C2S_FireWeaponPacket() { Direction = direction.normalized });
         }
 
         private void HandleInteract()
@@ -51,16 +64,16 @@ namespace ShootingHero.Clients
             }
         }
 
-        private void HandleFire()
+        private void HandleReload()
         {
             WeaponBase weapon = unit.UnitWeaponComponent.Weapon;
             if(weapon == null)
                 return;
             
-            Vector2 aim = playerInputReader.AimPosition;
-            Vector3 aimWorldPosition = Camera.main.ScreenToWorldPoint(aim);
-            Vector2 direction = (Vector2)(aimWorldPosition - weapon.transform.position);
-            GameManager.Instance.Session.SendAsync(new C2S_FireWeaponPacket() { Direction = direction.normalized });
+            if(weapon.IsReloading == true)
+                return;
+            
+            GameManager.Instance.Session.SendAsync(new C2S_ReloadWeaponPacket() { });
         }
     }
 }

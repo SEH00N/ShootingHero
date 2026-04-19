@@ -30,4 +30,14 @@ MonoBehaviour:
   weaponTable:
     tableRowList:
     - id: 0
+      weaponInfoID: 0
       weaponPrefab: {fileID: 5743824136040076336, guid: 145eaf664583f4a67a619b403e52650f, type: 3}
+  projectileWeaponInfoTable:
+    tableRowList:
+    - id: 0
+      magazineCapacity: 12
+      reloadTime: 2
+      fireInterval: 0.5
+      projectileDamage: 10
+      projectileSpeed: 25
+      projectilePrefab: {fileID: 450591414329810194, guid: 7293459686dde4f79a31497e6161be01, type: 3}

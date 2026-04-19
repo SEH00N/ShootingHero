@@ -36,7 +36,7 @@ namespace ShootingHero.Servers
             Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;
             Unit unit = Object.Instantiate(unitPrefab, gameServer.transform);
             unit.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
-            unit.Initialize(playerID, spawnHeight, int.MaxValue, -1);
+            unit.Initialize(playerID, spawnHeight, int.MaxValue, -1, null);
             gameServer.AddPlayer(session, playerID, unit);
 
             Dictionary<string, UnitDataDTO> players = new Dictionary<string, UnitDataDTO>();
@@ -72,12 +72,14 @@ namespace ShootingHero.Servers
             int currentHP = unit.UnitHealthComponent.CurrentHP;
             WeaponBase weapon = unit.UnitWeaponComponent.Weapon;
             int weaponID = weapon == null ? -1 : weapon.WeaponID;
+            string weaponStatus = weapon == null ? null : weapon.GetStatus();
 
             return new UnitDataDTO() {
                 Position = position,
                 Height = height,
                 CurrentHP = currentHP,
-                CurrentWeaponID = weaponID
+                CurrentWeaponID = weaponID,
+                CurrentWeaponStatus = weaponStatus
             };
         }
 

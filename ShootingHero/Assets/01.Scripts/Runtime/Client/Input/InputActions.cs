@@ -131,6 +131,15 @@ namespace ShootingHero.Clients
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""12773fab-2052-4441-a348-f5510feb0216"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""ChangeWeapon1"",
                     ""type"": ""Button"",
                     ""id"": ""fae4662a-d295-49d5-9a4c-f0f10564c1ed"",
@@ -334,6 +343,17 @@ namespace ShootingHero.Clients
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""38b7762d-9364-44b7-b576-72359971f219"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -363,6 +383,7 @@ namespace ShootingHero.Clients
             m_Player_Aim = m_Player.FindAction("Aim", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
+            m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
             m_Player_ChangeWeapon1 = m_Player.FindAction("ChangeWeapon1", throwIfNotFound: true);
             m_Player_ChangeWeapon2 = m_Player.FindAction("ChangeWeapon2", throwIfNotFound: true);
             m_Player_ChangeWeapon3 = m_Player.FindAction("ChangeWeapon3", throwIfNotFound: true);
@@ -450,6 +471,7 @@ namespace ShootingHero.Clients
         private readonly InputAction m_Player_Aim;
         private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Interact;
+        private readonly InputAction m_Player_Reload;
         private readonly InputAction m_Player_ChangeWeapon1;
         private readonly InputAction m_Player_ChangeWeapon2;
         private readonly InputAction m_Player_ChangeWeapon3;
@@ -480,6 +502,10 @@ namespace ShootingHero.Clients
             /// Provides access to the underlying input action "Player/Interact".
             /// </summary>
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/Reload".
+            /// </summary>
+            public InputAction @Reload => m_Wrapper.m_Player_Reload;
             /// <summary>
             /// Provides access to the underlying input action "Player/ChangeWeapon1".
             /// </summary>
@@ -530,6 +556,9 @@ namespace ShootingHero.Clients
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
                 @ChangeWeapon1.started += instance.OnChangeWeapon1;
                 @ChangeWeapon1.performed += instance.OnChangeWeapon1;
                 @ChangeWeapon1.canceled += instance.OnChangeWeapon1;
@@ -562,6 +591,9 @@ namespace ShootingHero.Clients
                 @Interact.started -= instance.OnInteract;
                 @Interact.performed -= instance.OnInteract;
                 @Interact.canceled -= instance.OnInteract;
+                @Reload.started -= instance.OnReload;
+                @Reload.performed -= instance.OnReload;
+                @Reload.canceled -= instance.OnReload;
                 @ChangeWeapon1.started -= instance.OnChangeWeapon1;
                 @ChangeWeapon1.performed -= instance.OnChangeWeapon1;
                 @ChangeWeapon1.canceled -= instance.OnChangeWeapon1;
@@ -652,6 +684,13 @@ namespace ShootingHero.Clients
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnInteract(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Reload" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnReload(InputAction.CallbackContext context);
             /// <summary>
             /// Method invoked when associated input action "ChangeWeapon1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>

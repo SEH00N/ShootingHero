@@ -7,17 +7,16 @@ namespace ShootingHero.Shared
         [SerializeField]
         private Rigidbody2D projectileRigidbody = null;
 
-        [SerializeField]
-        private int damage = 0;
-
         private Unit owner = null;
+        private int damage = 0;
         private int height = 0;
 
         public int Damage => damage;
 
-        public void Initialize(Unit owner, int height, Vector2 velocity)
+        public void Initialize(Unit owner, int damage, int height, Vector2 velocity)
         {
             this.owner = owner;
+            this.damage = damage;
             this.height = height;
             projectileRigidbody.linearVelocity = velocity;
         }

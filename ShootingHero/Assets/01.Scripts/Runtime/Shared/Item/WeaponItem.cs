@@ -9,9 +9,7 @@ namespace ShootingHero.Shared
 
         protected override void OnInteract(Unit unit)
         {
-
-            unit.UnitWeaponComponent.SetWeapon(weaponID);
-
+            unit.UnitWeaponComponent.SetWeapon(weaponID, null);
             DestroyItem();
         }
     }

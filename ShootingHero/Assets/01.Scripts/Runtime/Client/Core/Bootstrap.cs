@@ -20,6 +20,7 @@ namespace ShootingHero.Clients
         private void Awake()
         {
             gameManager.Initialize();
+            GameInstance.DataTableManager = dataTableManager;
         }
 
         public void AddServer()

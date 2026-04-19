@@ -8,10 +8,13 @@ namespace ShootingHero.Shared
         protected Unit owner = null;
 
         public int WeaponID => weaponID;
+        public abstract bool IsReloading { get; }
 
-        public void Initialize(int weaponID)
+        protected virtual void OnInitialize(string weaponStatus) { }
+        public void Initialize(int weaponID, string weaponStatus)
         {
             this.weaponID = weaponID;
+            OnInitialize(weaponStatus);
         }
 
         public void SetOwner(Unit owner)
@@ -19,10 +22,18 @@ namespace ShootingHero.Shared
             this.owner = owner;
         }
 
+        protected abstract void OnReload();
+        public void Reload()
+        {
+            OnReload();
+        }
+
         protected abstract void OnFire(Vector2 direction);
         public void Fire(Vector2 direction)
         {
             OnFire(direction);
         }
+
+        public abstract string GetStatus();
     }
 }

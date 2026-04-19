@@ -10,5 +10,6 @@ namespace ShootingHero.Shared
         public int Height { get; set; }
         public int CurrentHP { get; set; }
         public int CurrentWeaponID { get; set; }
+        public string CurrentWeaponStatus { get; set; }
     }
 }

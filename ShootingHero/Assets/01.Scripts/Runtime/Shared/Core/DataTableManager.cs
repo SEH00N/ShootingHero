@@ -8,12 +8,14 @@ namespace ShootingHero.Shared
         public GameConfigTable gameConfigTable = null;
         public ItemTable itemTable = null;
         public WeaponTable weaponTable = null;
+        public ProjectileWeaponInfoTable projectileWeaponInfoTable = null;
 
         private void OnEnable()
         {
             gameConfigTable.Initialize();
             itemTable.Initialize();
             weaponTable.Initialize();
+            projectileWeaponInfoTable.Initialize();
         }
     }
 }

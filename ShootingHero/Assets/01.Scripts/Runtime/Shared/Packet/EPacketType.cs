@@ -14,6 +14,8 @@ namespace ShootingHero.Networks
         S2C_InteractItemBroadcastPacket,
         C2S_FireWeaponPacket,
         S2C_FireWeaponBroadcastPacket,
-        S2C_UnitDamagedPacket
+        S2C_UnitDamagedPacket,
+        C2S_ReloadWeaponPacket,
+        S2C_ReloadWeaponBroadcastPacket
     }
 }
