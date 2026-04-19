@@ -33,7 +33,7 @@ namespace ShootingHero.Servers
             Vector2 spawnPosition = spawnPositionTableRow?.position ?? Vector2.zero;
             int spawnHeight = spawnPositionTableRow?.height ?? 0;
 
-            Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;
+            Unit unitPrefab = dataTableManager.gameConfigTable.GetUnitPrefab();
             Unit unit = Object.Instantiate(unitPrefab, gameServer.transform);
             unit.transform.SetPositionAndRotation(spawnPosition, Quaternion.identity);
             unit.Initialize(playerID, spawnHeight, int.MaxValue, -1, null);

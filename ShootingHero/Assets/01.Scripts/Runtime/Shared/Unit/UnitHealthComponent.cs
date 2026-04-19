@@ -19,6 +19,11 @@ namespace ShootingHero.Shared
             this.currentHP = Mathf.Clamp(currentHP, 0, maxHP);;
         }
 
+        public void ResetToMaxHP()
+        {
+            currentHP = maxHP;
+        }
+
         public void GetDamage(int damage)
         {
             currentHP = Mathf.Clamp(currentHP - damage, 0, maxHP);

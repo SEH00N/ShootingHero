@@ -15,7 +15,11 @@ namespace ShootingHero.Shared
 
         public void SetWeapon(int weaponID, string weaponStatus)
         {
-            weapon = null;
+            if(weapon != null)
+            {
+                Destroy(weapon.gameObject);
+                weapon = null;
+            }
 
             WeaponTableRow tableRow = GameInstance.DataTableManager.weaponTable.GetRow(weaponID);
             if(tableRow == null)

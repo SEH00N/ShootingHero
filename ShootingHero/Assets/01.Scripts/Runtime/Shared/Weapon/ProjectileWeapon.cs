@@ -1,5 +1,4 @@
-using System;
-using System.Collections;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace ShootingHero.Shared
@@ -50,7 +49,7 @@ namespace ShootingHero.Shared
             tableRow = dataTableManager.projectileWeaponInfoTable.GetRow(weaponTableRow.weaponInfoID);
         }
 
-        protected override void OnReload()
+        protected override async void OnReload()
         {
             if(tableRow == null)
                 return;
@@ -59,10 +58,10 @@ namespace ShootingHero.Shared
                 return;
 
             isReloading = true;
-            StartCoroutine(DelayCoroutine(tableRow.reloadTime, () => {
-                currentAmmoCount = tableRow.magazineCapacity;
-                isReloading = false; 
-            }));
+            await UniTask.Delay((int)(tableRow.reloadTime * 1000));
+            isReloading = false; 
+
+            currentAmmoCount = tableRow.magazineCapacity;
         }
 
         protected override void OnFire(Vector2 direction)
@@ -98,12 +97,6 @@ namespace ShootingHero.Shared
                 CurrentAmmonCount = isReloading == true ? tableRow.magazineCapacity : currentAmmoCount
             };
             return weaponStatus.Serialize();
-        }
-
-        private IEnumerator DelayCoroutine(float delayTime, Action callback)
-        {
-            yield return new WaitForSeconds(delayTime);
-            callback?.Invoke();
         }
     }
 }

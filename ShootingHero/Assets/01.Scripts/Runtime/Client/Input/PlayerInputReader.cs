@@ -16,7 +16,6 @@ namespace ShootingHero.Clients
         public event Action OnFireEndEvent = null;
         public event Action OnInteractEvent = null;
         public event Action OnReloadEvent = null;
-        public event Action<int> OnWeaponChangeEvent = null;
 
         public override void Initialize(InputActions inputActions)
         {
@@ -66,30 +65,6 @@ namespace ShootingHero.Clients
                 return;
 
             OnReloadEvent?.Invoke();
-        }
-
-        public void OnChangeWeapon1(InputAction.CallbackContext context)
-        {
-            if(context.performed == false)
-                return;
-
-            OnWeaponChangeEvent?.Invoke(1);
-        }
-
-        public void OnChangeWeapon2(InputAction.CallbackContext context)
-        {
-            if(context.performed == false)
-                return;
-
-            OnWeaponChangeEvent?.Invoke(2);
-        }
-
-        public void OnChangeWeapon3(InputAction.CallbackContext context)
-        {
-            if(context.performed == false)
-                return;
-
-            OnWeaponChangeEvent?.Invoke(3);
         }
     }
 }

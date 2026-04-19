@@ -10,11 +10,13 @@ namespace ShootingHero.Servers
     {
         private readonly GameServer gameServer = null;
         private readonly Server server = null;
+        private readonly DataTableManager dataTableManager = null;
 
-        public C2S_InteractItemPacketHandler(GameServer gameServer, Server server)
+        public C2S_InteractItemPacketHandler(GameServer gameServer, Server server, DataTableManager dataTableManager)
         {
             this.gameServer = gameServer;
             this.server = server;
+            this.dataTableManager = dataTableManager;
         }
 
         ValueTask IPacketHandler<C2S_InteractItemPacket>.HandlePacket(Session session, C2S_InteractItemPacket packet)
@@ -32,7 +34,8 @@ namespace ShootingHero.Servers
                 return new ValueTask();
 
             Vector2 distance = item.transform.position - player.transform.position;
-            if(distance.sqrMagnitude > GameDefine.UNIT_INTERACT_DISTANCE * GameDefine.UNIT_INTERACT_DISTANCE)
+            float interactDistance = dataTableManager.gameConfigTable.GetUnitInteractDistance();
+            if(distance.sqrMagnitude > interactDistance * interactDistance)
                 return new ValueTask();
 
             item.Interact(player);

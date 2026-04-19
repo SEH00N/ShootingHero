@@ -7,6 +7,7 @@ namespace ShootingHero.Shared
     public class GameConfigTableRow : DataTableRow
     {
         public string key = string.Empty;
+        public float numberValue = 0f;
         public Object objectValue = null;
     }
     
@@ -24,10 +25,30 @@ namespace ShootingHero.Shared
                 tableRowByKey[tableRow.key] = tableRow;
         }
 
-        public GameConfigTableRow GetRow(string key)
+        private GameConfigTableRow GetRow(string key)
         {
             tableRowByKey.TryGetValue(key, out GameConfigTableRow tableRow);
             return tableRow;
+        }
+
+        public Unit GetUnitPrefab()
+        {
+            return GetRow("UnitPrefab").objectValue as Unit;
+        }
+
+        public float GetUnitInteractDistance()
+        {
+            return GetRow("UnitInteractDistance").numberValue;
+        }
+
+        public float GetUnitRespawnTime()
+        {
+            return GetRow("UnitRespawnTime").numberValue;
+        }
+
+        public int GetUnitMaxHP()
+        {
+            return (int)GetRow("UnitMaxHP").numberValue;
         }
     }
 }

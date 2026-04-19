@@ -16,7 +16,20 @@ MonoBehaviour:
     tableRowList:
     - id: 0
       key: UnitPrefab
+      numberValue: 0
       objectValue: {fileID: 8467205605617744293, guid: 0138d15ea68d2403597a4297e5b5be88, type: 3}
+    - id: 1
+      key: UnitInteractDistance
+      numberValue: 1.5
+      objectValue: {fileID: 0}
+    - id: 2
+      key: UnitRespawnTime
+      numberValue: 3
+      objectValue: {fileID: 0}
+    - id: 3
+      key: UnitMaxHP
+      numberValue: 100
+      objectValue: {fileID: 0}
   itemTable:
     tableRowList:
     - id: 0

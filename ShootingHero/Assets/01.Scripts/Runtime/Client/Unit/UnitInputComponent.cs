@@ -16,6 +16,9 @@ namespace ShootingHero.Clients
         {
             unit = GetComponent<Unit>();
 
+            UnitHealthComponent unitHealthComponent = unit.GetComponent<UnitHealthComponent>();
+            unitHealthComponent.OnDeadEvent += HandleDead;
+
             playerInputReader = InputManager.GetInput<PlayerInputReader>();
             playerInputReader.OnInteractEvent += HandleInteract;
             playerInputReader.OnFireStartEvent += HandleFireStart;
@@ -36,6 +39,11 @@ namespace ShootingHero.Clients
         {
             if(isFire == true && ClientInstance.IsFireWeaponPacketProcessing == false)
                 HandleFire();
+        }
+
+        private void HandleDead()
+        {
+            InputManager.DisableInput();
         }
 
         private void HandleFireStart()
@@ -68,7 +76,7 @@ namespace ShootingHero.Clients
 
         private void HandleInteract()
         {
-            Collider2D[] detectedItems = Physics2D.OverlapCircleAll(transform.position, GameDefine.UNIT_INTERACT_DISTANCE, (int)GameDefine.ELayerMask.ItemLayer);
+            Collider2D[] detectedItems = Physics2D.OverlapCircleAll(transform.position, GameInstance.DataTableManager.gameConfigTable.GetUnitInteractDistance(), (int)GameDefine.ELayerMask.ItemLayer);
             if(detectedItems == null || detectedItems.Length <= 0)
                 return;
             

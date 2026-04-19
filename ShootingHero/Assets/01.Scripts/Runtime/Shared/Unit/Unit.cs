@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ShootingHero.Shared
@@ -25,8 +26,18 @@ namespace ShootingHero.Shared
         {
             this.playerID = playerID;
             SetHeight(heigth);
-            unitHealthComponent.Initialize(100, currentHP);
+
+            int maxHP = GameInstance.DataTableManager.gameConfigTable.GetUnitMaxHP();
+            unitHealthComponent.Initialize(maxHP, currentHP);
             unitWeaponComponent.SetWeapon(weaponID, weaponStatus);
+        }
+
+        public void Respawn(int height)
+        {
+            gameObject.SetActive(true);
+            SetHeight(height);
+            unitHealthComponent.ResetToMaxHP();
+            unitWeaponComponent.SetWeapon(-1, null);
         }
 
         public int GetHeight()

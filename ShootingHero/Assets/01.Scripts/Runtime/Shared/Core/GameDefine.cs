@@ -6,7 +6,5 @@ namespace ShootingHero.Shared
         {
             ItemLayer = 1 << 6
         }
-
-        public const float UNIT_INTERACT_DISTANCE = 1.5f;
     }
 }

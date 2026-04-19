@@ -138,33 +138,6 @@ namespace ShootingHero.Clients
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ChangeWeapon1"",
-                    ""type"": ""Button"",
-                    ""id"": ""fae4662a-d295-49d5-9a4c-f0f10564c1ed"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ChangeWeapon2"",
-                    ""type"": ""Button"",
-                    ""id"": ""556de4f4-b5dd-41bf-a36b-0ec1ea1ea538"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ChangeWeapon3"",
-                    ""type"": ""Button"",
-                    ""id"": ""559f2ac1-a84a-4c92-822e-f1f9c5a57f42"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -302,39 +275,6 @@ namespace ShootingHero.Clients
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6b668664-917b-4e34-b12e-ef9368b8b6e9"",
-                    ""path"": ""<Keyboard>/1"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";PC"",
-                    ""action"": ""ChangeWeapon1"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c396cce2-f49f-4017-ba03-a528dd9b4bc1"",
-                    ""path"": ""<Keyboard>/2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";PC"",
-                    ""action"": ""ChangeWeapon2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""14b222dc-f847-43f2-ae0d-78664b221abb"",
-                    ""path"": ""<Keyboard>/3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";PC"",
-                    ""action"": ""ChangeWeapon3"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a5787837-b201-4e4e-af47-868324040a05"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
@@ -384,9 +324,6 @@ namespace ShootingHero.Clients
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
-            m_Player_ChangeWeapon1 = m_Player.FindAction("ChangeWeapon1", throwIfNotFound: true);
-            m_Player_ChangeWeapon2 = m_Player.FindAction("ChangeWeapon2", throwIfNotFound: true);
-            m_Player_ChangeWeapon3 = m_Player.FindAction("ChangeWeapon3", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -472,9 +409,6 @@ namespace ShootingHero.Clients
         private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_Reload;
-        private readonly InputAction m_Player_ChangeWeapon1;
-        private readonly InputAction m_Player_ChangeWeapon2;
-        private readonly InputAction m_Player_ChangeWeapon3;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -506,18 +440,6 @@ namespace ShootingHero.Clients
             /// Provides access to the underlying input action "Player/Reload".
             /// </summary>
             public InputAction @Reload => m_Wrapper.m_Player_Reload;
-            /// <summary>
-            /// Provides access to the underlying input action "Player/ChangeWeapon1".
-            /// </summary>
-            public InputAction @ChangeWeapon1 => m_Wrapper.m_Player_ChangeWeapon1;
-            /// <summary>
-            /// Provides access to the underlying input action "Player/ChangeWeapon2".
-            /// </summary>
-            public InputAction @ChangeWeapon2 => m_Wrapper.m_Player_ChangeWeapon2;
-            /// <summary>
-            /// Provides access to the underlying input action "Player/ChangeWeapon3".
-            /// </summary>
-            public InputAction @ChangeWeapon3 => m_Wrapper.m_Player_ChangeWeapon3;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -559,15 +481,6 @@ namespace ShootingHero.Clients
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
-                @ChangeWeapon1.started += instance.OnChangeWeapon1;
-                @ChangeWeapon1.performed += instance.OnChangeWeapon1;
-                @ChangeWeapon1.canceled += instance.OnChangeWeapon1;
-                @ChangeWeapon2.started += instance.OnChangeWeapon2;
-                @ChangeWeapon2.performed += instance.OnChangeWeapon2;
-                @ChangeWeapon2.canceled += instance.OnChangeWeapon2;
-                @ChangeWeapon3.started += instance.OnChangeWeapon3;
-                @ChangeWeapon3.performed += instance.OnChangeWeapon3;
-                @ChangeWeapon3.canceled += instance.OnChangeWeapon3;
             }
 
             /// <summary>
@@ -594,15 +507,6 @@ namespace ShootingHero.Clients
                 @Reload.started -= instance.OnReload;
                 @Reload.performed -= instance.OnReload;
                 @Reload.canceled -= instance.OnReload;
-                @ChangeWeapon1.started -= instance.OnChangeWeapon1;
-                @ChangeWeapon1.performed -= instance.OnChangeWeapon1;
-                @ChangeWeapon1.canceled -= instance.OnChangeWeapon1;
-                @ChangeWeapon2.started -= instance.OnChangeWeapon2;
-                @ChangeWeapon2.performed -= instance.OnChangeWeapon2;
-                @ChangeWeapon2.canceled -= instance.OnChangeWeapon2;
-                @ChangeWeapon3.started -= instance.OnChangeWeapon3;
-                @ChangeWeapon3.performed -= instance.OnChangeWeapon3;
-                @ChangeWeapon3.canceled -= instance.OnChangeWeapon3;
             }
 
             /// <summary>
@@ -691,27 +595,6 @@ namespace ShootingHero.Clients
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnReload(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "ChangeWeapon1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnChangeWeapon1(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "ChangeWeapon2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnChangeWeapon2(InputAction.CallbackContext context);
-            /// <summary>
-            /// Method invoked when associated input action "ChangeWeapon3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-            /// </summary>
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnChangeWeapon3(InputAction.CallbackContext context);
         }
     }
 }

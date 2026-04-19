@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using ShootingHero.Networks;
 using ShootingHero.Shared;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace ShootingHero.Servers
         {
             base.OnAwake();
             unit.UnitHealthComponent.OnDamagedEvent += HandleDamaged;
+            unit.UnitHealthComponent.OnDeadEvent += HandleDead;
         }
 
         private void HandleDamaged(int damage)
@@ -26,6 +28,40 @@ namespace ShootingHero.Servers
 
             Server server = GameServer.Instance.Server;
             server.Rooms.Room(ServerDefine.ROOM_ID).Send(unitDamagedPacket);
+        }
+
+        private async void HandleDead()
+        {
+            await UniTask.Delay(1000);
+
+            gameObject.SetActive(false);
+            S2C_UnitDeadPacket unitDeadPacket = new S2C_UnitDeadPacket() {
+                PlayerID = unit.PlayerID,
+            };
+
+            Server server = GameServer.Instance.Server;
+            server.Rooms.Room(ServerDefine.ROOM_ID).Send(unitDeadPacket);
+
+            HandleRespawn();
+        }
+
+        private async void HandleRespawn()
+        {
+            float respawnTime = GameInstance.DataTableManager.gameConfigTable.GetUnitRespawnTime();
+            await UniTask.Delay((int)(respawnTime * 1000));
+            
+            SpawnPositionTableRow tableRow = ServerInstance.ServerDataTableManager.unitSpawnPositionTable.PickRandom();
+            unit.transform.position = tableRow.position;
+            unit.Respawn(tableRow.height);
+
+            S2C_UnitRespawnPacket unitRespawnPacket = new S2C_UnitRespawnPacket() {
+                PlayerID = unit.PlayerID,
+                Position = unit.transform.position,
+                Height = unit.GetHeight()
+            };
+
+            Server server = GameServer.Instance.Server;
+            server.Rooms.Room(ServerDefine.ROOM_ID).Send(unitRespawnPacket);
         }
     }
 }

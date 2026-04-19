@@ -21,6 +21,7 @@ namespace ShootingHero.Clients
         {
             gameManager.Initialize();
             GameInstance.DataTableManager = dataTableManager;
+            ServerInstance.ServerDataTableManager = serverDataTableManager;
         }
 
         public void AddServer()

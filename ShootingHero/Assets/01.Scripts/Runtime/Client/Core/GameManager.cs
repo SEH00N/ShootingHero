@@ -32,7 +32,6 @@ namespace ShootingHero.Clients
             items = new Dictionary<string, ItemBase>();
 
             InputManager.Initialize();
-            InputManager.EnableInput<PlayerInputReader>();
         }
 
         public void Release()

@@ -24,7 +24,8 @@ namespace ShootingHero.Shared
         public void Interact(Unit unit)
         {
             Vector2 distance = transform.position - unit.transform.position;
-            if(distance.sqrMagnitude >= GameDefine.UNIT_INTERACT_DISTANCE * GameDefine.UNIT_INTERACT_DISTANCE)
+            float interactDistance = GameInstance.DataTableManager.gameConfigTable.GetUnitInteractDistance();
+            if(distance.sqrMagnitude >= interactDistance * interactDistance)
                 return;
 
             OnInteract(unit);

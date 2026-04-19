@@ -2,7 +2,8 @@
     "name": "ShootingHero.Servers",
     "rootNamespace": "ShootingHero.Servers",
     "references": [
-        "GUID:504ed006af419a4449a3159144c47bb9"
+        "GUID:504ed006af419a4449a3159144c47bb9",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

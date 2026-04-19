@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using ShootingHero.Networks;
 using ShootingHero.Shared;
-using UnityEngine;
 
 namespace ShootingHero.Servers
 {

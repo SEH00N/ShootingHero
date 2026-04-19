@@ -1,6 +1,7 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using ShootingHero.Networks;
 using UnityEngine;
 
@@ -8,21 +9,36 @@ namespace ShootingHero.Shared
 {
     public class UnityPacketDispatcher : MonoBehaviour, IPacketDispatcher
     {
-        private readonly object locker = new object();
-        private readonly Queue<(Session, IPacket)> packetQueue = new Queue<(Session, IPacket)>();
+        private readonly ConcurrentQueue<(Session, IPacket)> packetQueue = new ConcurrentQueue<(Session, IPacket)>();
+        
+        private bool isProcessing = false;
         private Lazy<PacketHandlerFactory> packetHandlerFactory = null;
 
         public void Initialize(IDIContainer diContainer)
         {
+            isProcessing = false;
             packetHandlerFactory = new Lazy<PacketHandlerFactory>(() => diContainer.GetInstance<PacketHandlerFactory>());
         }
 
         private void Update()
         {
+            if(isProcessing == true)
+                return;
+
             if(packetQueue.Count <= 0)
                 return;
             
-            lock(locker)
+            FlushQueueAsync().Forget();
+        }
+
+        private async UniTask FlushQueueAsync()
+        {
+            if (isProcessing)
+                return;
+
+            isProcessing = true;
+
+            try
             {
                 while(packetQueue.TryDequeue(out (Session session, IPacket packet) packetContext))
                 {
@@ -33,23 +49,28 @@ namespace ShootingHero.Shared
 
                         IPacketHandlerBase packetHandler = packetHandlerFactory?.Value.Create(packetType);
                         if (packetHandler != null)
-                            packetHandler.HandlePacket(packetContext.session, packetContext.packet).GetAwaiter().GetResult();
+                            await packetHandler.HandlePacket(packetContext.session, packetContext.packet);
                     }
-                    catch(Exception ex)
+                    catch(Exception err)
                     {
-                        Debug.LogError(ex);
+                        Debug.LogError(err);
                     }
-                }
+                } 
+            }
+            catch(Exception err)
+            {
+                Debug.LogError(err);
+            }
+            finally
+            {            
+                isProcessing = false;
             }
         }
         
         public ValueTask Dispatch(Session session, IPacket packet)
         {
-            lock(locker)
-            {
-                packetQueue.Enqueue((session, packet));
-                return new ValueTask();
-            }
+            packetQueue.Enqueue((session, packet));
+            return new ValueTask();
         }
     }
 }
