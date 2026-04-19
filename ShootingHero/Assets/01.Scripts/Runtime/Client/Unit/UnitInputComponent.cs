@@ -10,6 +10,7 @@ namespace ShootingHero.Clients
         private PlayerInputReader playerInputReader = null;
 
         private Vector2 lastMoveInput = Vector2.zero;
+        private bool isFire = false;
 
         private void Awake()
         {
@@ -17,7 +18,8 @@ namespace ShootingHero.Clients
 
             playerInputReader = InputManager.GetInput<PlayerInputReader>();
             playerInputReader.OnInteractEvent += HandleInteract;
-            playerInputReader.OnFireEvent += HandleFire;
+            playerInputReader.OnFireStartEvent += HandleFireStart;
+            playerInputReader.OnFireEndEvent += HandleFireEnd;
             playerInputReader.OnReloadEvent += HandleReload;
         }
 
@@ -30,12 +32,34 @@ namespace ShootingHero.Clients
             }
         }
 
+        private void FixedUpdate()
+        {
+            if(isFire == true && ClientInstance.IsFireWeaponPacketProcessing == false)
+                HandleFire();
+        }
+
+        private void HandleFireStart()
+        {
+            isFire = true;
+            HandleFire();
+        }
+
+        private void HandleFireEnd()
+        {
+            isFire = false;
+        }
+
         private void HandleFire()
         {
             WeaponBase weapon = unit.UnitWeaponComponent.Weapon;
             if(weapon == null)
                 return;
             
+            if(weapon.GetIsFireEnable() == false)
+                return;
+            
+            ClientInstance.IsFireWeaponPacketProcessing = true;
+
             Vector2 aim = playerInputReader.AimPosition;
             Vector3 aimWorldPosition = Camera.main.ScreenToWorldPoint(aim);
             Vector2 direction = (Vector2)(aimWorldPosition - weapon.transform.position);

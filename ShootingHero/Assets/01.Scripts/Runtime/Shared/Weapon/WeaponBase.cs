@@ -28,9 +28,13 @@ namespace ShootingHero.Shared
             OnReload();
         }
 
+        public abstract bool GetIsFireEnable();
         protected abstract void OnFire(Vector2 direction);
         public void Fire(Vector2 direction)
         {
+            if(GetIsFireEnable() == false)
+                return;
+
             OnFire(direction);
         }
 

@@ -21,6 +21,8 @@ namespace ShootingHero.Clients
 
         ValueTask IPacketHandler<S2C_EnterGameResponsePacket>.HandlePacket(Session session, S2C_EnterGameResponsePacket packet)
         {
+            ClientInstance.MyPlayerID = packet.PlayerID;
+
             AsyncOperation asyncOperation = SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
             asyncOperation.completed += _ => {
                 Unit unitPrefab = dataTableManager.gameConfigTable.GetRow("UnitPrefab").objectValue as Unit;

@@ -66,25 +66,30 @@ namespace ShootingHero.Shared
         }
 
         protected override void OnFire(Vector2 direction)
-        {
-            if(tableRow == null)
-                return;
-
-            if(isReloading == true)
-                return;
-            
-            if(Time.time - lastFireTime < tableRow.fireInterval)
-                return;
-            
-            if(currentAmmoCount <= 0)
-                return;
-            
+        {          
             lastFireTime = Time.time;
             currentAmmoCount -= 1;
 
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Projectile projectile = Instantiate(tableRow.projectilePrefab, firePosition.position, Quaternion.Euler(0, 0, angle));
             projectile.Initialize(owner, tableRow.projectileDamage, owner.GetHeight(), direction * tableRow.projectileSpeed);
+        }
+
+        public override bool GetIsFireEnable()
+        {
+            if(tableRow == null)
+                return false;
+
+            if(isReloading == true)
+                return false;
+            
+            if(Time.time - lastFireTime < tableRow.fireInterval)
+                return false;
+            
+            if(currentAmmoCount <= 0)
+                return false;
+            
+            return true;
         }
 
         public override string GetStatus()

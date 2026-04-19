@@ -28,7 +28,10 @@ namespace ShootingHero.Shared
                 {
                     try
                     {
-                        IPacketHandlerBase packetHandler = packetHandlerFactory?.Value.Create(packetContext.packet.GetType());
+                        Type packetType = packetContext.packet.GetType();
+                        Debug.Log($"[UnityPacketDispatcher] Packet Dispatched. PacketType: {packetType.Name}");
+
+                        IPacketHandlerBase packetHandler = packetHandlerFactory?.Value.Create(packetType);
                         if (packetHandler != null)
                             packetHandler.HandlePacket(packetContext.session, packetContext.packet).GetAwaiter().GetResult();
                     }

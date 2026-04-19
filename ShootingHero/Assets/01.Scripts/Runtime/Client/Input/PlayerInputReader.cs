@@ -12,7 +12,8 @@ namespace ShootingHero.Clients
         public Vector2 MovementInput { get; private set; }
         public Vector2 AimPosition { get; private set; }
 
-        public event Action OnFireEvent = null;
+        public event Action OnFireStartEvent = null;
+        public event Action OnFireEndEvent = null;
         public event Action OnInteractEvent = null;
         public event Action OnReloadEvent = null;
         public event Action<int> OnWeaponChangeEvent = null;
@@ -44,10 +45,11 @@ namespace ShootingHero.Clients
 
         public void OnFire(InputAction.CallbackContext context)
         {
-            if(context.performed == false)
-                return;
+            if(context.started == true)
+                OnFireStartEvent?.Invoke();
 
-            OnFireEvent?.Invoke();
+            if(context.canceled == true)
+                OnFireEndEvent?.Invoke();
         }
 
         public void OnInteract(InputAction.CallbackContext context)

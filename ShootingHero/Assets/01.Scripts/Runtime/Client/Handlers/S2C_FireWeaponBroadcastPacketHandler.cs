@@ -16,10 +16,13 @@ namespace ShootingHero.Clients
 
         ValueTask IPacketHandler<S2C_FireWeaponBroadcastPacket>.HandlePacket(Session session, S2C_FireWeaponBroadcastPacket packet)
         {
+            if(ClientInstance.MyPlayerID == packet.PlayerID)
+                ClientInstance.IsFireWeaponPacketProcessing = false;
+
             Unit unit = gameManager.GetPlayer(packet.PlayerID);
             if(unit == null)
                 return new ValueTask();
-            
+
             unit.transform.position = packet.Position;
             unit.UnitWeaponComponent.FireWeapon(packet.Direction);
             return new ValueTask();
