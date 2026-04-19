@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd724798f74eb474cbf48d68b114a034, type: 3}
+  m_Name: ServerDataTableManager
+  m_EditorClassIdentifier: ShootingHero.Servers::ShootingHero.Servers.ServerDataTableManager
+  unitSpawnPositionTable:
+    tableRowList:
+    - id: 0
+      position: {x: 0, y: 0}
+      height: 0
+    - id: 1
+      position: {x: 0, y: 10.63}
+      height: 0
+    - id: 2
+      position: {x: -25.87, y: -4.91}
+      height: 0
+    - id: 3
+      position: {x: -28.4, y: 15.6}
+      height: 0
+    - id: 4
+      position: {x: -10.97, y: 14.1}
+      height: 0
+    - id: 5
+      position: {x: 25.87, y: -4.91}
+      height: 0
+    - id: 6
+      position: {x: 28.4, y: 15.6}
+      height: 0
+    - id: 7
+      position: {x: 10.97, y: 14.1}
+      height: 0
+    - id: 8
+      position: {x: -10.03, y: 5.24}
+      height: 1
+    - id: 9
+      position: {x: -16.08, y: 3.55}
+      height: 1
+    - id: 10
+      position: {x: -25.52, y: 8.92}
+      height: 1
+    - id: 11
+      position: {x: 10.03, y: 5.24}
+      height: 1
+    - id: 12
+      position: {x: 16.08, y: 3.55}
+      height: 1
+    - id: 13
+      position: {x: 25.52, y: 8.92}
+      height: 1
+    - id: 14
+      position: {x: -20.35, y: 5.83}
+      height: 2
+    - id: 15
+      position: {x: 20.35, y: 5.83}
+      height: 2
+    - id: 16
+      position: {x: -20.03, y: 14}
+      height: 3
+    - id: 17
+      position: {x: 20.03, y: 14}
+      height: 3
+  itemSpawnPositionTable:
+    tableRowList: []

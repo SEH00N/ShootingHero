@@ -21,7 +21,7 @@ namespace ShootingHero.Servers
         private Server server = null;
         public Server Server => server;
 
-        public void Initialize(DataTableManager dataTableManager, UnityPacketDispatcher unityPacketDispatcher)
+        public void Initialize(DataTableManager dataTableManager, ServerDataTableManager serverDataTableManager, UnityPacketDispatcher unityPacketDispatcher)
         {
             instance = this;
 
@@ -33,6 +33,7 @@ namespace ShootingHero.Servers
             server = new ServerBuilder(this, unityPacketDispatcher)
                 .AddSingleton<GameServer>(this)
                 .AddSingleton<DataTableManager>(dataTableManager)
+                .AddSingleton<ServerDataTableManager>(serverDataTableManager)
                 .Build(typeof(GameServer).Assembly, typeof(GameDefine).Assembly);
 
             ItemTableRow testItemTableRow = dataTableManager.itemTable.GetRow(1);

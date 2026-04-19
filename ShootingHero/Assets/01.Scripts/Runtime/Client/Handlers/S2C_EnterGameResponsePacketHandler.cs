@@ -31,7 +31,7 @@ namespace ShootingHero.Clients
                     UnitDataDTO unitData = element.Value;
 
                     Unit unit = Object.Instantiate(unitPrefab, unitData.Position, Quaternion.identity);
-                    unit.Initialize(playerID, unitData.CurrentHP, unitData.CurrentWeaponID);
+                    unit.Initialize(playerID, unitData.Height, unitData.CurrentHP, unitData.CurrentWeaponID);
                     gameManager.AddPlayer(playerID, unit);
                 }
 

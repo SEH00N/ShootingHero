@@ -14,6 +14,9 @@ namespace ShootingHero.Clients
         [SerializeField]
         private DataTableManager dataTableManager = null;
 
+        [SerializeField]
+        private ServerDataTableManager serverDataTableManager = null;
+
         private void Awake()
         {
             gameManager.Initialize();
@@ -27,7 +30,7 @@ namespace ShootingHero.Clients
             DontDestroyOnLoad(gameServer.gameObject);
 
             UnityPacketDispatcher unityPacketDispatcher = gameServer.gameObject.AddComponent<UnityPacketDispatcher>();
-            gameServer.Initialize(dataTableManager, unityPacketDispatcher);
+            gameServer.Initialize(dataTableManager, serverDataTableManager, unityPacketDispatcher);
 
             unityPacketDispatcher.Initialize(gameServer.Server);
             gameServer.Listen(9999);

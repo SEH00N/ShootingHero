@@ -435,6 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ShootingHero.Clients::ShootingHero.Clients.Bootstrap
   gameManager: {fileID: 343700563}
   dataTableManager: {fileID: 11400000, guid: 8209a08b657204b9791cb7c654fe7d38, type: 2}
+  serverDataTableManager: {fileID: 11400000, guid: bb6d62a67d39d4514b4212d38159976b, type: 2}
 --- !u!4 &645007341
 Transform:
   m_ObjectHideFlags: 0
