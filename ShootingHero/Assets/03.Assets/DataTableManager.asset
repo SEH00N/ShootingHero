@@ -30,6 +30,10 @@ MonoBehaviour:
       key: UnitMaxHP
       numberValue: 100
       objectValue: {fileID: 0}
+    - id: 4
+      key: KillScore
+      numberValue: 100
+      objectValue: {fileID: 0}
   itemTable:
     tableRowList:
     - id: 0

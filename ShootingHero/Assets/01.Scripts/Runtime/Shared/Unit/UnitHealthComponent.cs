@@ -8,8 +8,8 @@ namespace ShootingHero.Shared
         private int maxHP = 0;
         private int currentHP = 0;
 
-        public event Action<int> OnDamagedEvent = null;
-        public event Action OnDeadEvent = null;
+        public event Action<Unit, int> OnDamagedEvent = null;
+        public event Action<Unit> OnDeadEvent = null;
 
         public int CurrentHP => currentHP;
 
@@ -24,15 +24,13 @@ namespace ShootingHero.Shared
             currentHP = maxHP;
         }
 
-        public void GetDamage(int damage)
+        public void GetDamage(Unit attacker, int damage)
         {
             currentHP = Mathf.Clamp(currentHP - damage, 0, maxHP);
-            OnDamagedEvent?.Invoke(damage);
-
-            Debug.LogError($"Damaged!! currentHP: {currentHP}");
+            OnDamagedEvent?.Invoke(attacker, damage);
 
             if(currentHP <= 0)
-                OnDeadEvent?.Invoke();
+                OnDeadEvent?.Invoke(attacker);
         }
     }
 }

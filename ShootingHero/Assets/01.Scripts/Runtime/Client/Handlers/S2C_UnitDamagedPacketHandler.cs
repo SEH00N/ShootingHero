@@ -20,7 +20,11 @@ namespace ShootingHero.Clients
             if(unit == null)
                 return new ValueTask();
             
-            unit.UnitHealthComponent.GetDamage(packet.Damage);
+            Unit attackerUnit = null;
+            if(string.IsNullOrEmpty(packet.AttackerID) == false)
+                attackerUnit = gameManager.GetPlayer(packet.AttackerID);
+            
+            unit.UnitHealthComponent.GetDamage(attackerUnit, packet.Damage);
             return new ValueTask();
         }
     }

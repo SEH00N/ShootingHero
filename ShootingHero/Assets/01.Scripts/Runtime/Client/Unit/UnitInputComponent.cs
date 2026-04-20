@@ -41,7 +41,7 @@ namespace ShootingHero.Clients
                 HandleFire();
         }
 
-        private void HandleDead()
+        private void HandleDead(Unit _)
         {
             InputManager.DisableInput();
         }

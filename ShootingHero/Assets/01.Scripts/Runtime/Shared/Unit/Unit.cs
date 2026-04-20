@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace ShootingHero.Shared
@@ -19,6 +18,7 @@ namespace ShootingHero.Shared
 
         private string playerID = "";
         private int currentHeight = 0;
+        private bool isDead = false;
 
         public string PlayerID => playerID;
 
@@ -26,9 +26,12 @@ namespace ShootingHero.Shared
         {
             this.playerID = playerID;
             SetHeight(heigth);
+            isDead = false;
 
             int maxHP = GameInstance.DataTableManager.gameConfigTable.GetUnitMaxHP();
             unitHealthComponent.Initialize(maxHP, currentHP);
+            unitHealthComponent.OnDeadEvent += HandleDead;
+
             unitWeaponComponent.SetWeapon(weaponID, weaponStatus);
         }
 
@@ -36,6 +39,8 @@ namespace ShootingHero.Shared
         {
             gameObject.SetActive(true);
             SetHeight(height);
+            isDead = false;
+
             unitHealthComponent.ResetToMaxHP();
             unitWeaponComponent.SetWeapon(-1, null);
         }
@@ -54,8 +59,16 @@ namespace ShootingHero.Shared
         {
             if(GameInstance.PlayMode != EPlayMode.Server)
                 return;
+            
+            if(isDead == true)
+                return;
 
-            unitHealthComponent.GetDamage(projectile.Damage);
+            unitHealthComponent.GetDamage(projectile.Owner, projectile.Damage);
+        }
+
+        private void HandleDead(Unit attacker)
+        {
+            isDead = true;
         }
     }
 }

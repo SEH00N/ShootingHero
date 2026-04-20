@@ -20,6 +20,9 @@ namespace ShootingHero.Clients
             if(unit == null)
                 return new ValueTask();
             
+            if(string.IsNullOrEmpty(packet.AttackerID) == false)
+                gameManager.LeaderBoard.Set(packet.AttackerID, packet.AttackerScore);
+            
             unit.gameObject.SetActive(false);
             return new ValueTask();
         }

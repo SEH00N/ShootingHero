@@ -8,5 +8,7 @@ namespace ShootingHero.Shared
     public partial class S2C_UnitDeadPacket : IPacket
     {
         public string PlayerID { get; set; }
+        public string AttackerID { get; set; }
+        public int AttackerScore { get; set; }
     }
 }

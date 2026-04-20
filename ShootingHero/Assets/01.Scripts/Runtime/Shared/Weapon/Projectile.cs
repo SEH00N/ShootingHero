@@ -11,6 +11,7 @@ namespace ShootingHero.Shared
         private int damage = 0;
         private int height = 0;
 
+        public Unit Owner => owner;
         public int Damage => damage;
 
         public void Initialize(Unit owner, int damage, int height, Vector2 velocity)

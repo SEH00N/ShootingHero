@@ -19,23 +19,43 @@ namespace ShootingHero.Servers
             unit.UnitHealthComponent.OnDeadEvent += HandleDead;
         }
 
-        private void HandleDamaged(int damage)
+        private void HandleDamaged(Unit attacker, int damage)
         {
+            string attackerID = null;
+            if(attacker != null)
+                attackerID = attacker.PlayerID;
+
             S2C_UnitDamagedPacket unitDamagedPacket = new S2C_UnitDamagedPacket() {
                 PlayerID = unit.PlayerID,
+                AttackerID = attackerID,
                 Damage = damage
             };
 
             ServerInstance.GameServer.Send(unitDamagedPacket);
         }
 
-        private async void HandleDead()
+        private async void HandleDead(Unit attacker)
         {
-            await UniTask.Delay(1000);
+            await UniTask.Delay(500);
+
+            string attackerID = null;
+            int attackerScore = 0;
+            if(attacker != null)
+            {
+                LeaderBoard leaderBoard = GameManager.Instance.LeaderBoard;
+                int currentScore = leaderBoard.Get(attacker.PlayerID);
+                int addScore = GameInstance.DataTableManager.gameConfigTable.GetKillScore();
+                leaderBoard.Set(attacker.PlayerID, currentScore + addScore);
+
+                attackerID = attacker.PlayerID;
+                attackerScore = currentScore + addScore;
+            }
 
             gameObject.SetActive(false);
             S2C_UnitDeadPacket unitDeadPacket = new S2C_UnitDeadPacket() {
                 PlayerID = unit.PlayerID,
+                AttackerID = attackerID,
+                AttackerScore = attackerScore
             };
 
             ServerInstance.GameServer.Send(unitDeadPacket);

@@ -50,5 +50,10 @@ namespace ShootingHero.Shared
         {
             return (int)GetRow("UnitMaxHP").numberValue;
         }
+
+        public int GetKillScore()
+        {
+            return (int)GetRow("KillScore").numberValue;
+        }
     }
 }

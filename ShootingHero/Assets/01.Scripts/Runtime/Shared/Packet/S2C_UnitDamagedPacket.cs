@@ -9,6 +9,7 @@ namespace ShootingHero.Shared
     public partial class S2C_UnitDamagedPacket : IPacket
     {
         public string PlayerID { get; set; }
+        public string AttackerID { get; set; }
         public int Damage { get; set; }
     }
 }

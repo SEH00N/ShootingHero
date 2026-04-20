@@ -12,6 +12,9 @@ namespace ShootingHero.Shared
         private Dictionary<string, Unit> players = null;
         private Dictionary<string, ItemBase> items = null;
 
+        private LeaderBoard leaderBoard = null;
+        public LeaderBoard LeaderBoard => leaderBoard;
+
         public void Initialize()
         {
             if(instance != null)
@@ -25,6 +28,8 @@ namespace ShootingHero.Shared
 
             players = new Dictionary<string, Unit>();
             items = new Dictionary<string, ItemBase>();
+
+            leaderBoard = new LeaderBoard();
         }
 
         public void Release()
