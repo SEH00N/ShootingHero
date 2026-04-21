@@ -6,7 +6,6 @@ namespace ShootingHero.Shared
     public class ItemTableRow : DataTableRow
     {
         public string itemName = string.Empty;
-        public Sprite itemSprite = null;
         public ItemBase itemPrefab = null;
     }
 

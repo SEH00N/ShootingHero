@@ -37,24 +37,64 @@ MonoBehaviour:
   itemTable:
     tableRowList:
     - id: 0
-      itemName: "\uD790\uD329"
-      itemSprite: {fileID: 0}
+      itemName: "\uC791\uC740\uD790\uD329"
       itemPrefab: {fileID: 5129127828692721321, guid: 6ad557267fdfb466d9c4517d92b79806, type: 3}
     - id: 1
-      itemName: "\uAD8C\uCD1D"
-      itemSprite: {fileID: 0}
-      itemPrefab: {fileID: 1316228716967666840, guid: e3c38259b7c534b599541cb4da404ec8, type: 3}
+      itemName: "\uD070\uD790\uD329"
+      itemPrefab: {fileID: 5129127828692721321, guid: 0ee23e1a228b7b243ab4530f7965bf29, type: 3}
+    - id: 2
+      itemName: "\uB9AC\uBCFC\uBC84"
+      itemPrefab: {fileID: 1316228716967666840, guid: 94caebf9883b14e44a43e70cf0827dd5, type: 3}
+    - id: 3
+      itemName: M92
+      itemPrefab: {fileID: 1316228716967666840, guid: 94caebf9883b14e44a43e70cf0827dd5, type: 3}
+    - id: 4
+      itemName: AK47
+      itemPrefab: {fileID: 1316228716967666840, guid: 94caebf9883b14e44a43e70cf0827dd5, type: 3}
+    - id: 5
+      itemName: M24
+      itemPrefab: {fileID: 1316228716967666840, guid: 94caebf9883b14e44a43e70cf0827dd5, type: 3}
   weaponTable:
     tableRowList:
     - id: 0
       weaponInfoID: 0
       weaponPrefab: {fileID: 5743824136040076336, guid: 145eaf664583f4a67a619b403e52650f, type: 3}
+    - id: 1
+      weaponInfoID: 1
+      weaponPrefab: {fileID: 328658865921361764, guid: d743cd796eef96d4dbcc0938e68b7fe3, type: 3}
+    - id: 2
+      weaponInfoID: 2
+      weaponPrefab: {fileID: 564136002094248602, guid: a407bbe3fb069cd42aac27bd3b13a3b8, type: 3}
+    - id: 3
+      weaponInfoID: 3
+      weaponPrefab: {fileID: 7391859927317866160, guid: f8ab20809c17f9d4ea894e282f865dd0, type: 3}
   projectileWeaponInfoTable:
     tableRowList:
     - id: 0
-      magazineCapacity: 12
+      magazineCapacity: 6
       reloadTime: 2
       fireInterval: 0.5
-      projectileDamage: 10
+      projectileDamage: 35
       projectileSpeed: 25
       projectilePrefab: {fileID: 450591414329810194, guid: 7293459686dde4f79a31497e6161be01, type: 3}
+    - id: 1
+      magazineCapacity: 12
+      reloadTime: 2
+      fireInterval: 0.35
+      projectileDamage: 25
+      projectileSpeed: 25
+      projectilePrefab: {fileID: 450591414329810194, guid: 7293459686dde4f79a31497e6161be01, type: 3}
+    - id: 2
+      magazineCapacity: 30
+      reloadTime: 3
+      fireInterval: 0.25
+      projectileDamage: 30
+      projectileSpeed: 30
+      projectilePrefab: {fileID: 6785619673613885708, guid: 0d4d491f27582534ab4da91e1b5e267a, type: 3}
+    - id: 3
+      magazineCapacity: 5
+      reloadTime: 5
+      fireInterval: 0.5
+      projectileDamage: 50
+      projectileSpeed: 25
+      projectilePrefab: {fileID: 6785619673613885708, guid: 0d4d491f27582534ab4da91e1b5e267a, type: 3}
