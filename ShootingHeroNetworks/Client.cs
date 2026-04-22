@@ -17,15 +17,19 @@ namespace ShootingHero.Networks
             packetDispatcher = GetInstance<IPacketDispatcher>();
         }
 
-        public void Connect(string address, int port)
+        public void Connect(string host, int port)
         {
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            Socket socket = new Socket(AddressFamily.InterNetworkV6, SocketType.Stream, ProtocolType.Tcp);
+            socket.DualMode = true;
 
-            IPAddress ipAddress = IPAddress.Parse(address);
-            IPEndPoint ipEndPoint = new IPEndPoint(ipAddress, port);
+            EndPoint remoteEndPoint;
+            if(IPAddress.TryParse(host, out IPAddress ipAddress) == true)
+                remoteEndPoint = new IPEndPoint(ipAddress, port);
+            else
+                remoteEndPoint = new DnsEndPoint(host, port);
 
             SocketAsyncEventArgs connectArgs = new SocketAsyncEventArgs();
-            connectArgs.RemoteEndPoint = ipEndPoint;
+            connectArgs.RemoteEndPoint = remoteEndPoint;
             connectArgs.Completed += HandleConnected;
 
             bool isPending = socket.ConnectAsync(connectArgs);
