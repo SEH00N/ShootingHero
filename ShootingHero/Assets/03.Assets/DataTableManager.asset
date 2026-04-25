@@ -49,9 +49,9 @@ MonoBehaviour:
       objectValue: {fileID: 0}
   itemTable:
     tableRowList:
-    - itemName: "\uC791\uC740\uD790\uD329"
+    - itemName: "\uC18C\uD615\uD790\uD329"
       itemPrefab: {fileID: 5129127828692721321, guid: 6ad557267fdfb466d9c4517d92b79806, type: 3}
-    - itemName: "\uD070\uD790\uD329"
+    - itemName: "\uB300\uD615\uD790\uD329"
       itemPrefab: {fileID: 5129127828692721321, guid: 0ee23e1a228b7b243ab4530f7965bf29, type: 3}
     - itemName: "\uB9AC\uBCFC\uBC84"
       itemPrefab: {fileID: 1316228716967666840, guid: 94caebf9883b14e44a43e70cf0827dd5, type: 3}
@@ -77,23 +77,23 @@ MonoBehaviour:
       reloadTime: 2
       fireInterval: 0.5
       projectileDamage: 35
-      projectileSpeed: 25
+      projectileSpeed: 35
       projectilePrefab: {fileID: 450591414329810194, guid: 7293459686dde4f79a31497e6161be01, type: 3}
     - magazineCapacity: 12
       reloadTime: 2
       fireInterval: 0.35
       projectileDamage: 25
-      projectileSpeed: 25
+      projectileSpeed: 30
       projectilePrefab: {fileID: 450591414329810194, guid: 7293459686dde4f79a31497e6161be01, type: 3}
     - magazineCapacity: 30
       reloadTime: 3
       fireInterval: 0.25
       projectileDamage: 30
-      projectileSpeed: 30
+      projectileSpeed: 40
       projectilePrefab: {fileID: 6785619673613885708, guid: 0d4d491f27582534ab4da91e1b5e267a, type: 3}
     - magazineCapacity: 5
       reloadTime: 5
       fireInterval: 0.5
       projectileDamage: 50
-      projectileSpeed: 25
+      projectileSpeed: 45
       projectilePrefab: {fileID: 6785619673613885708, guid: 0d4d491f27582534ab4da91e1b5e267a, type: 3}

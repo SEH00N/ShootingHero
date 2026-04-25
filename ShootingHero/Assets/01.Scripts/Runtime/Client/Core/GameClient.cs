@@ -30,9 +30,9 @@ namespace ShootingHero.Clients
             unityPacketDispatcher.Initialize(client);
         }
 
-        public void Connect(string ip, int port)
+        public void Connect(string host, int port)
         {
-            client.Connect(ip, port);
+            client.Connect(host, port);
         }
 
         public void Send(IPacket packet)

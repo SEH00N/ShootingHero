@@ -18,7 +18,6 @@ namespace ShootingHero.Clients
         protected override EPlayMode DedicatedType => EPlayMode.Client;
 
         private int currentAnimationHash = 0;
-        private int currentDirection = 0;
 
         protected override void OnAwake()
         {
