@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 5605912801293092927}
   - component: {fileID: 1516780341442015132}
   - component: {fileID: 2592404262087593425}
+  - component: {fileID: 7497745791872332557}
+  - component: {fileID: 4150073475621884433}
   - component: {fileID: 3317852911693896954}
   - component: {fileID: 7922688585469104542}
   m_Layer: 8
@@ -141,6 +143,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Servers::ShootingHero.Servers.UnitHealthComponentServer
   unit: {fileID: 8467205605617744293}
+--- !u!114 &7497745791872332557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302512199407416910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6547f6b8c4c8941778f6e2de6bee26a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Clients::ShootingHero.Clients.UnitAnimationComponentClient
+  unitMovementComponent: {fileID: 6820730779124057763}
+  animatorComponent: {fileID: 5217508283758153464}
+--- !u!114 &4150073475621884433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302512199407416910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5508d82aed3d74c4e9344a4b0f75888f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Servers::ShootingHero.Servers.UnitAnimationComponentServer
+  animatorComponent: {fileID: 5217508283758153464}
 --- !u!50 &3317852911693896954
 Rigidbody2D:
   serializedVersion: 5

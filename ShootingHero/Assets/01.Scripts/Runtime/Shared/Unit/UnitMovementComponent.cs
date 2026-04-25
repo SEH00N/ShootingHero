@@ -17,6 +17,8 @@ namespace ShootingHero.Shared
         private Vector2 moveDirection = Vector2.zero;
         private float moveSpeed = 0f;
 
+        public Vector2 Velocity => unitRigidbody.linearVelocity;
+
         private void FixedUpdate()
         {
             float acceleration = this.acceleration * (movementInput == Vector2.zero ? -1 : 1);

@@ -38,8 +38,11 @@ namespace ShootingHero.Shared
             if(weapon == null)
                 return;
             
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            weapon.transform.rotation = Quaternion.Euler(0, 0, angle);
+            Vector2 directionAsRight = direction;
+            directionAsRight.x = Mathf.Abs(directionAsRight.x);
+            float angle = Mathf.Atan2(directionAsRight.y, directionAsRight.x) * Mathf.Rad2Deg;
+            weapon.transform.localRotation = Quaternion.Euler(0, 0, angle);
+
             weapon.Fire(direction);
         }
 

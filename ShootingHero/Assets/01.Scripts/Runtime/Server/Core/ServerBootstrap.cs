@@ -1,11 +1,10 @@
 using System;
-using ShootingHero.Servers;
 using ShootingHero.Shared;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-namespace ShootingHero.Clients
+namespace ShootingHero.Servers
 {
     public class ServerBootstrap : MonoBehaviour
     {
