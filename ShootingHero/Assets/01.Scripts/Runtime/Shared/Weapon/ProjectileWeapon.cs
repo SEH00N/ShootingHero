@@ -64,14 +64,21 @@ namespace ShootingHero.Shared
             currentAmmoCount = tableRow.magazineCapacity;
         }
 
-        protected override void OnFire(Vector2 direction)
-        {          
+        protected override void OnFire(Vector2 firePosition)
+        {
+            Vector2 weaponDirection = (firePosition - (Vector2)transform.position).normalized;
+            Vector2 weaponDirectionAsRight = weaponDirection;
+            weaponDirectionAsRight.x = Mathf.Abs(weaponDirectionAsRight.x);
+            float weaponAngle = Mathf.Atan2(weaponDirectionAsRight.y, weaponDirectionAsRight.x) * Mathf.Rad2Deg;
+            transform.localRotation = Quaternion.Euler(0, 0, weaponAngle);
+
             lastFireTime = Time.time;
             currentAmmoCount -= 1;
 
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            Projectile projectile = Instantiate(tableRow.projectilePrefab, firePosition.position, Quaternion.Euler(0, 0, angle));
-            projectile.Initialize(owner, tableRow.projectileDamage, owner.GetHeight(), direction * tableRow.projectileSpeed);
+            Vector2 projectileDirection = (firePosition - (Vector2)this.firePosition.position).normalized;
+            float projectileAngle = Mathf.Atan2(projectileDirection.y, projectileDirection.x) * Mathf.Rad2Deg;
+            Projectile projectile = Instantiate(tableRow.projectilePrefab, this.firePosition.position, Quaternion.Euler(0, 0, projectileAngle));
+            projectile.Initialize(owner, tableRow.projectileDamage, owner.GetHeight(), projectileDirection * tableRow.projectileSpeed);
         }
 
         public override bool GetIsFireEnable()

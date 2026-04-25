@@ -34,17 +34,12 @@ namespace ShootingHero.Shared
             weapon.transform.localRotation = Quaternion.identity;
         }
 
-        public void FireWeapon(Vector2 direction)
+        public void FireWeapon(Vector2 firePosition)
         {
             if(weapon == null)
                 return;
-            
-            Vector2 directionAsRight = direction;
-            directionAsRight.x = Mathf.Abs(directionAsRight.x);
-            float angle = Mathf.Atan2(directionAsRight.y, directionAsRight.x) * Mathf.Rad2Deg;
-            weapon.transform.localRotation = Quaternion.Euler(0, 0, angle);
 
-            weapon.Fire(direction);
+            weapon.Fire(firePosition);
         }
 
         public void ReloadWeapon()

@@ -29,13 +29,13 @@ namespace ShootingHero.Shared
         }
 
         public abstract bool GetIsFireEnable();
-        protected abstract void OnFire(Vector2 direction);
-        public void Fire(Vector2 direction)
+        protected abstract void OnFire(Vector2 position);
+        public void Fire(Vector2 position)
         {
             if(GetIsFireEnable() == false)
                 return;
 
-            OnFire(direction);
+            OnFire(position);
         }
 
         public abstract string GetStatus();

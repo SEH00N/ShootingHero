@@ -10,6 +10,6 @@ namespace ShootingHero.Shared
     {
         public string PlayerID { get; set; }
         public Vector2 Position { get; set; }
-        public Vector2 Direction { get; set; }
+        public Vector2 FirePosition { get; set; }
     }
 }

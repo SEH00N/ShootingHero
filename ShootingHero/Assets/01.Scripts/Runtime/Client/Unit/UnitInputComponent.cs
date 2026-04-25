@@ -70,8 +70,7 @@ namespace ShootingHero.Clients
 
             Vector2 aim = playerInputReader.AimPosition;
             Vector3 aimWorldPosition = Camera.main.ScreenToWorldPoint(aim);
-            Vector2 direction = (Vector2)(aimWorldPosition - weapon.transform.position);
-            ClientInstance.GameClient.Send(new C2S_FireWeaponPacket() { Direction = direction.normalized });
+            ClientInstance.GameClient.Send(new C2S_FireWeaponPacket() { FirePosition = aimWorldPosition });
         }
 
         private void HandleInteract()

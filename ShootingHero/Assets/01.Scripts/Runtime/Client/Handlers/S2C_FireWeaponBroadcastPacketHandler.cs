@@ -24,7 +24,7 @@ namespace ShootingHero.Clients
                 return new ValueTask();
 
             unit.transform.position = packet.Position;
-            unit.UnitWeaponComponent.FireWeapon(packet.Direction);
+            unit.UnitWeaponComponent.FireWeapon(packet.FirePosition);
             return new ValueTask();
         }
     }

@@ -26,12 +26,12 @@ namespace ShootingHero.Servers
             if(player == null)
                 return new ValueTask();
 
-            player.UnitWeaponComponent.FireWeapon(packet.Direction);
+            player.UnitWeaponComponent.FireWeapon(packet.FirePosition);
 
             S2C_FireWeaponBroadcastPacket broadcastPacket = new S2C_FireWeaponBroadcastPacket() {
                 PlayerID = playerID,
                 Position = player.transform.position,
-                Direction = packet.Direction
+                FirePosition = packet.FirePosition
             };
             gameServer.Send(broadcastPacket);
 

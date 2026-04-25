@@ -8,6 +8,6 @@ namespace ShootingHero.Shared
     [MemoryPackable]
     public partial class C2S_FireWeaponPacket : IPacket
     {
-        public Vector2 Direction { get; set; }
+        public Vector2 FirePosition { get; set; }
     }
 }
