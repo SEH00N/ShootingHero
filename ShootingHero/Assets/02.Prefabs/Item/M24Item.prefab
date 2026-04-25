@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9336d83a870b1462c87c63533629f006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.WeaponItem
-  weaponID: 0
+  weaponID: 3
 --- !u!212 &8065597908787469862
 SpriteRenderer:
   serializedVersion: 2

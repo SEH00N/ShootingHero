@@ -40,12 +40,12 @@ namespace ShootingHero.Servers
 
             Dictionary<string, UnitDataDTO> players = new Dictionary<string, UnitDataDTO>();
             gameManager.ForEachPlayer((otherPlayerID, otherUnit) => {
-                players[otherPlayerID] = CreateUnitData(otherUnit);
+                players[otherPlayerID] = new CreateUnitData(otherUnit).unitData;
             });
 
             Dictionary<string, ItemDataDTO> items = new Dictionary<string, ItemDataDTO>();
             gameManager.ForEachItem((itemUUID, item) => {
-                items[itemUUID] = CreateItemData(item);
+                items[itemUUID] = new CreateItemData(item).itemData;
             });
 
             S2C_EnterGameResponsePacket responsePacket = new S2C_EnterGameResponsePacket() {
@@ -57,39 +57,11 @@ namespace ShootingHero.Servers
 
             S2C_EnterGameBroadcastPacket broadcastPacket = new S2C_EnterGameBroadcastPacket() {
                 PlayerID = playerID,
-                UnitData = CreateUnitData(unit)
+                UnitData = new CreateUnitData(unit).unitData
             };
             gameServer.Send(broadcastPacket, (sessionID, session) => sessionID != playerID);
 
             return new ValueTask();
-        }
-
-        private static UnitDataDTO CreateUnitData(Unit unit)
-        {
-            int characterID = unit.CharacterID;
-            Vector2 position = unit.transform.position;
-            int height = unit.GetHeight();
-            int currentHP = unit.UnitHealthComponent.CurrentHP;
-            WeaponBase weapon = unit.UnitWeaponComponent.Weapon;
-            int weaponID = weapon == null ? -1 : weapon.WeaponID;
-            string weaponStatus = weapon == null ? null : weapon.GetStatus();
-
-            return new UnitDataDTO() {
-                CharacterID = characterID,
-                Position = position,
-                Height = height,
-                CurrentHP = currentHP,
-                CurrentWeaponID = weaponID,
-                CurrentWeaponStatus = weaponStatus
-            };
-        }
-
-        private static ItemDataDTO CreateItemData(ItemBase item)
-        {
-            return new ItemDataDTO() {
-                ItemID = item.ItemID, 
-                Position = item.transform.position
-            };
         }
     }
 }

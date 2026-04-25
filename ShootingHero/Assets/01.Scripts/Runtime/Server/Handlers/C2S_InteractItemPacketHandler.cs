@@ -37,6 +37,9 @@ namespace ShootingHero.Servers
             float interactDistance = dataTableManager.gameConfigTable.GetUnitInteractDistance();
             if(distance.sqrMagnitude > interactDistance * interactDistance)
                 return new ValueTask();
+            
+            if(item.Height != player.GetHeight())
+                return new ValueTask();
 
             item.Interact(player);
 

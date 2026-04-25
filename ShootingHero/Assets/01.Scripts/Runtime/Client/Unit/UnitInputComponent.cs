@@ -90,6 +90,9 @@ namespace ShootingHero.Clients
                 if(detectedItem.TryGetComponent<ItemBase>(out ItemBase item) == false)
                     continue;
                 
+                if(item.Height != unit.GetHeight())
+                    continue;
+                
                 ClientInstance.GameClient.Send(new C2S_InteractItemPacket() { ItemUUID = item.UUID });
                 return;
             }

@@ -19,15 +19,13 @@ namespace ShootingHero.Clients
 
         ValueTask IPacketHandler<S2C_SpawnItemPacket>.HandlePacket(Session session, S2C_SpawnItemPacket packet)
         {
-            ItemTableRow itemTableRow = dataTableManager.itemTable.GetRow(packet.ItemID);
+            ItemDataDTO itemData = packet.ItemData;
+            ItemTableRow itemTableRow = dataTableManager.itemTable.GetRow(itemData.ItemID);
             if(itemTableRow == null)
                 return new ValueTask();
 
-            ItemBase item = Object.Instantiate(itemTableRow.itemPrefab, packet.Position, Quaternion.identity);
-            item.Initialize(packet.ItemID, packet.ItemUUID, () => {
-                Object.Destroy(item.gameObject);
-                gameManager.RemoveItem(packet.ItemUUID);
-            });
+            ItemBase item = Object.Instantiate(itemTableRow.itemPrefab, itemData.Position, Quaternion.identity);
+            item.Initialize(itemData.ItemID, packet.ItemUUID, itemData.Height);
             gameManager.AddItem(packet.ItemUUID, item);
 
             return new ValueTask();

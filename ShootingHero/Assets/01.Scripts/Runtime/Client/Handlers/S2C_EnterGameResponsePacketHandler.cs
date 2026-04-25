@@ -46,10 +46,7 @@ namespace ShootingHero.Clients
                     continue;
 
                 ItemBase item = Object.Instantiate(itemTableRow.itemPrefab, itemData.Position, Quaternion.identity);
-                item.Initialize(itemData.ItemID, itemUUID, () => {
-                    Object.Destroy(item.gameObject);
-                    gameManager.RemoveItem(itemUUID);
-                });
+                item.Initialize(itemData.ItemID, itemUUID, itemData.Height);
                 gameManager.AddItem(itemUUID, item);
             }
 

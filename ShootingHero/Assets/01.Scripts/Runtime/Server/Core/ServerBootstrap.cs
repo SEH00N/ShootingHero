@@ -1,8 +1,6 @@
-using System;
 using ShootingHero.Shared;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 namespace ShootingHero.Servers
 {
@@ -27,20 +25,14 @@ namespace ShootingHero.Servers
 
             await SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
 
-            ItemTableRow testItemTableRow = dataTableManager.itemTable.GetRow(2);
-            for (int i = 0; i < 3; ++i)
-            {
-                string uuid = Guid.NewGuid().ToString();
-                Vector2 position = new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f));
-
-                ItemBase item = Instantiate(testItemTableRow.itemPrefab, position, Quaternion.identity);
-                item.Initialize(testItemTableRow.id, uuid, () => {
-                    Destroy(item.gameObject);
-                    gameManager.RemoveItem(uuid);
-                });
-
-                gameManager.AddItem(uuid, item);
-            }
+            ItemSpawnManager itemSpawnManager = new ItemSpawnManager(
+                dataTableManager.gameConfigTable, 
+                dataTableManager.itemTable, 
+                serverDataTableManager.itemSpawnPositionTable, 
+                gameServer, 
+                gameManager
+            );
+            itemSpawnManager.Initialize();
         }
     }
 }

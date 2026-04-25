@@ -59,5 +59,20 @@ namespace ShootingHero.Shared
         {
             return (int)GetRow("KillScore").numberValue;
         }
+
+        public int GetWorldItemCount()
+        {
+            return (int)GetRow("WorldItemCount").numberValue;
+        }
+
+        public float GetItemSpawnDelaySecondsMin()
+        {
+            return GetRow("ItemSpawnDelaySecondsMin").numberValue;
+        }
+
+        public float GetItemSpawnDelaySecondsMax()
+        {
+            return GetRow("ItemSpawnDelaySecondsMax").numberValue;
+        }
     }
 }

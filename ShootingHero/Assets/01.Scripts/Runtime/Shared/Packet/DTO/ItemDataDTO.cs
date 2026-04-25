@@ -8,5 +8,6 @@ namespace ShootingHero.Shared
     {
         public int ItemID { get; set; }
         public Vector2 Position { get; set; }
+        public int Height { get; set; }
     }
 }

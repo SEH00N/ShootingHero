@@ -38,6 +38,15 @@ MonoBehaviour:
     - key: KillScore
       numberValue: 100
       objectValue: {fileID: 0}
+    - key: WorldItemCount
+      numberValue: 5
+      objectValue: {fileID: 0}
+    - key: ItemSpawnDelaySecondsMin
+      numberValue: 1
+      objectValue: {fileID: 0}
+    - key: ItemSpawnDelaySecondsMax
+      numberValue: 3
+      objectValue: {fileID: 0}
   itemTable:
     tableRowList:
     - itemName: "\uC791\uC740\uD790\uD329"
@@ -47,11 +56,11 @@ MonoBehaviour:
     - itemName: "\uB9AC\uBCFC\uBC84"
       itemPrefab: {fileID: 1316228716967666840, guid: 94caebf9883b14e44a43e70cf0827dd5, type: 3}
     - itemName: M92
-      itemPrefab: {fileID: 1316228716967666840, guid: 94caebf9883b14e44a43e70cf0827dd5, type: 3}
+      itemPrefab: {fileID: 1316228716967666840, guid: 532508d200e761943b71948cb5a260fa, type: 3}
     - itemName: AK47
-      itemPrefab: {fileID: 1316228716967666840, guid: 94caebf9883b14e44a43e70cf0827dd5, type: 3}
+      itemPrefab: {fileID: 1316228716967666840, guid: 84f188360350b904788e3114c61884e5, type: 3}
     - itemName: M24
-      itemPrefab: {fileID: 1316228716967666840, guid: 94caebf9883b14e44a43e70cf0827dd5, type: 3}
+      itemPrefab: {fileID: 1316228716967666840, guid: bb37b8cbc5b03c748a1af99c7673790f, type: 3}
   weaponTable:
     tableRowList:
     - weaponInfoID: 0
