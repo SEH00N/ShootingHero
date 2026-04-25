@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8066865333506815646}
   - component: {fileID: 5743824136040076336}
+  - component: {fileID: 4574773966891990478}
   m_Layer: 0
   m_Name: Revolver
   m_TagString: Untagged
@@ -169,3 +170,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileWeapon
   firePosition: {fileID: 3609650300358235637}
+--- !u!114 &4574773966891990478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5694416679475690678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47c3d628994642e296994512d71dde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Clients::ShootingHero.Clients.ProjectileWeaponComponentClient
+  projectileWeapon: {fileID: 5743824136040076336}
+  firePosition: {fileID: 3609650300358235637}
+  fireParticlePrefab: {fileID: 6400413264332871209, guid: f794d150aaf51e34c81151ba72c2349b, type: 3}

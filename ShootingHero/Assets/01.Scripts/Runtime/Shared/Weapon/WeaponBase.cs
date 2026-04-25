@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ShootingHero.Shared
@@ -6,6 +7,8 @@ namespace ShootingHero.Shared
     {
         protected int weaponID = 0;
         protected Unit owner = null;
+
+        public event Action OnFireEvent = null;
 
         public int WeaponID => weaponID;
         public abstract bool IsReloading { get; }
@@ -36,6 +39,7 @@ namespace ShootingHero.Shared
                 return;
 
             OnFire(position);
+            OnFireEvent?.Invoke();
         }
 
         public abstract string GetStatus();

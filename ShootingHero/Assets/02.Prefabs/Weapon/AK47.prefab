@@ -132,10 +132,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2907274222612603471}
   - component: {fileID: 564136002094248602}
+  - component: {fileID: 1736826967260764143}
   m_Layer: 0
   m_Name: AK47
   m_TagString: Untagged
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -169,3 +170,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileWeapon
   firePosition: {fileID: 1069831390838054927}
+--- !u!114 &1736826967260764143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3757833316023736492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b47c3d628994642e296994512d71dde6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Clients::ShootingHero.Clients.ProjectileWeaponComponentClient
+  projectileWeapon: {fileID: 564136002094248602}
+  firePosition: {fileID: 1069831390838054927}
+  fireParticlePrefab: {fileID: 6400413264332871209, guid: f794d150aaf51e34c81151ba72c2349b, type: 3}
