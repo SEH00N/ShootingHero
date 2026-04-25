@@ -24,15 +24,15 @@ namespace ShootingHero.Clients
             ClientInstance.MyPlayerID = packet.PlayerID;
 
             await SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
-            Unit unitPrefab = dataTableManager.gameConfigTable.GetUnitPrefab();
 
             foreach(KeyValuePair<string, UnitDataDTO> element in packet.Players)
             {
                 string playerID = element.Key;
                 UnitDataDTO unitData = element.Value;
 
+                Unit unitPrefab = dataTableManager.gameConfigTable.GetUnitPrefab(unitData.CharacterID);
                 Unit unit = Object.Instantiate(unitPrefab, unitData.Position, Quaternion.identity);
-                unit.Initialize(playerID, unitData.Height, unitData.CurrentHP, unitData.CurrentWeaponID, unitData.CurrentWeaponStatus);
+                unit.Initialize(unitData.CharacterID, playerID, unitData.Height, unitData.CurrentHP, unitData.CurrentWeaponID, unitData.CurrentWeaponStatus);
                 gameManager.AddPlayer(playerID, unit);
             }
 

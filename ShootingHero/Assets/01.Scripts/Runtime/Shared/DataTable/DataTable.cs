@@ -19,8 +19,12 @@ namespace ShootingHero.Shared
         protected virtual void OnInitialize() { }
         public void Initialize()
         {
-            foreach(TRow tableRow in tableRowList)
+            for(int i = 0; i < tableRowList.Count; ++i)
+            {
+                TRow tableRow = tableRowList[i];
+                tableRow.id = i;
                 tableRows[tableRow.id] = tableRow;
+            }
             
             OnInitialize();
         }

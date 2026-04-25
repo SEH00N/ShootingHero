@@ -7,6 +7,6 @@ namespace ShootingHero.Shared
     [MemoryPackable]
     public partial class C2S_EnterGameRequestPacket : IPacket
     {
-        
+        public int CharacterID { get; set; }
     }
 }

@@ -31,9 +31,13 @@ namespace ShootingHero.Shared
             return tableRow;
         }
 
-        public Unit GetUnitPrefab()
+        public Unit GetUnitPrefab(int index)
         {
-            return GetRow("UnitPrefab").objectValue as Unit;
+            Unit unitPrefab = GetRow($"UnitPrefab_{index}").objectValue as Unit;
+            if(unitPrefab == null)
+                unitPrefab = GetRow($"UnitPrefab_0").objectValue as Unit;
+
+            return unitPrefab;
         }
 
         public float GetUnitInteractDistance()

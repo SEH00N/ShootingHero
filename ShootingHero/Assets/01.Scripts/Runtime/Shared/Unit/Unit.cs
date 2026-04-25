@@ -16,14 +16,17 @@ namespace ShootingHero.Shared
         private UnitHealthComponent unitHealthComponent = null;
         public UnitHealthComponent UnitHealthComponent => unitHealthComponent;
 
+        private int characterID = 0;
         private string playerID = "";
         private int currentHeight = 0;
         private bool isDead = false;
 
+        public int CharacterID => characterID;
         public string PlayerID => playerID;
 
-        public void Initialize(string playerID, int heigth, int currentHP, int weaponID, string weaponStatus)
+        public void Initialize(int characterID, string playerID, int heigth, int currentHP, int weaponID, string weaponStatus)
         {
+            this.characterID = characterID;
             this.playerID = playerID;
             SetHeight(heigth);
             isDead = false;

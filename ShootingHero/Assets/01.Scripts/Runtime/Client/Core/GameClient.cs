@@ -1,5 +1,6 @@
 using ShootingHero.Networks;
 using ShootingHero.Shared;
+using UnityEngine;
 
 namespace ShootingHero.Clients
 {
@@ -8,7 +9,7 @@ namespace ShootingHero.Clients
         private Session session = null;
         private Client client = null;
 
-        public void Intialize(DataTableManager dataTableManager, GameManager gameManager)
+        public void Intialize(DataTableManager dataTableManager, GameManager gameManager, int characterID)
         {
             GameInstance.PlayMode = EPlayMode.Client;
             GameInstance.DataTableManager = dataTableManager;
@@ -16,7 +17,7 @@ namespace ShootingHero.Clients
 
             session = new Session();
             session.OnOpenedEvent += session => {
-                session.SendAsync(new C2S_EnterGameRequestPacket());
+                session.SendAsync(new C2S_EnterGameRequestPacket() { CharacterID = characterID });
             };
 
             UnityPacketDispatcher unityPacketDispatcher = gameManager.gameObject.AddComponent<UnityPacketDispatcher>();

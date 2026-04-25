@@ -16,7 +16,7 @@ namespace ShootingHero.Clients
             gameManager.Initialize();
 
             GameClient gameClient = new GameClient();
-            gameClient.Intialize(dataTableManager, gameManager);
+            gameClient.Intialize(dataTableManager, gameManager, Random.Range(0, 4));
             gameClient.Connect("127.0.0.1", 9999);
         }
     }

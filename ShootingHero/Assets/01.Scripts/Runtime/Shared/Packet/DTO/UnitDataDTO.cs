@@ -6,6 +6,7 @@ namespace ShootingHero.Shared
     [MemoryPackable]
     public partial class UnitDataDTO
     {
+        public int CharacterID { get; set; }
         public Vector2 Position { get; set; }
         public int Height { get; set; }
         public int CurrentHP { get; set; }

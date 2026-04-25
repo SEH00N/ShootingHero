@@ -33,9 +33,9 @@ namespace ShootingHero.Servers
             Vector2 spawnPosition = spawnPositionTableRow?.position ?? Vector2.zero;
             int spawnHeight = spawnPositionTableRow?.height ?? 0;
 
-            Unit unitPrefab = dataTableManager.gameConfigTable.GetUnitPrefab();
+            Unit unitPrefab = dataTableManager.gameConfigTable.GetUnitPrefab(packet.CharacterID);
             Unit unit = Object.Instantiate(unitPrefab, spawnPosition, Quaternion.identity);
-            unit.Initialize(playerID, spawnHeight, int.MaxValue, -1, null);
+            unit.Initialize(packet.CharacterID, playerID, spawnHeight, int.MaxValue, -1, null);
             gameManager.AddPlayer(playerID, unit);
 
             Dictionary<string, UnitDataDTO> players = new Dictionary<string, UnitDataDTO>();
@@ -66,6 +66,7 @@ namespace ShootingHero.Servers
 
         private static UnitDataDTO CreateUnitData(Unit unit)
         {
+            int characterID = unit.CharacterID;
             Vector2 position = unit.transform.position;
             int height = unit.GetHeight();
             int currentHP = unit.UnitHealthComponent.CurrentHP;
@@ -74,6 +75,7 @@ namespace ShootingHero.Servers
             string weaponStatus = weapon == null ? null : weapon.GetStatus();
 
             return new UnitDataDTO() {
+                CharacterID = characterID,
                 Position = position,
                 Height = height,
                 CurrentHP = currentHP,
