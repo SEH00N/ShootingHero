@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2660524416721730884}
   - component: {fileID: 448758073132117209}
   - component: {fileID: 5129127828692721321}
+  - component: {fileID: 5675915170097630786}
   - component: {fileID: 7555488561631855414}
   m_Layer: 6
   m_Name: SmallHealPackItem
@@ -105,6 +106,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b5b338b1a9824d5b9d822596d686c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.HealPackItem
+  healAmount: 25
+--- !u!114 &5675915170097630786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8652267394212693029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dea1aa252cb554f5598db3e5054313c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Servers::ShootingHero.Servers.HealPackItemComponentServer
+  healPackItem: {fileID: 5129127828692721321}
 --- !u!58 &7555488561631855414
 CircleCollider2D:
   m_ObjectHideFlags: 0
