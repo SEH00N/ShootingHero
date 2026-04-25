@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 2592404262087593425}
   - component: {fileID: 7497745791872332557}
   - component: {fileID: 4150073475621884433}
+  - component: {fileID: 4856616475757269896}
+  - component: {fileID: 5909239394767735808}
   - component: {fileID: 3317852911693896954}
   - component: {fileID: 7922688585469104542}
   m_Layer: 8
@@ -89,6 +91,7 @@ MonoBehaviour:
   unitMovementComponent: {fileID: 6820730779124057763}
   unitWeaponComponent: {fileID: 5605912801293092927}
   unitHealthComponent: {fileID: 1516780341442015132}
+  unitProjectileCollider: {fileID: 4856616475757269896}
 --- !u!114 &6820730779124057763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +173,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Servers::ShootingHero.Servers.UnitAnimationComponentServer
   animatorComponent: {fileID: 5217508283758153464}
+--- !u!114 &4856616475757269896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302512199407416910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b18c1a51c0d4422b86852dd5a1bfc94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.UnitProjectileCollider
+  unit: {fileID: 8467205605617744293}
+--- !u!114 &5909239394767735808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6302512199407416910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ccee6405f584e7b99978029fcdf962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileColliderComponentClient
+  projectileCollider: {fileID: 4856616475757269896}
+  hitParticlePrefab: {fileID: 6036384362369905208, guid: 1d1e3c71dbc5a204ebc7e253ece19c40, type: 3}
 --- !u!50 &3317852911693896954
 Rigidbody2D:
   serializedVersion: 5

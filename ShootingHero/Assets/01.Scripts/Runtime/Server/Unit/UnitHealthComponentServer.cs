@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using ShootingHero.Networks;
 using ShootingHero.Shared;
 using UnityEngine;
 
@@ -15,8 +14,17 @@ namespace ShootingHero.Servers
         protected override void OnAwake()
         {
             base.OnAwake();
+            unit.UnitProjectileCollider.OnCollideEvent += HandleCollision;
             unit.UnitHealthComponent.OnDamagedEvent += HandleDamaged;
             unit.UnitHealthComponent.OnDeadEvent += HandleDead;
+        }
+
+        private void HandleCollision(Projectile projectile, Vector2 _)
+        {
+            if(unit.IsDead == true)
+                return;
+        
+            unit.UnitHealthComponent.GetDamage(projectile.Owner, projectile.Damage);
         }
 
         private void HandleDamaged(Unit attacker, int damage)

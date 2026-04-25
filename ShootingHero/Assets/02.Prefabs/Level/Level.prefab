@@ -1198,6 +1198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8167873343869824750}
   - component: {fileID: 1907282687328771460}
+  - component: {fileID: 6938924050731659641}
   - component: {fileID: 2958098816868856084}
   - component: {fileID: 2625372125149049140}
   - component: {fileID: 8741290679289717667}
@@ -1234,10 +1235,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 16001928937396796}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 617be7cb0b42e4184b2b64eb2fe48738, type: 3}
+  m_Script: {fileID: 11500000, guid: 67fa596e0ba9a4fd890405679c358b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileCollider
   height: 3
+--- !u!114 &6938924050731659641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16001928937396796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ccee6405f584e7b99978029fcdf962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileColliderComponentClient
+  projectileCollider: {fileID: 1907282687328771460}
+  hitParticlePrefab: {fileID: 1293399440240712375, guid: ebc042d2c0eb4a740ad8b4c2a3e7b50d, type: 3}
 --- !u!1839735485 &2958098816868856084
 Tilemap:
   m_ObjectHideFlags: 0
@@ -5291,7 +5306,7 @@ GameObject:
   - component: {fileID: 5833340524305989268}
   - component: {fileID: 1801287580290219394}
   - component: {fileID: 5188794033376070052}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_5_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5307,11 +5322,11 @@ Transform:
   m_GameObject: {fileID: 35670669435451487}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.66, y: 19.01, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: 26.83, y: 9.505, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1801287580290219394
 BoxCollider2D:
@@ -5383,7 +5398,7 @@ GameObject:
   - component: {fileID: 4281004478451671628}
   - component: {fileID: 7720725443026546383}
   - component: {fileID: 3280579689364559782}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_2_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5399,11 +5414,11 @@ Transform:
   m_GameObject: {fileID: 129241236867196631}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -54.59, y: 18.7, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: -27.295, y: 9.35, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7720725443026546383
 BoxCollider2D:
@@ -6066,7 +6081,7 @@ GameObject:
   - component: {fileID: 3509263613130273851}
   - component: {fileID: 4370742348223982251}
   - component: {fileID: 430227865740292574}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_8_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6082,11 +6097,11 @@ Transform:
   m_GameObject: {fileID: 738510435581672063}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -51.04, y: 14.28, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: -25.52, y: 7.14, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4370742348223982251
 BoxCollider2D:
@@ -6157,6 +6172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 183784941229736179}
   - component: {fileID: 3198498880901527911}
+  - component: {fileID: 1658379257840891434}
   - component: {fileID: 4150652435131735728}
   - component: {fileID: 7760115049373070616}
   - component: {fileID: 3412444956799479134}
@@ -6193,10 +6209,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 811610264273265654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 617be7cb0b42e4184b2b64eb2fe48738, type: 3}
+  m_Script: {fileID: 11500000, guid: 67fa596e0ba9a4fd890405679c358b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileCollider
   height: 0
+--- !u!114 &1658379257840891434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811610264273265654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ccee6405f584e7b99978029fcdf962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileColliderComponentClient
+  projectileCollider: {fileID: 3198498880901527911}
+  hitParticlePrefab: {fileID: 1293399440240712375, guid: ebc042d2c0eb4a740ad8b4c2a3e7b50d, type: 3}
 --- !u!1839735485 &4150652435131735728
 Tilemap:
   m_ObjectHideFlags: 0
@@ -19302,7 +19332,7 @@ GameObject:
   - component: {fileID: 362231414711721928}
   - component: {fileID: 7890111594668667909}
   - component: {fileID: 2657690899911661505}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_11_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19318,11 +19348,11 @@ Transform:
   m_GameObject: {fileID: 982369836910938498}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.07, y: 22.53, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: 25.535, y: 11.265, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7890111594668667909
 BoxCollider2D:
@@ -22534,7 +22564,7 @@ GameObject:
   - component: {fileID: 1929844953239387207}
   - component: {fileID: 421849097582063650}
   - component: {fileID: 3557602474003426609}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_7_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22550,11 +22580,11 @@ Transform:
   m_GameObject: {fileID: 2370874311378725519}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 37.040005, y: 24.29, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: 18.520002, y: 12.145, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &421849097582063650
 BoxCollider2D:
@@ -22626,7 +22656,7 @@ GameObject:
   - component: {fileID: 373145442949668001}
   - component: {fileID: 3320287335740976892}
   - component: {fileID: 1673693187760539204}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_1_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22642,11 +22672,11 @@ Transform:
   m_GameObject: {fileID: 2518794773227319531}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.49, y: 10.97, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: -18.245, y: 5.485, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3320287335740976892
 BoxCollider2D:
@@ -24134,48 +24164,24 @@ Transform:
   m_Children:
   - {fileID: 2349969168251725806}
   - {fileID: 2787069439005019129}
-  - {fileID: 847375294337418239}
-  - {fileID: 2303072977316297593}
   - {fileID: 6697589886909526172}
   - {fileID: 6997331601809238995}
-  - {fileID: 6571606857309731876}
-  - {fileID: 373145442949668001}
   - {fileID: 5062586272169499283}
   - {fileID: 1333306527955359289}
-  - {fileID: 4281004478451671628}
-  - {fileID: 8366581213675387595}
   - {fileID: 4427249309568934680}
   - {fileID: 1017985653920146673}
-  - {fileID: 1886703673399040226}
-  - {fileID: 1342862399563576573}
   - {fileID: 1553114898590957691}
   - {fileID: 8398479870959916276}
-  - {fileID: 6124906928439379393}
-  - {fileID: 6226755636956958646}
   - {fileID: 1370066626530731880}
   - {fileID: 2516378555422729539}
-  - {fileID: 7649276131839651935}
-  - {fileID: 5833340524305989268}
   - {fileID: 4944406982162637920}
   - {fileID: 5559031404297207808}
-  - {fileID: 7760439990069700877}
-  - {fileID: 7854858686293313722}
   - {fileID: 2671686035991241848}
   - {fileID: 8456795948703558692}
-  - {fileID: 5009646123744710659}
-  - {fileID: 1929844953239387207}
   - {fileID: 6654857392012186424}
   - {fileID: 5849496698571731557}
-  - {fileID: 4143118629757419837}
-  - {fileID: 3509263613130273851}
   - {fileID: 2389361856371363981}
   - {fileID: 7504821099355572539}
-  - {fileID: 8816674220360193746}
-  - {fileID: 2900589938843286353}
-  - {fileID: 6993462473394899638}
-  - {fileID: 1407200306173592710}
-  - {fileID: 362231414711721928}
-  - {fileID: 4348772203757601490}
   m_Father: {fileID: 397056514547689289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &3596502856760172843
@@ -41305,7 +41311,7 @@ GameObject:
   - component: {fileID: 6226755636956958646}
   - component: {fileID: 9006594510126781734}
   - component: {fileID: 8461588702750096819}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_4_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41321,11 +41327,11 @@ Transform:
   m_GameObject: {fileID: 3495889868514744828}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 36.340004, y: 10.999997, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: 18.170002, y: 5.4999986, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &9006594510126781734
 BoxCollider2D:
@@ -42363,7 +42369,7 @@ GameObject:
   - component: {fileID: 7649276131839651935}
   - component: {fileID: 8127780538741657985}
   - component: {fileID: 574038271251841965}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_5_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42379,11 +42385,11 @@ Transform:
   m_GameObject: {fileID: 3913804738425540224}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 54.7, y: 18.6, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: 27.35, y: 9.3, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8127780538741657985
 BoxCollider2D:
@@ -42532,6 +42538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1536466968933136514}
   - component: {fileID: 8541068551029721180}
+  - component: {fileID: 4723512587738704546}
   - component: {fileID: 3487206061632134181}
   - component: {fileID: 7132152431391063916}
   - component: {fileID: 2677097305029019749}
@@ -42568,10 +42575,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4227711787821034188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 617be7cb0b42e4184b2b64eb2fe48738, type: 3}
+  m_Script: {fileID: 11500000, guid: 67fa596e0ba9a4fd890405679c358b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileCollider
   height: 1
+--- !u!114 &4723512587738704546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4227711787821034188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ccee6405f584e7b99978029fcdf962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileColliderComponentClient
+  projectileCollider: {fileID: 8541068551029721180}
+  hitParticlePrefab: {fileID: 1293399440240712375, guid: ebc042d2c0eb4a740ad8b4c2a3e7b50d, type: 3}
 --- !u!1839735485 &3487206061632134181
 Tilemap:
   m_ObjectHideFlags: 0
@@ -53530,7 +53551,7 @@ GameObject:
   - component: {fileID: 7854858686293313722}
   - component: {fileID: 1007143008633124071}
   - component: {fileID: 1037272702903535913}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_6_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53546,11 +53567,11 @@ Transform:
   m_GameObject: {fileID: 4558185473736449692}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50.99, y: 14.17, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: 25.495, y: 7.085, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1007143008633124071
 BoxCollider2D:
@@ -54725,7 +54746,7 @@ GameObject:
   - component: {fileID: 6124906928439379393}
   - component: {fileID: 2313474954580543146}
   - component: {fileID: 1517493068080194506}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_4_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54741,11 +54762,11 @@ Transform:
   m_GameObject: {fileID: 5026685028971293986}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.47, y: 10.69, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: 17.735, y: 5.345, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2313474954580543146
 BoxCollider2D:
@@ -54895,7 +54916,7 @@ GameObject:
   - component: {fileID: 4348772203757601490}
   - component: {fileID: 4972715704897759829}
   - component: {fileID: 3805533125224950383}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_11_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54911,11 +54932,11 @@ Transform:
   m_GameObject: {fileID: 5447103981368205276}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.03, y: 21.24, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: 25.515, y: 10.62, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4972715704897759829
 BoxCollider2D:
@@ -55262,7 +55283,7 @@ GameObject:
   - component: {fileID: 1407200306173592710}
   - component: {fileID: 932369006721594138}
   - component: {fileID: 6710163527847140732}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_10_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55278,11 +55299,11 @@ Transform:
   m_GameObject: {fileID: 5717684800775834253}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -51.010002, y: 21.24, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: -25.505001, y: 10.62, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &932369006721594138
 BoxCollider2D:
@@ -55432,7 +55453,7 @@ GameObject:
   - component: {fileID: 4143118629757419837}
   - component: {fileID: 2571490579059129753}
   - component: {fileID: 8010228849489321731}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_8_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55448,11 +55469,11 @@ Transform:
   m_GameObject: {fileID: 5756738729754001851}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -51, y: 12.94, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: -25.5, y: 6.47, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2571490579059129753
 BoxCollider2D:
@@ -55524,7 +55545,7 @@ GameObject:
   - component: {fileID: 5009646123744710659}
   - component: {fileID: 7789761178929756943}
   - component: {fileID: 6369852379941287610}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_7_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55540,11 +55561,11 @@ Transform:
   m_GameObject: {fileID: 5933717002208650700}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 37.08, y: 22.95, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: 18.54, y: 11.475, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7789761178929756943
 BoxCollider2D:
@@ -56756,7 +56777,7 @@ GameObject:
   - component: {fileID: 2900589938843286353}
   - component: {fileID: 4433511734390525403}
   - component: {fileID: 7821040654350556218}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_9_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56772,11 +56793,11 @@ Transform:
   m_GameObject: {fileID: 6354955982664464967}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.010002, y: 24.28, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: -18.505001, y: 12.14, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4433511734390525403
 BoxCollider2D:
@@ -58255,7 +58276,7 @@ GameObject:
   - component: {fileID: 1342862399563576573}
   - component: {fileID: 4838057136046060612}
   - component: {fileID: 127870953563293165}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_3_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58271,11 +58292,11 @@ Transform:
   m_GameObject: {fileID: 6685991395055369345}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.29, y: 7.0299973, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: 14.145, y: 3.5149987, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4838057136046060612
 BoxCollider2D:
@@ -58930,6 +58951,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2703454838816371146}
   - component: {fileID: 934694597801698993}
+  - component: {fileID: 1634838017118564953}
   - component: {fileID: 1575138520871344309}
   - component: {fileID: 2979428247998615924}
   - component: {fileID: 5057584424944654847}
@@ -58966,10 +58988,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6924304415635144016}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 617be7cb0b42e4184b2b64eb2fe48738, type: 3}
+  m_Script: {fileID: 11500000, guid: 67fa596e0ba9a4fd890405679c358b0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileCollider
   height: 2
+--- !u!114 &1634838017118564953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6924304415635144016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ccee6405f584e7b99978029fcdf962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ShootingHero.Shared::ShootingHero.Shared.ProjectileColliderComponentClient
+  projectileCollider: {fileID: 934694597801698993}
+  hitParticlePrefab: {fileID: 1293399440240712375, guid: ebc042d2c0eb4a740ad8b4c2a3e7b50d, type: 3}
 --- !u!1839735485 &1575138520871344309
 Tilemap:
   m_ObjectHideFlags: 0
@@ -69200,6 +69236,7 @@ Transform:
   - {fileID: 6818192436244124501}
   - {fileID: 4936531341291681364}
   - {fileID: 5767138869301722853}
+  - {fileID: 7080869290975738733}
   - {fileID: 183784941229736179}
   - {fileID: 1536466968933136514}
   - {fileID: 2703454838816371146}
@@ -69229,7 +69266,7 @@ GameObject:
   - component: {fileID: 8366581213675387595}
   - component: {fileID: 2242798565126290165}
   - component: {fileID: 1556387047905333276}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_2_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69245,11 +69282,11 @@ Transform:
   m_GameObject: {fileID: 7402237664611406177}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -53.72, y: 19.009998, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: -26.86, y: 9.504999, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2242798565126290165
 BoxCollider2D:
@@ -89178,7 +89215,7 @@ GameObject:
   - component: {fileID: 6571606857309731876}
   - component: {fileID: 1376523581327112146}
   - component: {fileID: 3661425998341731178}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_1_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89194,11 +89231,11 @@ Transform:
   m_GameObject: {fileID: 7953953062683011676}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -35.54, y: 10.59, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: -17.77, y: 5.295, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1376523581327112146
 BoxCollider2D:
@@ -89703,7 +89740,7 @@ GameObject:
   - component: {fileID: 6993462473394899638}
   - component: {fileID: 3830368906434789964}
   - component: {fileID: 7283788753563561641}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_10_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89719,11 +89756,11 @@ Transform:
   m_GameObject: {fileID: 8109070105155692664}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -50.97, y: 22.53, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: -25.485, y: 11.265, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3830368906434789964
 BoxCollider2D:
@@ -89795,7 +89832,7 @@ GameObject:
   - component: {fileID: 8816674220360193746}
   - component: {fileID: 8049917236338380516}
   - component: {fileID: 6716027613556055482}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_9_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89811,11 +89848,11 @@ Transform:
   m_GameObject: {fileID: 8232630393768212294}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.97, y: 22.94, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: -18.485, y: 11.47, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &8049917236338380516
 BoxCollider2D:
@@ -89995,6 +90032,61 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &8388409953571558340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7080869290975738733}
+  m_Layer: 8
+  m_Name: StairCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7080869290975738733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8388409953571558340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 847375294337418239}
+  - {fileID: 2303072977316297593}
+  - {fileID: 6571606857309731876}
+  - {fileID: 373145442949668001}
+  - {fileID: 4281004478451671628}
+  - {fileID: 8366581213675387595}
+  - {fileID: 1886703673399040226}
+  - {fileID: 1342862399563576573}
+  - {fileID: 6124906928439379393}
+  - {fileID: 6226755636956958646}
+  - {fileID: 7649276131839651935}
+  - {fileID: 5833340524305989268}
+  - {fileID: 7760439990069700877}
+  - {fileID: 7854858686293313722}
+  - {fileID: 5009646123744710659}
+  - {fileID: 1929844953239387207}
+  - {fileID: 4143118629757419837}
+  - {fileID: 3509263613130273851}
+  - {fileID: 8816674220360193746}
+  - {fileID: 2900589938843286353}
+  - {fileID: 6993462473394899638}
+  - {fileID: 1407200306173592710}
+  - {fileID: 362231414711721928}
+  - {fileID: 4348772203757601490}
+  m_Father: {fileID: 397056514547689289}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8597439270116859812
 GameObject:
   m_ObjectHideFlags: 0
@@ -90006,7 +90098,7 @@ GameObject:
   - component: {fileID: 1886703673399040226}
   - component: {fileID: 6886834217856099666}
   - component: {fileID: 4847301999723174718}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_3_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90022,11 +90114,11 @@ Transform:
   m_GameObject: {fileID: 8597439270116859812}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.42, y: 6.72, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: 13.71, y: 3.36, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6886834217856099666
 BoxCollider2D:
@@ -95496,7 +95588,7 @@ GameObject:
   - component: {fileID: 2303072977316297593}
   - component: {fileID: 5519967514394130153}
   - component: {fileID: 9058356606521714027}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_0_Ceil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95512,11 +95604,11 @@ Transform:
   m_GameObject: {fileID: 8755186175948820288}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.49, y: 7.03, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: -14.245, y: 3.515, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5519967514394130153
 BoxCollider2D:
@@ -95633,7 +95725,7 @@ GameObject:
   - component: {fileID: 847375294337418239}
   - component: {fileID: 3499127458164676581}
   - component: {fileID: 6284849723989645285}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_0_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95649,11 +95741,11 @@ Transform:
   m_GameObject: {fileID: 8804266592740965434}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -27.54, y: 6.65, z: 0}
-  m_LocalScale: {x: 0.5, y: 2, z: 1}
+  m_LocalPosition: {x: -13.77, y: 3.325, z: 0}
+  m_LocalScale: {x: 0.25, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &3499127458164676581
 BoxCollider2D:
@@ -97694,7 +97786,7 @@ GameObject:
   - component: {fileID: 7760439990069700877}
   - component: {fileID: 1074689561332368433}
   - component: {fileID: 3764148003153520737}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: StairCollider_6_Foundation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97710,11 +97802,11 @@ Transform:
   m_GameObject: {fileID: 9152347545802484729}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.03, y: 12.83, z: 0}
-  m_LocalScale: {x: 2, y: 0.5, z: 1}
+  m_LocalPosition: {x: 25.515, y: 6.415, z: 0}
+  m_LocalScale: {x: 1, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5767138869301722853}
+  m_Father: {fileID: 7080869290975738733}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1074689561332368433
 BoxCollider2D:

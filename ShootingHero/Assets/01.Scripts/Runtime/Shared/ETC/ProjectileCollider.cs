@@ -1,20 +1,17 @@
+using System;
 using UnityEngine;
 
 namespace ShootingHero.Shared
 {
-    public class ProjectileCollider : MonoBehaviour, IProjectileCollider
+    public abstract class ProjectileCollider : MonoBehaviour
     {
-        [SerializeField]
-        private int height = 0;
+        public event Action<Projectile, Vector2> OnCollideEvent = null;
 
-        public int GetHeight()
-        {
-            return height;
-        }
+        public abstract bool GetIsCollidable(Projectile projectile);
 
         public void Collide(Projectile projectile, Vector2 point)
         {
-            
+            OnCollideEvent?.Invoke(projectile, point);
         }
     }
 }

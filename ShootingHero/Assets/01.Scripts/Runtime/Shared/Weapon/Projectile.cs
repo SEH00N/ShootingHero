@@ -13,6 +13,7 @@ namespace ShootingHero.Shared
 
         public Unit Owner => owner;
         public int Damage => damage;
+        public int Height => height;
 
         public void Initialize(Unit owner, int damage, int height, Vector2 velocity)
         {
@@ -24,16 +25,10 @@ namespace ShootingHero.Shared
 
         private void OnTriggerEnter2D(Collider2D collider)
         {
-            if(collider.TryGetComponent<IProjectileCollider>(out IProjectileCollider projectileCollider) == false)
+            if(collider.TryGetComponent<ProjectileCollider>(out ProjectileCollider projectileCollider) == false)
                 return;
             
-            if(projectileCollider is Unit unit)
-            {
-                if(owner == unit)
-                    return;
-            }
-            
-            if(projectileCollider.GetHeight() != height)
+            if(projectileCollider.GetIsCollidable(this) == false)
                 return;
             
             Vector2 hitPoint = collider.ClosestPoint(transform.position);

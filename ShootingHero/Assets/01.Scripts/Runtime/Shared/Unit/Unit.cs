@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ShootingHero.Shared
 {
-    public class Unit : MonoBehaviour, IProjectileCollider
+    public class Unit : MonoBehaviour
     {
         [SerializeField]
         private UnitMovementComponent unitMovementComponent = null;
@@ -16,6 +16,10 @@ namespace ShootingHero.Shared
         private UnitHealthComponent unitHealthComponent = null;
         public UnitHealthComponent UnitHealthComponent => unitHealthComponent;
 
+        [SerializeField]
+        private UnitProjectileCollider unitProjectileCollider = null;
+        public UnitProjectileCollider UnitProjectileCollider => unitProjectileCollider;
+
         private int characterID = 0;
         private string playerID = "";
         private int currentHeight = 0;
@@ -23,6 +27,7 @@ namespace ShootingHero.Shared
 
         public int CharacterID => characterID;
         public string PlayerID => playerID;
+        public bool IsDead => isDead;
 
         public void Initialize(int characterID, string playerID, int heigth, int currentHP, int weaponID, string weaponStatus)
         {
@@ -56,17 +61,6 @@ namespace ShootingHero.Shared
         public void SetHeight(int height)
         {
             currentHeight = height;
-        }
-
-        public void Collide(Projectile projectile, Vector2 point)
-        {
-            if(GameInstance.PlayMode != EPlayMode.Server)
-                return;
-            
-            if(isDead == true)
-                return;
-
-            unitHealthComponent.GetDamage(projectile.Owner, projectile.Damage);
         }
 
         private void HandleDead(Unit attacker)
