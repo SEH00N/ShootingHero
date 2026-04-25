@@ -20,7 +20,7 @@ namespace ShootingHero.Shared
             if(instance != null)
             {
                 instance.Release();
-                Destroy(instance);
+                Destroy(instance.gameObject);
             }
 
             instance = this;

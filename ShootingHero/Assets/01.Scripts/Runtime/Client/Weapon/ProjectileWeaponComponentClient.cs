@@ -29,7 +29,7 @@ namespace ShootingHero.Clients
             fireParticle.Play();
 
             await UniTask.Delay(1000);
-            Destroy(fireParticle);
+            Destroy(fireParticle.gameObject);
         }
     }
 }
