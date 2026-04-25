@@ -28,7 +28,7 @@ namespace ShootingHero.Clients
 
             await SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
 
-            ItemTableRow testItemTableRow = dataTableManager.itemTable.GetRow(1);
+            ItemTableRow testItemTableRow = dataTableManager.itemTable.GetRow(2);
             for (int i = 0; i < 3; ++i)
             {
                 string uuid = Guid.NewGuid().ToString();
