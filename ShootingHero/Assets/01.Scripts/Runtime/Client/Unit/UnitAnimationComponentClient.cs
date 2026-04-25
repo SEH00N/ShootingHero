@@ -28,26 +28,11 @@ namespace ShootingHero.Clients
 
         private void LateUpdate()
         {
-            if(unitMovementComponent.Velocity.sqrMagnitude > 0.1f)
-            {
+            Vector2 movementInput = unitMovementComponent.MovementInput;
+            if(movementInput.sqrMagnitude > 0.1f)
                 PlayAnimation(WALK_ANIMATION_HASH);
-            }
             else
-            {
                 PlayAnimation(IDLE_ANIMATION_HASH);
-            }
-
-            if(unitMovementComponent.MovementInput.x != 0)
-                SetDirection((int)Mathf.Sign(unitMovementComponent.MovementInput.x));
-        }
-
-        private void SetDirection(int direction)
-        {
-            if(currentDirection == direction)
-                return;
-            
-            currentDirection = direction;
-            transform.rotation = Quaternion.Euler(0, direction > 0 ? 0 : 180, 0);
         }
 
         private void PlayAnimation(int hash)

@@ -23,10 +23,7 @@ namespace ShootingHero.Shared
         {
             Vector3 direction = projectile.transform.eulerAngles;
             direction.z += 180f;
-            // float radian = direction.z * Mathf.Deg2Rad;
-            // float x = Mathf.Cos(radian);
-            // float y = Mathf.Sin(radian);
-            // float 
+
             ParticleSystem effect = Instantiate(hitParticlePrefab, point, Quaternion.Euler(direction));
             effect.Play();
 
