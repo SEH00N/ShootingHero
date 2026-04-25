@@ -28,16 +28,17 @@ namespace ShootingHero.Clients
 
         private void LateUpdate()
         {
-            Vector2 velocity = unitMovementComponent.Velocity;
-            if(velocity.sqrMagnitude > 0.1f)
+            if(unitMovementComponent.Velocity.sqrMagnitude > 0.1f)
             {
-                SetDirection((int)Mathf.Sign(velocity.x));
                 PlayAnimation(WALK_ANIMATION_HASH);
             }
             else
             {
                 PlayAnimation(IDLE_ANIMATION_HASH);
             }
+
+            if(unitMovementComponent.MovementInput.x != 0)
+                SetDirection((int)Mathf.Sign(unitMovementComponent.MovementInput.x));
         }
 
         private void SetDirection(int direction)

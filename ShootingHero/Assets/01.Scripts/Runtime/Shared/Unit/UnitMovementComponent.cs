@@ -18,6 +18,7 @@ namespace ShootingHero.Shared
         private float moveSpeed = 0f;
 
         public Vector2 Velocity => unitRigidbody.linearVelocity;
+        public Vector2 MovementInput => movementInput;
 
         private void FixedUpdate()
         {
