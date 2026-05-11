@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "Build",
-            "program": "${workspaceFolder}/bin/Debug/net9.0/LobbyServer.dll",
+            "program": "${workspaceFolder}/bin/Debug/net9.0/ShootingHeroLobbyServer.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -24,8 +24,5 @@
                 "/Views": "${workspaceFolder}/Views"
             }
         }
-        
-        
-
     ]
 }

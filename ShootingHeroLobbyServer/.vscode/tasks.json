@@ -7,7 +7,7 @@
 			"type": "process",
 			"args": [
 				"build",
-				"${workspaceFolder}/LobbyServer.csproj",
+				"${workspaceFolder}/ShootingHeroLobbyServer.csproj",
 				"/property:GenerateFullPaths=true"
 			],
 			"group": "build",
