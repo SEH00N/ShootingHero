@@ -1,14 +1,24 @@
-namespace LobbyServer;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
-public class Program
+namespace ShootingHero.LobbyServer
 {
-    public static void Main(string[] args)
+    public class Program
     {
-        var builder = WebApplication.CreateBuilder(args);
-        var app = builder.Build();
+        public static void Main(string[] args)
+        {
+            WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-        app.MapGet("/", () => "Hello World!");
+            builder.Services.AddOptions<ServerConfig>()
+                .Bind(builder.Configuration.GetSection("ServerConfig"));
+            
+            builder.Services.AddControllers();
+            
+            WebApplication app = builder.Build();
 
-        app.Run();
+            app.MapControllers();
+            app.Run();
+        }
     }
 }
+

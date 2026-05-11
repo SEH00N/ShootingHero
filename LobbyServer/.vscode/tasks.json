@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build",
+			"command": "dotnet",
+			"type": "process",
+			"args": [
+				"build",
+				"${workspaceFolder}/LobbyServer.csproj",
+				"/property:GenerateFullPaths=true"
+			],
+			"group": "build",
+			"problemMatcher": "$msCompile"
+		}
+	]
+}
