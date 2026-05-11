@@ -26,7 +26,7 @@ namespace ShootingHero.Clients
             inputActionMap = playerActions.Get();
         }
 
-        public void OnMove(InputAction.CallbackContext context)
+        void InputActions.IPlayerActions.OnMove(InputAction.CallbackContext context)
         {
             if (context.canceled)
             {
@@ -37,12 +37,12 @@ namespace ShootingHero.Clients
             MovementInput = context.ReadValue<Vector2>().normalized;
         }
 
-        public void OnAim(InputAction.CallbackContext context)
+        void InputActions.IPlayerActions.OnAim(InputAction.CallbackContext context)
         {
             AimPosition = context.ReadValue<Vector2>();
         }
 
-        public void OnFire(InputAction.CallbackContext context)
+        void InputActions.IPlayerActions.OnFire(InputAction.CallbackContext context)
         {
             if(context.started == true)
                 OnFireStartEvent?.Invoke();
@@ -51,7 +51,7 @@ namespace ShootingHero.Clients
                 OnFireEndEvent?.Invoke();
         }
 
-        public void OnInteract(InputAction.CallbackContext context)
+        void InputActions.IPlayerActions.OnInteract(InputAction.CallbackContext context)
         {
             if(context.performed == false)
                 return;
@@ -59,7 +59,7 @@ namespace ShootingHero.Clients
             OnInteractEvent?.Invoke();
         }
 
-        public void OnReload(InputAction.CallbackContext context)
+        void InputActions.IPlayerActions.OnReload(InputAction.CallbackContext context)
         {
             if(context.performed == false)
                 return;

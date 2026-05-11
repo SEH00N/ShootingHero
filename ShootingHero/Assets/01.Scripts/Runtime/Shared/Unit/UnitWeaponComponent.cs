@@ -30,8 +30,7 @@ namespace ShootingHero.Shared
             weapon.SetOwner(unit);
 
             weapon.transform.SetParent(weaponContainer);
-            weapon.transform.localPosition = Vector3.zero;
-            weapon.transform.localRotation = Quaternion.identity;
+            weapon.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
         }
 
         public void FireWeapon(Vector2 firePosition)

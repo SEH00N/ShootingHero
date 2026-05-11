@@ -1,6 +1,5 @@
 using ShootingHero.Networks;
 using ShootingHero.Shared;
-using UnityEngine;
 
 namespace ShootingHero.Clients
 {

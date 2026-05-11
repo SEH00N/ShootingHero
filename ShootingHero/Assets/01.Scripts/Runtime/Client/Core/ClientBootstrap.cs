@@ -13,6 +13,7 @@ namespace ShootingHero.Clients
 
         public void StartClient()
         {
+            InputManager.Initialize();
             gameManager.Initialize();
 
             GameClient gameClient = new GameClient();

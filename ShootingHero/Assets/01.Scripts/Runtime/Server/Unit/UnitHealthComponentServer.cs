@@ -44,8 +44,6 @@ namespace ShootingHero.Servers
 
         private async void HandleDead(Unit attacker)
         {
-            await UniTask.Delay(500);
-
             string attackerID = null;
             int attackerScore = 0;
             if(attacker != null)
@@ -58,6 +56,8 @@ namespace ShootingHero.Servers
                 attackerID = attacker.PlayerID;
                 attackerScore = currentScore + addScore;
             }
+
+            await UniTask.Delay(500);
 
             gameObject.SetActive(false);
             S2C_UnitDeadPacket unitDeadPacket = new S2C_UnitDeadPacket() {

@@ -16,7 +16,7 @@ namespace ShootingHero.Shared
         public void Initialize(int maxHP, int currentHP)
         {
             this.maxHP = maxHP;
-            this.currentHP = Mathf.Clamp(currentHP, 0, maxHP);;
+            this.currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         }
 
         public void ResetToMaxHP()
