@@ -12,6 +12,8 @@ namespace ShootingHero.LobbyServer
             builder.Services.AddOptions<ServerConfig>()
                 .Bind(builder.Configuration.GetSection("ServerConfig"));
             
+            builder.Services.AddSingleton<GameManager>();
+
             builder.Services.AddControllers();
             
             WebApplication app = builder.Build();
