@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShootingHero.LobbyServer
@@ -56,6 +57,21 @@ namespace ShootingHero.LobbyServer
         public void UnregisterGame(string gameUUID)
         {
             gameList.Remove(gameUUID, out _);
+        }
+
+        public async Task StopAllAsync()
+        {
+            GameInstanceHandle[] gameInstanceHandles = gameList.Values
+                .Where(gameInstanceHandle => gameInstanceHandle != null)
+                .ToArray();
+
+            gameList.Clear();
+
+            foreach(GameInstanceHandle gameInstanceHandle in gameInstanceHandles)
+                await gameInstanceHandle.StopAsync();
+
+            using (IDisposable lockHandle = await locker.LockAsync())
+                gamePublishQueue.Clear();
         }
 
         public bool TryGetGameInstanceHandle(string gameUUID, out GameInstanceHandle gameInstanceHandle)

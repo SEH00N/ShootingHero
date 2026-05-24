@@ -16,6 +16,7 @@ namespace ShootingHero.LobbyServer
             builder.Services.AddSingleton<IPortQueue, PortQueue>();
             builder.Services.AddSingleton<IGameInstanceLauncher, GameInstanceLauncher>();
             builder.Services.AddHostedService<GameScheduleService>();
+            builder.Services.AddHostedService<GameInstanceShutdownService>();
 
             builder.Services.AddSingleton<RoomManager>();
 

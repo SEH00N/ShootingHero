@@ -2,7 +2,9 @@
     "name": "ShootingHero.Editor",
     "rootNamespace": "ShootingHero.Editor",
     "references": [],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

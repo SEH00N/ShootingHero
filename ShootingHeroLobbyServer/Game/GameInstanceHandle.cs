@@ -1,4 +1,6 @@
+using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ShootingHero.LobbyServer
@@ -32,11 +34,21 @@ namespace ShootingHero.LobbyServer
 
         public async Task StopAsync()
         {
-            if (process.HasExited)
+            Process targetProcess = Interlocked.Exchange(ref process, null);
+            if (targetProcess == null)
                 return;
 
-            process.Kill(entireProcessTree: true);
-            await process.WaitForExitAsync();
+            try
+            {
+                if (targetProcess.HasExited == true)
+                    return;
+
+                targetProcess.Kill(entireProcessTree: true);
+                await targetProcess.WaitForExitAsync();
+            }
+            catch (InvalidOperationException)
+            {
+            }
         }
     }
 }

@@ -21,13 +21,17 @@ namespace ShootingHero.LobbyServer
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            using (PeriodicTimer timer = new PeriodicTimer(TimeSpan.FromSeconds(0.5f)))
+            try
             {
-                while (await timer.WaitForNextTickAsync(stoppingToken))
+                using (PeriodicTimer timer = new PeriodicTimer(TimeSpan.FromSeconds(0.5f)))
                 {
-                    await ScheduleGame();
+                    while (await timer.WaitForNextTickAsync(stoppingToken))
+                    {
+                        await ScheduleGame();
+                    }
                 }
             }
+            catch(OperationCanceledException) { }
         }
 
         private async Task ScheduleGame()
