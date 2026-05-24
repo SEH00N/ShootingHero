@@ -4,4 +4,15 @@
     <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="ShootingHeroGameServer\**\*" />
+    <None Remove="ShootingHeroGameServer\**\*" />
+    <Compile Remove="ShootingHeroGameServer\**\*" />
+
+    <Content Include="ShootingHeroGameServer\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

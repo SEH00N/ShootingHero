@@ -6,24 +6,26 @@ namespace ShootingHero.LobbyServer
 {
     public class Room
     {
+        public interface ICallback
+        {
+            public Task<string> StartGameAsync();
+        }
+
         private readonly Dictionary<string, Member> memberList = null;
         private readonly List<RoomCommand> roomCommands = null;
         private readonly AsyncLock locker = null;
-        
-        private int commandCounter = 0;
-        private string roomOwnerNickname = "";
+        private readonly ICallback callback = null;
 
-        private readonly GameManager gameManager = null;
+        private string roomOwnerNickname = "";
         
-        public Room(GameManager gameManager)
+        public Room(ICallback callback)
         {
-            this.gameManager = gameManager;
+            this.callback = callback;
 
             memberList = new Dictionary<string, Member>();
             roomCommands = new List<RoomCommand>();
             locker = new AsyncLock();
             
-            commandCounter = 0;
             roomOwnerNickname = "";
         }
 
@@ -32,14 +34,11 @@ namespace ShootingHero.LobbyServer
             return locker.LockAsync();
         }
 
-        public void Create()
+        public void Create(string nickname)
         {
-            AddRoomCommand(ERoomCommandType.Create, null);
-        }
-
-        public void Close()
-        {
-            AddRoomCommand(ERoomCommandType.Exit, null);
+            roomOwnerNickname = nickname;
+            memberList[nickname] = new Member();
+            AddRoomCommand(ERoomCommandType.Create, nickname);
         }
 
         public bool TryJoin(string nickname)
@@ -47,13 +46,7 @@ namespace ShootingHero.LobbyServer
             if(memberList.ContainsKey(nickname) == true)
                 return false;
             
-            memberList.Add(nickname, new Member() {
-                Nickname = nickname
-            });
-
-            if(string.IsNullOrEmpty(roomOwnerNickname) == true)
-                roomOwnerNickname = nickname;
-        
+            memberList[nickname] = new Member();
             AddRoomCommand(ERoomCommandType.Join, nickname);
             return true;
         }
@@ -62,6 +55,9 @@ namespace ShootingHero.LobbyServer
         {
             memberList.Remove(nickname);
             AddRoomCommand(ERoomCommandType.Exit, nickname);
+
+            if(roomOwnerNickname == nickname)
+                AddRoomCommand(ERoomCommandType.Close, null);
         }
 
         public void Ready(string nickname)
@@ -76,29 +72,37 @@ namespace ShootingHero.LobbyServer
             AddRoomCommand(ERoomCommandType.Ready, nickname);
         }
 
-        public void Start()
+        public async Task StartAsync()
         {
-            foreach(Member member in memberList.Values)
+            foreach(string nickname in memberList.Keys)
             {
-                if(member.Nickname == roomOwnerNickname)
+                if(nickname == roomOwnerNickname)
                     continue;
                 
-                if(member.IsReady == false)
-                    break;
+                if(memberList[nickname].IsReady == false)
+                    return;
             }
 
             foreach(Member member in memberList.Values)
                 member.IsReady = false;
             
-            string gameUUID = gameManager.PublishGame();
+            string gameUUID = await callback.StartGameAsync();
             AddRoomCommand(ERoomCommandType.Start, gameUUID);
+        }
+
+        public int GetRoomCommandCount()
+        {
+            return roomCommands.Count;
+        }
+
+        public List<RoomCommand> GetRoomCommandsRange(int from, int count)
+        {
+            return roomCommands.GetRange(from, count);
         }
 
         private void AddRoomCommand(ERoomCommandType commandType, string commandData)
         {
-            int index = commandCounter++;
             roomCommands.Add(new RoomCommand() {
-                Index = index,
                 RoomCommandType = commandType,
                 RoomCommandData = commandData, 
             });

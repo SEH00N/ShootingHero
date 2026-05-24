@@ -119,53 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &128305142
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 128305144}
-  - component: {fileID: 128305143}
-  m_Layer: 0
-  m_Name: ServerBootstrap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &128305143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128305142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adf12eba47db34f869daabe97ae6e4af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ShootingHero.Servers::ShootingHero.Clients.ServerBootstrap
-  gameManager: {fileID: 343700565}
-  dataTableManager: {fileID: 11400000, guid: 8209a08b657204b9791cb7c654fe7d38, type: 2}
-  serverDataTableManager: {fileID: 11400000, guid: bb6d62a67d39d4514b4212d38159976b, type: 2}
---- !u!4 &128305144
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 128305142}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &279027115
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,52 +404,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &645007339
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 645007341}
-  - component: {fileID: 645007340}
-  m_Layer: 0
-  m_Name: ClientBootstrap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &645007340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 645007339}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f919cead2497446ba15a43d5eaf8cb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ShootingHero.Clients::ShootingHero.Clients.Bootstrap
-  gameManager: {fileID: 343700565}
-  dataTableManager: {fileID: 11400000, guid: 8209a08b657204b9791cb7c654fe7d38, type: 2}
---- !u!4 &645007341
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 645007339}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684035625
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,7 +487,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 128305143}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShootingHero.Clients.ServerBootstrap, ShootingHero.Servers
         m_MethodName: StartServer
         m_Mode: 1
@@ -929,7 +836,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 645007340}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ShootingHero.Clients.ClientBootstrap, ShootingHero.Clients
         m_MethodName: StartClient
         m_Mode: 1
@@ -1122,7 +1029,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 1647748760}
   - {fileID: 343700564}
-  - {fileID: 645007341}
-  - {fileID: 128305144}
   - {fileID: 532516072}
   - {fileID: 1385606994}

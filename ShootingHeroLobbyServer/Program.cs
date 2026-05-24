@@ -12,7 +12,12 @@ namespace ShootingHero.LobbyServer
             builder.Services.AddOptions<ServerConfig>()
                 .Bind(builder.Configuration.GetSection("ServerConfig"));
             
-            builder.Services.AddSingleton<GameManager>();
+            builder.Services.AddSingleton<GameInstanceManager>();
+            builder.Services.AddSingleton<IPortQueue, PortQueue>();
+            builder.Services.AddSingleton<IGameInstanceLauncher, GameInstanceLauncher>();
+            builder.Services.AddHostedService<GameScheduleService>();
+
+            builder.Services.AddSingleton<RoomManager>();
 
             builder.Services.AddControllers();
             

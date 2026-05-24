@@ -9,13 +9,11 @@ namespace ShootingHero.Servers
     {
         private readonly GameManager gameManager = null;
         private readonly GameServer gameServer = null;
-        private readonly Server server = null;
 
-        public C2S_ReloadWeaponPacketHandler(GameManager gameManager, GameServer gameServer, Server server)
+        public C2S_ReloadWeaponPacketHandler(GameManager gameManager, GameServer gameServer)
         {
             this.gameManager = gameManager;
             this.gameServer = gameServer;
-            this.server = server;
         }
 
         ValueTask IPacketHandler<C2S_ReloadWeaponPacket>.HandlePacket(Session session, C2S_ReloadWeaponPacket packet)
@@ -33,7 +31,7 @@ namespace ShootingHero.Servers
             S2C_ReloadWeaponBroadcastPacket broadcastPacket = new S2C_ReloadWeaponBroadcastPacket() {
                 PlayerID = playerID,
             };
-            server.Rooms.Room(ServerDefine.ROOM_ID).Send(broadcastPacket);
+            gameServer.Send(broadcastPacket);
 
             return new ValueTask();
         }

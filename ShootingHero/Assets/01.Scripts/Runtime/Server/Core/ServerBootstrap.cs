@@ -1,3 +1,6 @@
+using System;
+using Cysharp.Threading.Tasks;
+using ShootingHero.LobbyServer;
 using ShootingHero.Shared;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,13 +18,27 @@ namespace ShootingHero.Servers
         [SerializeField]
         private ServerDataTableManager serverDataTableManager = null;
 
-        public async void StartServer()
+        private async void Start()
         {
+            GameInstance.PlayMode = EPlayMode.Server;
+            GameInstance.DataTableManager = dataTableManager;
+            ServerInstance.ServerDataTableManager = serverDataTableManager;
+
             gameManager.Initialize();
+
+            GetServerCommandLineArguments getServerCommandLineArguments = new GetServerCommandLineArguments(Environment.GetCommandLineArgs());
+            if(getServerCommandLineArguments.IsValid == false)
+                return;
             
+            await StartServer(getServerCommandLineArguments.Port);
+            await BroadcastServerReady(getServerCommandLineArguments.UUID);
+        }
+
+        private async UniTask StartServer(int port)
+        {
             GameServer gameServer = new GameServer();
             gameServer.Initialize(dataTableManager, serverDataTableManager, gameManager);
-            gameServer.Listen(9999);
+            gameServer.Listen(port);
 
             await SceneManager.LoadSceneAsync("Game", LoadSceneMode.Single);
 
@@ -33,6 +50,12 @@ namespace ShootingHero.Servers
                 gameManager
             );
             itemSpawnManager.Initialize();
+        }
+
+        private async UniTask BroadcastServerReady(string gameUUID)
+        {
+            GameInstanceReadyRequest request = new GameInstanceReadyRequest() { GameUUID = gameUUID };
+            await new LobbyGameRequest<GameInstanceReadyRequest, GameInstanceReadyResponse>(request).RequestAsync();
         }
     }
 }

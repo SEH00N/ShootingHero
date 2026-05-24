@@ -6,5 +6,7 @@ namespace ShootingHero.Shared
         {
             ItemLayer = 1 << 6
         }
+
+        public const string LOBBY_SERVER_CONNECTION = "http://localhost:9696";
     }
 }

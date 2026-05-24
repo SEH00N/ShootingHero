@@ -10,8 +10,6 @@ namespace ShootingHero.Clients
 
         public void Intialize(DataTableManager dataTableManager, GameManager gameManager, int characterID)
         {
-            GameInstance.PlayMode = EPlayMode.Client;
-            GameInstance.DataTableManager = dataTableManager;
             ClientInstance.GameClient = this;
 
             session = new Session();

@@ -14,9 +14,6 @@ namespace ShootingHero.Servers
 
         public void Initialize(DataTableManager dataTableManager, ServerDataTableManager serverDataTableManager, GameManager gameManager)
         {
-            GameInstance.PlayMode = EPlayMode.Server;
-            GameInstance.DataTableManager = dataTableManager;
-            ServerInstance.ServerDataTableManager = serverDataTableManager;
             ServerInstance.GameServer = this;
 
             playerIDMap = new Dictionary<Session, string>();

@@ -1,5 +1,7 @@
 using ShootingHero.Shared;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 
 namespace ShootingHero.Clients
 {
@@ -11,14 +13,15 @@ namespace ShootingHero.Clients
         [SerializeField]
         private DataTableManager dataTableManager = null;
 
-        public void StartClient()
+        private void Start()
         {
+            GameInstance.PlayMode = EPlayMode.Client;
+            GameInstance.DataTableManager = dataTableManager;
+
             InputManager.Initialize();
             gameManager.Initialize();
 
-            GameClient gameClient = new GameClient();
-            gameClient.Intialize(dataTableManager, gameManager, Random.Range(0, 4));
-            gameClient.Connect("localhost", 9999);
+            SceneManager.LoadScene("Lobby", LoadSceneMode.Single);
         }
     }
 }

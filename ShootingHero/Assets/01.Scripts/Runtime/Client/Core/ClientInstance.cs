@@ -22,6 +22,7 @@ namespace ShootingHero.Clients
             }
         }
 
+        public static string Nickname = string.Empty;
         public static string MyPlayerID = string.Empty;
         public static bool IsFireWeaponPacketProcessing = false;
         public static GameClient GameClient = null;
